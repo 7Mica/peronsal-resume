@@ -1,11 +1,11 @@
+// Base
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
+
 // Fonts
 @import "fonts/archivo";
 
-// Typography
-@import "base/typography";
-
-// Util
-@import "util/text";
-
 // Mixins
-@import "mixins/clearfix";
+@import "abstract/mixins";
+@import "abstract/variables";
