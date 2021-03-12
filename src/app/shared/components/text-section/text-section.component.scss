@@ -1,0 +1,14 @@
+.text-section {
+  height: 50vh;
+  padding: 70px 40px;
+
+  &__container {
+    max-width: 1680px;
+    margin: 0 auto;
+  }
+
+  &__paragraph {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}

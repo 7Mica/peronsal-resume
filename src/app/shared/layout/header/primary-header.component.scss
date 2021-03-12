@@ -1,0 +1,25 @@
+@import "mixins/clearfix";
+
+.header {
+  height: 50vh;
+  background-color: #dddd;
+
+  &__main-navigation {
+    max-width: 1680px;
+    margin: 0 auto;
+    @include clearfix;
+  }
+
+  &__menu {
+    float: right;
+
+    li {
+      list-style: none;
+      display: inline-block;
+
+      + li {
+        margin-left: 40px;
+      }
+    }
+  }
+}
