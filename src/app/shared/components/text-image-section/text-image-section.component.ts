@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'text-image-section',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class TextImageSectionComponent {
   public title = `Experience`;
-  public image = `/assets/images/profile-photo@2x.jpg`;
+  public image = `${environment.assetUrl}/images/profile-photo@2x.jpg`;
   public bodyMessage = `
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus odio
     labore ipsa temporibus dignissimos nemo dolorum magni, asperiores
