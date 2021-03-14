@@ -1,0 +1,19 @@
+.text-image-section {
+  &__container {
+    max-width: 1680px;
+    margin: 0 auto;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+
+    > * + * {
+      margin-left: 40px;
+    }
+  }
+
+  &__text-body {
+    max-width: 500px;
+  }
+}

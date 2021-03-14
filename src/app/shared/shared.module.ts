@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
+import { TextImageSectionModule } from './components/text-image-section/text-image-section.module';
 import { TextSectionModule } from './components/text-section/text-section.module';
 
 @NgModule({
-  imports: [TextSectionModule],
-  exports: [TextSectionModule],
+  exports: [TextSectionModule, TextImageSectionModule],
 })
 export class SharedModule {}

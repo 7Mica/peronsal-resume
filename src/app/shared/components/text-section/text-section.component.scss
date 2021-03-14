@@ -1,6 +1,6 @@
 .text-section {
+  padding: 40px 0;
   height: 50vh;
-  padding: 70px 40px;
 
   &__container {
     max-width: 1680px;
@@ -9,6 +9,6 @@
 
   &__paragraph {
     max-width: 800px;
-    margin: 0 auto;
+    display: inline-block;
   }
 }
