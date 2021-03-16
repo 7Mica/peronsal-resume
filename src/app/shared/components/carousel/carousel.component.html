@@ -1,0 +1,20 @@
+<div class="carousel">
+  <div class="carousel__container">
+    <button class="btn" type="button" (click)="handleClick('back')">
+      <span class="arrow-left"></span>
+    </button>
+    <button class="btn" type="button" (click)="handleClick('next')">
+      <span class="arrow-right"></span>
+    </button>
+    <div class="carousel-slides-wrapper">
+      <div class="carousel-slide" *ngFor="let slide of slides; let i = index">
+        <img
+          *ngIf="i === currentSlide"
+          [@slideAnimation]="'scale'"
+          src="{{ slide.image }}"
+          alt="profile image"
+        />
+      </div>
+    </div>
+  </div>
+</div>

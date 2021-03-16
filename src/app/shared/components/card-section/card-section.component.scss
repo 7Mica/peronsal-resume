@@ -1,0 +1,22 @@
+.card-section {
+  &__container {
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 40px;
+  }
+
+  .section-title {
+    & + .card-section__cards-wrapper {
+      margin-top: 150px;
+    }
+  }
+
+  &__cards-wrapper {
+    display: flex;
+    justify-content: center;
+
+    .card + .card {
+      margin-left: 80px;
+    }
+  }
+}

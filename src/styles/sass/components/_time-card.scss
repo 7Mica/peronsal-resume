@@ -1,0 +1,44 @@
+.time-card {
+  width: 600px;
+  text-align: right;
+  background-color: $speedy-color;
+  border-radius: 10px;
+  padding: 40px;
+  color: white;
+  position: relative;
+  margin: 0 auto;
+
+  &__image {
+    position: absolute;
+    top: -90px;
+    left: -90px;
+  }
+
+  &__body-text {
+    max-width: 400px;
+    margin: 0 0 0 auto;
+  }
+
+  &.left {
+    width: 600px;
+    text-align: left;
+    background-color: $speedy-color;
+    border-radius: 10px;
+    padding: 40px;
+    color: white;
+    position: relative;
+    margin: 0 auto;
+
+    .time-card__image {
+      position: absolute;
+      top: -90px;
+      left: auto;
+      right: -90px;
+    }
+
+    .time-card__body-text {
+      max-width: 400px;
+      margin: 0 auto 0 0;
+    }
+  }
+}

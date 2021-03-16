@@ -1,0 +1,18 @@
+@import "abstract/variables";
+
+.email-section {
+  background-color: $speedy-color;
+
+  &__container {
+    padding: 40px;
+  }
+
+  &__text-body {
+    display: inline-block;
+    color: white;
+  }
+
+  &__form {
+    float: right;
+  }
+}

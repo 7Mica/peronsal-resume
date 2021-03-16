@@ -1,0 +1,19 @@
+.arrow {
+  &-left {
+    border-bottom: solid 5px black;
+    border-left: solid 5px black;
+    height: 2rem;
+    width: 2rem;
+    display: inline-block;
+    transform: rotate(45deg);
+  }
+
+  &-right {
+    border-bottom: solid 5px black;
+    border-right: solid 5px black;
+    height: 2rem;
+    width: 2rem;
+    display: inline-block;
+    transform: rotate(-45deg);
+  }
+}

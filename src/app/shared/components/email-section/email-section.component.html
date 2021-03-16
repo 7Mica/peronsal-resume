@@ -1,0 +1,21 @@
+<section class="email-section">
+  <div class="container">
+    <div class="email-section__container clearfix">
+      <div class="email-section__text-body">
+        <h3>Contact</h3>
+        <p>Wanna get in tocuh? Just send and email</p>
+      </div>
+
+      <form class="email-section__form" [formGroup]="emailForm" (ngSubmit)="handleSubmit()">
+        <input
+          formControlName="email"
+          placeholder="Email address..."
+          type="email"
+          id="email-contact"
+        />
+
+        <button type="submit" class="btn form-btn">Send</button>
+      </form>
+    </div>
+  </div>
+</section>

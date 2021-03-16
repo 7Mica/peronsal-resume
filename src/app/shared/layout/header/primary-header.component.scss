@@ -1,15 +1,30 @@
+@import "abstract/variables";
+
 .header {
   height: 50vh;
   background-color: #dddd;
+  background-image: url("/assets/images/header.jpg");
+  background-position: center;
+  background-size: cover;
 
   &__main-navigation {
-    max-width: 1680px;
     margin: 0 auto;
+    padding: 20px 0;
+    z-index: 999;
+    background-image: linear-gradient(
+      to bottom,
+      $primary-color,
+      rgba($primary-color, 0.8)
+    );
+    transition: all 1s linear;
+  }
+
+  &__main-navigation-menu-wrapper {
+    max-width: 1680px;
   }
 
   &__menu {
     float: right;
-
     li {
       list-style: none;
       display: inline-block;
@@ -20,10 +35,20 @@
     }
 
     &-link {
-      &:link,
-      &:active {
-        text-decoration: none;
+      transition: all 0.5s;
+
+      &:hover {
+        transform: scale(2);
       }
     }
   }
+}
+
+.fixed-nav-menu {
+  width: 100%;
+  position: fixed;
+  opacity: 1;
+  background-image: none;
+  background-color: $primary-color;
+  transition: all 1s linear;
 }
