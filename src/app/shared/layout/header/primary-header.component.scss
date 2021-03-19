@@ -6,6 +6,25 @@
   background-image: url("../../../../assets/images/header.jpg");
   background-position: center;
   background-size: cover;
+  position: relative;
+
+  &__text {
+    color: white;
+    background-color: rgba(104, 104, 104, 0.507);
+    max-width: 800px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 40px;
+
+    animation-name: moveInBottom;
+    animation-duration: 0.5s;
+    animation-delay: 0.75s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: backwards;
+  }
 
   &__main-navigation {
     margin: 0 auto;
@@ -13,8 +32,8 @@
     z-index: 999;
     background-image: linear-gradient(
       to bottom,
-      $primary-color,
-      rgba($primary-color, 0.8)
+      $speedy-color,
+      rgba($speedy-color, 0.8)
     );
     transition: all 1s linear;
   }
@@ -35,10 +54,21 @@
     }
 
     &-link {
-      transition: all 0.5s;
+      &::after {
+        content: "";
+        display: block;
+        background-color: $primary-color;
+        width: 0%;
+        height: 2px;
+        transition: all 0.5s;
+      }
 
       &:hover {
-        transform: scale(2);
+        color: $primary-color;
+        transition: all 0.5s;
+        &::after {
+          width: 100%;
+        }
       }
     }
   }
@@ -49,6 +79,6 @@
   position: fixed;
   opacity: 1;
   background-image: none;
-  background-color: $primary-color;
+  background-color: $speedy-color;
   transition: all 1s linear;
 }

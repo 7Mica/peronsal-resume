@@ -1,14 +1,31 @@
 .text-section {
-  padding: 40px 0;
+  padding: 70px 0 0 0;
   height: 50vh;
 
-  &__container {
-    max-width: 1680px;
-    margin: 0 auto;
+  &__wrapper {
+    display: flex;
+  }
+
+  figure + &__text-wrapper {
+    margin-left: 50px;
+  }
+
+  &__text-wrapper {
+    > * + * {
+      margin-top: 40px;
+    }
   }
 
   &__paragraph {
     max-width: 800px;
-    display: inline-block;
+  }
+
+  &__image {
+    img {
+      border-radius: 50%;
+
+      &:hover {
+      }
+    }
   }
 }

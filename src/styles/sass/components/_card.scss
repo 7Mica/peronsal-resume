@@ -8,6 +8,10 @@
   background-color: $speedy-color;
   color: $quiet-color;
 
+  -webkit-box-shadow: -1px 17px 21px -16px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 17px 21px -16px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 17px 21px -16px rgba(0, 0, 0, 0.75);
+
   &-wrapper {
     position: relative;
   }

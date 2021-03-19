@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['text-section.component.scss'],
 })
 export class TextSectionComponent {
-  public title = 'Hello';
+  public title = 'A little about me';
   public bodyMessage = `
     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur,
     exercitationem! Nisi optio ad inventore pariatur eaque? Atque earum

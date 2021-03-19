@@ -1,4 +1,6 @@
+@import "abstract/variables";
+
 .footer {
   height: 250px;
-  background-color: #ddd;
+  background-color: $secondary-color;
 }
