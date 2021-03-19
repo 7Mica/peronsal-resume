@@ -6,6 +6,4 @@ import { environment } from 'src/environments/environment';
   templateUrl: 'card-section.component.html',
   styleUrls: ['card-section.component.scss'],
 })
-export class CardSectionComponent {
-  public assetUrl = environment.assetUrl;
-}
+export class CardSectionComponent {}

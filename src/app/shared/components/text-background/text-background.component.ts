@@ -6,6 +6,4 @@ import { environment } from 'src/environments/environment';
   templateUrl: 'text-background.component.html',
   styleUrls: ['text-background.component.scss'],
 })
-export class TextBackgroundComponent {
-  public assetUrl = environment.assetUrl;
-}
+export class TextBackgroundComponent {}

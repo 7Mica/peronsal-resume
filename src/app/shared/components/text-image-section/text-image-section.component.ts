@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class TextImageSectionComponent {
   public title = `Experience`;
-  public image = `${environment.assetUrl}/images/profile-photo@2x.jpg`;
+  public image = `assets/images/profile-photo@2x.jpg`;
   public bodyMessage = `
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus odio
     labore ipsa temporibus dignissimos nemo dolorum magni, asperiores

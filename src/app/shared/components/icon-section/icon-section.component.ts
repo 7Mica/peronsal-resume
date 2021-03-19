@@ -6,6 +6,4 @@ import { environment } from 'src/environments/environment';
   templateUrl: 'icon-section.component.html',
   styleUrls: ['icon-section.component.scss'],
 })
-export class IconSectionComponent {
-  public assetUrl = environment.assetUrl;
-}
+export class IconSectionComponent {}
