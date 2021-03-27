@@ -1,5 +1,7 @@
-// Abstract
 @import "abstract/variables";
+@import "~bootstrap/scss/bootstrap.scss";
+
+// Abstract
 @import "abstract/functions";
 @import "abstract/mixins";
 
@@ -9,16 +11,16 @@
 
 // Base
 @import "base/base";
-@import "base/typography";
 @import "base/utilities";
 @import "base/headings";
-@import "base/container";
 @import "base/animations";
+@import "base/limiter";
+
 
 // Components
 @import "components/arrow";
-@import "components/forms";
 @import "components/button";
 @import "components/link";
 @import "components/card";
 @import "components/time-card";
+

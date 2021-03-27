@@ -1,9 +1,14 @@
 <section class="text-background-section">
   <div class="text-background-section__container">
-    <h2 class="section-title u-text-center">What about us?</h2>
+    <h2 class="section-title text-center">What about us?</h2>
 
     <div class="text-background-section__time-line-cards">
-      <div class="time-card">
+      <div
+        class="time-card"
+        scrollFadeIn
+        [delayAnimation]="0.5"
+        [animation]="'slideFromLeft'"
+      >
         <div class="time-card__image">
           <img
             src="assets/icons/galaxy.svg"
@@ -24,7 +29,12 @@
         </div>
       </div>
 
-      <div class="time-card left">
+      <div
+        class="time-card left"
+        scrollFadeIn
+        [delayAnimation]="0.5"
+        [animation]="'slideFromRight'"
+      >
         <div class="time-card__image">
           <img
             src="assets/icons/alien.svg"
@@ -45,7 +55,12 @@
         </div>
       </div>
 
-      <div class="time-card">
+      <div
+        class="time-card"
+        scrollFadeIn
+        [delayAnimation]="0.5"
+        [animation]="'slideFromLeft'"
+      >
         <div class="time-card__image">
           <img
             src="assets/icons/planets.svg"
@@ -66,7 +81,12 @@
         </div>
       </div>
 
-      <div class="time-card left">
+      <div
+        class="time-card left"
+        scrollFadeIn
+        [delayAnimation]="0.5"
+        [animation]="'slideFromRight'"
+      >
         <div class="time-card__image">
           <img
             src="assets/icons/satellite.svg"

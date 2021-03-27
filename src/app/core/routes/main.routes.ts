@@ -7,6 +7,13 @@ export const MAIN_ROUTES: Routes = [
       import('../../pages/main/main-page.module').then((m) => m.MainPageModule),
   },
   {
+    path: 'playground',
+    loadChildren: () =>
+      import('../../pages/playground/playground.module').then(
+        (m) => m.PlaygroundModule
+      ),
+  },
+  {
     path: '404',
     loadChildren: () =>
       import('../../pages/notfound/notfound-page.module').then(

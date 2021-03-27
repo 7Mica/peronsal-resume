@@ -1,9 +1,16 @@
 <section class="card-section">
   <div class="card-section__container">
-    <h2 class="section-title u-text-center">Something about</h2>
+    <h2 class="section-title text-center" scrollFadeIn [delayAnimation]="0.1">
+      Something about
+    </h2>
 
     <div class="card-section__cards-wrapper">
-      <div class="card">
+      <div
+        class="card"
+        scrollFadeIn
+        [delayAnimation]="0.1"
+        [animation]="'scaleInHorCenter'"
+      >
         <div class="card-wrapper">
           <div class="card-logo">
             <img
@@ -25,7 +32,12 @@
         </div>
       </div>
 
-      <div class="card">
+      <div
+        class="card"
+        scrollFadeIn
+        [delayAnimation]="0.2"
+        [animation]="'scaleInHorCenter'"
+      >
         <div class="card-wrapper">
           <div class="card-logo">
             <img
@@ -47,7 +59,12 @@
         </div>
       </div>
 
-      <div class="card">
+      <div
+        class="card"
+        scrollFadeIn
+        [delayAnimation]="0.3"
+        [animation]="'scaleInHorCenter'"
+      >
         <div class="card-wrapper">
           <div class="card-logo">
             <img

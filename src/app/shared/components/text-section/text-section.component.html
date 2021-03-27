@@ -1,29 +1,37 @@
 <section class="text-section">
-  <div class="text-section__container container">
-    <div class="text-section__wrapper">
-      <figure class="text-section__image">
-        <img
-          src="assets/images/road@2x.jpg"
-          alt="cat"
-          width="300"
-          height="300"
-        />
-      </figure>
+  <div class="limiter">
+    <div class="text-section__container container-fluid">
+      <div class="row gx-5">
+        <div class="text-section__image_wrapper col-12 col-lg-4">
+          <figure class="text-section__image">
+            <img src="assets/images/road@2x.jpg" alt="cat" />
 
-      <div class="text-section__text-wrapper">
-        <h2 class="section-title">{{ title }}</h2>
+            <figcaption class="figure-caption text-center">
+              <p><strong>Age:</strong> 28 years</p>
+              <p><strong>Location:</strong> Tepic, NAY. Mexico</p>
+            </figcaption>
+          </figure>
+        </div>
 
-        <p class="text-section__paragraph">
-          {{ bodyMessage }}
-        </p>
-
-        <a
-          target="_blank"
-          class="btn btn-secondary"
-          href="assets/files/Resume--Fermin-Casillas.pdf"
+        <div
+          class="text-section__text-wrapper text-center text-lg-left col-12 col-lg-8"
         >
-          Download Resume
-        </a>
+          <h2 id="about" class="section-title">
+            {{ title }}
+          </h2>
+
+          <p class="text-section__paragraph">
+            {{ bodyMessage }}
+          </p>
+
+          <a
+            target="_blank"
+            class="btn btn-secondary"
+            href="assets/files/Resume--Fermin-Casillas.pdf"
+          >
+            Download Resume
+          </a>
+        </div>
       </div>
     </div>
   </div>

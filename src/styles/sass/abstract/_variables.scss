@@ -3,3 +3,14 @@ $secondary-color: #007580;
 $speedy-color: #282846;
 $quiet-color: #d8ebe4;
 $btn-secondary-hover: #0199a7;
+
+$primary: green;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 375px,
+  md: 768px,
+  lg: 1020px,
+  xl: 1440px,
+  xxl: 1920px
+);

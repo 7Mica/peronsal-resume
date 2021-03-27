@@ -1,16 +1,23 @@
+@import "abstract/mixins";
+@import "abstract/variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+
 .text-section {
   padding: 70px 0 0 0;
-  height: 50vh;
+  min-height: 50vh;
 
-  &__wrapper {
-    display: flex;
-  }
-
-  figure + &__text-wrapper {
-    margin-left: 50px;
+  &__container {
+    padding: 40px 25px;
   }
 
   &__text-wrapper {
+    @include media-breakpoint-between(sm, lg) {
+      p,
+      a {
+        margin: 0 auto 30px;
+      }
+    }
+
     > * + * {
       margin-top: 40px;
     }
@@ -22,10 +29,24 @@
 
   &__image {
     img {
+      display: block;
+      margin: 0 auto;
+      width: 300px;
+      height: 300px;
       border-radius: 50%;
+      box-shadow: 0 0 0px 10px $secondary-color, 10px 10px 20px #000000cc;
+    }
 
-      &:hover {
+    figcaption {
+      p {
+        margin: 0;
       }
+
+      margin: 30px 0 0;
+    }
+
+    @include media-breakpoint-between(sm, lg) {
+      margin: 0 auto 30px;
     }
   }
 }
