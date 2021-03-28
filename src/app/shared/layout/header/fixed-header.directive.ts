@@ -9,6 +9,13 @@ export class FixedHeaderDirective {
   @HostListener('window:scroll', ['$event'])
   onScroll(): void {
     const navHeight = this.elem.nativeElement.getBoundingClientRect();
+    const menuHasBeenActived = this.elem.nativeElement.querySelector(
+      '.header__menu.menu-opened'
+    );
+
+    if (menuHasBeenActived) {
+      return;
+    }
 
     if (window.pageYOffset > navHeight.height) {
       this.renderer.addClass(this.elem.nativeElement, 'opacity-0');

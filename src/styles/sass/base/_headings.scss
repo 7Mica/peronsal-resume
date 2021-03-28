@@ -1,16 +1,19 @@
 h1 {
   font-family: "source-sans-pro-semibold";
   text-transform: uppercase;
+  color: $speedy-color;
 }
 
 h2 {
   font-family: "source-sans-pro-semibold";
+  color: $speedy-color;
   text-transform: uppercase;
 }
 
 h3 {
   font-family: "source-sans-pro-semibold";
   text-transform: uppercase;
+  color: $speedy-color;
   margin-bottom: 20px;
 
   &::after {
@@ -23,9 +26,11 @@ h3 {
 }
 
 h4 {
+  color: $speedy-color;
   font-family: "source-sans-pro-semibold";
 }
 
 h5 {
+  color: $speedy-color;
   font-family: "source-sans-pro-semibold";
 }

@@ -1,23 +1,52 @@
 <header class="header">
   <nav class="header__main-navigation" fixedHeader>
     <div class="limiter">
-      <div class="container-fluid d-flex justify-content-between">
+      <div #parent class="container-fluid d-flex justify-content-between">
         <div class="header__logo">
           <a routerLink="/" rel="noopener noreferrer">Home</a>
         </div>
-        <ul class="header__menu">
+
+        <ul class="header__menu" #menu>
           <li>
-            <a href="#about" smoothScroll class="header__menu-link"
+            <a
+              closeMenu
+              [parent]="parent"
+              href="#about"
+              class="header__menu-link"
               >Who am I?</a
             >
           </li>
-          <li><a class="header__menu-link" href="#">Experience</a></li>
-          <li><a class="header__menu-link" href="#">Tools</a></li>
-          <li><a class="header__menu-link" href="#">Contact</a></li>
           <li>
-            <a class="header__menu-link" href="#">What about this page?</a>
+            <a closeMenu [parent]="parent" class="header__menu-link" href="#"
+              >Experience</a
+            >
+          </li>
+          <li>
+            <a closeMenu [parent]="parent" class="header__menu-link" href="#"
+              >Tools</a
+            >
+          </li>
+          <li>
+            <a closeMenu [parent]="parent" class="header__menu-link" href="#"
+              >Contact</a
+            >
+          </li>
+          <li>
+            <a closeMenu [parent]="parent" class="header__menu-link" href="#"
+              >What about this page?</a
+            >
           </li>
         </ul>
+
+        <button
+          openMobileMenu
+          [menu]="menu"
+          [parent]="parent"
+          type="button"
+          class="header__btn-burguer"
+        >
+          <i class="bi bi-list"></i>
+        </button>
       </div>
     </div>
   </nav>

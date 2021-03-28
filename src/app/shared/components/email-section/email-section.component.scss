@@ -1,5 +1,6 @@
 @import "abstract/variables";
 @import "base/animations";
+@import "~bootstrap/scss/mixins/breakpoints";
 
 .email-section {
   background-color: $primary-color;
@@ -12,6 +13,10 @@
     background: $primary-color;
     padding-top: 25px;
     padding-bottom: 25px;
+
+    h2 {
+      color: $secondary-color;
+    }
 
     .row {
       padding: 25px;
@@ -55,13 +60,23 @@
   }
 
   &__svg {
-    height: 100%;
+    & > div {
+      height: 100%;
+    }
+
+    @include media-breakpoint-down(md) {
+      & + div {
+        margin-top: 40px;
+      }
+    }
 
     svg {
       width: 70%;
       height: auto;
+
+      @include media-breakpoint-down(sm) {
+        width: 40%;
+      }
     }
   }
 }
-
-
