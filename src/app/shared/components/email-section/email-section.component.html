@@ -1,21 +1,92 @@
 <section class="email-section">
-  <div class="container">
-    <div class="email-section__container clearfix">
-      <div class="email-section__text-body">
-        <h3>Contact</h3>
-        <p>Wanna get in tocuh? Just send and email</p>
+  <div class="limiter">
+    <div class="email-section__container container-fluid shadow-lg rounded">
+      <h2 class="h1 text-center">Contact</h2>
+      <p class="text-center">Wanna get in tocuh? Just send an email</p>
+
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div
+            class="email-section__svg d-flex flex-column justify-content-center"
+          >
+            <svg viewBox="0 0 48 48" class="align-self-center">
+              <style>
+                .cls-0,
+                .cls-1,
+                .cls-2,
+                .cls-3 {
+                  fill: none;
+                  stroke: #00758069;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 2px;
+                }
+              </style>
+              <path
+                class="cls-0"
+                d="M35.81,43.69A19.29,19.29,0,0,0,47,47a46.9,46.9,0,0,1-5.2-8.5A23,23,0,1,0,35.81,43.69Z"
+              />
+              <circle class="cls-1" cx="14.01" cy="24.02" r="2" />
+              <circle class="cls-2" cx="23.98" cy="23.98" r="2" />
+              <circle class="cls-3" cx="33.99" cy="23.98" r="2" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="email-section__form col-12 col-md-6 rounded">
+          <form [formGroup]="emailForm" (ngSubmit)="handleSubmit()">
+            <div class="form-group">
+              <label for="name">Name</label>
+
+              <input
+                formControlName="email"
+                class="form-control"
+                placeholder="Name"
+                type="email"
+                id="name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+
+              <input
+                formControlName="email"
+                class="form-control"
+                placeholder="Last name"
+                type="email"
+                id="last-name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email-contact">Email</label>
+
+              <input
+                formControlName="email"
+                class="form-control"
+                placeholder="Email address..."
+                type="email"
+                id="email-contact"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+
+              <textarea
+                formControlName="email"
+                class="form-control"
+                placeholder="Message..."
+                id="message"
+                rows="5"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-secondary">Send</button>
+          </form>
+        </div>
       </div>
-
-      <form class="email-section__form" [formGroup]="emailForm" (ngSubmit)="handleSubmit()">
-        <input
-          formControlName="email"
-          placeholder="Email address..."
-          type="email"
-          id="email-contact"
-        />
-
-        <button type="submit" class="btn form-btn">Send</button>
-      </form>
     </div>
   </div>
 </section>

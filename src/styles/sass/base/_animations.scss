@@ -41,3 +41,34 @@
     opacity: 1;
   }
 }
+
+@keyframes shaking {
+  0% {
+    transform-origin: center center;
+    transform: scale(1);
+  }
+
+  50% {
+    transform-origin: center center;
+    transform: scale(0.96);
+  }
+
+  100% {
+    transform-origin: center center;
+    transform: scale(1);
+  }
+}
+
+@keyframes bouncing {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

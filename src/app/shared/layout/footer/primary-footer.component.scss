@@ -1,6 +1,30 @@
 @import "abstract/variables";
 
 .footer {
-  height: 250px;
   background-color: $secondary-color;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #dcd2d2;
+
+  &__container {
+    padding-top: 40px;
+    padding-bottom: 20px;
+  }
+
+  &__made-by {
+    img {
+      width: 50px;
+      height: 50px;
+    }
+
+    * + * {
+      margin-top: 10px;
+    }
+  }
+
+  &__copyright {
+    p {
+      margin: 0;
+    }
+  }
 }
