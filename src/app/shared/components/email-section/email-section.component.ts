@@ -11,7 +11,10 @@ export class EmailSectionComponent {
 
   constructor(private fb: FormBuilder) {
     this.emailForm = fb.group({
+      name: fb.control('', [Validators.required]),
+      lastName: fb.control(''),
       email: fb.control('', [Validators.required, Validators.email]),
+      message: fb.control('', [Validators.required]),
     });
   }
 

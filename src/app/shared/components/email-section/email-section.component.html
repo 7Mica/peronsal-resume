@@ -1,7 +1,7 @@
 <section class="email-section">
   <div class="limiter">
     <div class="email-section__container container-fluid shadow-lg rounded">
-      <h2 class="section-title text-center">Contact</h2>
+      <h2 class="section-title text-center" id="contact">Contact</h2>
       <p class="text-center">Wanna get in tocuh? Just send an email</p>
 
       <div class="row">
@@ -37,10 +37,10 @@
               <label for="name">Name</label>
 
               <input
-                formControlName="email"
+                formControlName="name"
                 class="form-control"
                 placeholder="Name"
-                type="email"
+                type="text"
                 id="name"
               />
             </div>
@@ -49,10 +49,10 @@
               <label for="last-name">Last Name</label>
 
               <input
-                formControlName="email"
+                formControlName="lastName"
                 class="form-control"
                 placeholder="Last name"
-                type="email"
+                type="text"
                 id="last-name"
               />
             </div>
@@ -63,7 +63,7 @@
               <input
                 formControlName="email"
                 class="form-control"
-                placeholder="Email address..."
+                placeholder="Email address"
                 type="email"
                 id="email-contact"
               />
@@ -73,15 +73,15 @@
               <label for="message">Message</label>
 
               <textarea
-                formControlName="email"
+                formControlName="message"
                 class="form-control"
-                placeholder="Message..."
+                placeholder="Message"
                 id="message"
                 rows="5"
               ></textarea>
             </div>
 
-            <button type="submit" class="btn btn-secondary">Send</button>
+            <button type="submit" class="btn btn-secondary">Submit</button>
           </form>
         </div>
       </div>
