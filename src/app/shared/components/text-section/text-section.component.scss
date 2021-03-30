@@ -1,5 +1,6 @@
 @import "abstract/mixins";
 @import "abstract/variables";
+@import "base/animations";
 @import "~bootstrap/scss/mixins/breakpoints";
 
 .text-section {
@@ -8,6 +9,7 @@
 
   &__container {
     padding: 40px 25px;
+    animation: opacityScale 1s;
   }
 
   &__text-wrapper {

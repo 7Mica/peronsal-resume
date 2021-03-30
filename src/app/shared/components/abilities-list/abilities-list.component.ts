@@ -70,7 +70,7 @@ export class AbilitiesListComponent {
       name: 'Languages',
       items: [
         {
-          name: 'Spanish',
+          name: 'Spanish <i>(Native Language)</i>',
           percent: 100,
         },
         {

@@ -12,43 +12,53 @@ export class ListSectionComponent {
   public careers: ICareer[] = [
     {
       company: 'Dot Devs',
-      yearRange: '2020 - 2021',
-      monthRange: 'December - March',
+      yearRange: 'December 2020 - March 2021',
       job: 'Backend Developer',
       description: ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
       itaque odio enim exercitationem, tempora corporis nihil sint
       ratione distinctio tempore doloremque magni tenetur labore ab
       quasi unde error similique asperiores?`,
+      location: 'Tepic, Nayarit. México.',
     },
     {
       company: 'D4ALL',
-      yearRange: '2019 - 2020',
-      monthRange: 'October - September',
+      yearRange: 'October 2019 - September 2020',
       job: 'Web Developer',
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
       itaque odio enim exercitationem, tempora corporis nihil sint
       ratione distinctio tempore doloremque magni tenetur labore ab
       quasi unde error similique asperiores?`,
+      location: 'Tepic, Nayarit. México.',
     },
     {
       company: 'Heteria Group',
-      yearRange: '2018 - 2019',
-      monthRange: 'September - Octeber',
+      yearRange: 'September 2018 - October 2019',
       job: 'Web Developer',
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
       itaque odio enim exercitationem, tempora corporis nihil sint
       ratione distinctio tempore doloremque magni tenetur labore ab
       quasi unde error similique asperiores?`,
+      location: 'Tepic, Nayarit. México.',
     },
     {
       company: 'ITT CIDETI',
-      yearRange: '2018 - 2018',
-      monthRange: 'March - December',
+      yearRange: 'March 2018 - December 2018',
       job: 'Web Developer',
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
       itaque odio enim exercitationem, tempora corporis nihil sint
       ratione distinctio tempore doloremque magni tenetur labore ab
       quasi unde error similique asperiores?`,
+      location: 'Tepic, Nayarit. México.',
+    },
+    {
+      company: 'Instituto Tecnológico de Tepic',
+      yearRange: 'Agoust 2012 - December 2018',
+      job: 'Computer Systems Engineer Student',
+      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
+      itaque odio enim exercitationem, tempora corporis nihil sint
+      ratione distinctio tempore doloremque magni tenetur labore ab
+      quasi unde error similique asperiores?`,
+      location: 'Tepic, Nayarit. México.',
     },
   ];
 }

@@ -6,8 +6,28 @@
   background-repeat: no-repeat;
   color: #dcd2d2;
 
+  a {
+    &,
+    &:link {
+      color: #dcd2d2;
+    }
+
+    &:hover {
+      color: #faf3f3;
+    }
+  }
+
+  &__links {
+    list-style: none;
+    padding-inline-start: 0;
+
+    li + li {
+      margin-top: 10px;
+    }
+  }
+
   &__container {
-    padding: 40px;
+    padding: 60px;
   }
 
   &__made-by {

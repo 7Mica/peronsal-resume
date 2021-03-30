@@ -19,19 +19,8 @@
 
         <div
           class="text-section__text-wrapper text-center text-lg-left col-12 col-lg-8"
-        >
-          <h2 id="about" class="section-title">
-            {{ sectionTitle }}
-          </h2>
-
-          <p class="text-section__paragraph">
-            {{ bodyMessage }}
-          </p>
-
-          <a target="_blank" class="btn btn-primary" href="{{ resumeFile }}">
-            {{ ctaText }}
-          </a>
-        </div>
+          [innerHtml]="bodyMessage | HTMLSanitizer"
+        ></div>
       </div>
     </div>
   </div>
