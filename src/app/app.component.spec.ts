@@ -14,20 +14,4 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
-
-  // it(`Should create paragraph`, () => {
-  //   const paragraphFixture = TestBed.createComponent(ParagraphComponent);
-  //   paragraphFixture.detectChanges();
-
-  //   const compiled = paragraphFixture.nativeElement;
-
-  //   expect(compiled.querySelector('p').textContent).toContain('epalee');
-  // });
-
-  // it('should render paragraph', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement;
-  //   expect(compiled.querySelector('paragraph').textContent).toContain('epalee');
-  // });
 });
