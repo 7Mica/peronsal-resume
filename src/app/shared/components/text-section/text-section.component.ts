@@ -27,12 +27,6 @@ export class TextSectionComponent {
       self and the support as team mates is worth.
     </p>
 
-    <p>
-      If there is something that I don't know i can easily learn it from
-      scratch. If there is an opportunity to be part of your company I will do
-      my best to do a great work and I am always ready to face new challenges.
-    </p>
-
     <a target="_blank" class="btn btn-primary" href="assets/files/Resume--Fermin-Casillas.pdf">
       Download Resume
     </a>

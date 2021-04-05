@@ -1,0 +1,14 @@
+<div
+  class="card-hover-effect"
+  (mouseenter)="eventHandler()"
+  (mouseleave)="mouseLeave()"
+>
+  <div class="card-hover-effect__text" [@animateHeight]="triggerEp">
+    <h3 class="card-hover-effect__title">Lorem ipsum</h3>
+    <p class="card-hover-effect__body" [@childAnimation]="triggerEp">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo,
+      doloremque culpa.
+    </p>
+  </div>
+  <img src="assets/images/road@2x.jpg" alt="Road" />
+</div>

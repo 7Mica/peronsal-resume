@@ -13,55 +13,55 @@ export class AbilitiesListComponent {
       name: 'Skills',
       items: [
         {
-          name: 'Typescript',
+          name: `<img src="assets/icons/brand-icons/typescript.svg" width="50" height="50">`,
           percent: 79,
         },
         {
-          name: 'Java SE',
+          name: `<img src="assets/icons/brand-icons/java.svg" width="50" height="50">`,
           percent: 20,
         },
         {
-          name: 'Javascript',
+          name: `<img src="assets/icons/brand-icons/javascript.svg" width="50" height="50">`,
           percent: 59,
         },
         {
-          name: 'PHP',
+          name: `<img src="assets/icons/brand-icons/php.svg" width="50" height="50">`,
           percent: 35,
         },
         {
-          name: 'Angular',
+          name: `<img src="assets/icons/brand-icons/angular.svg" width="50" height="50">`,
           percent: 62,
         },
         {
-          name: 'Express.js',
+          name: `<img src="assets/icons/brand-icons/expressjs.svg" width="50" height="50">`,
           percent: 40,
         },
         {
-          name: 'NestJS',
+          name: `<img src="assets/icons/brand-icons/nestjs.svg" width="50" height="50">`,
           percent: 62,
         },
         {
-          name: 'Laravel',
+          name: `<img src="assets/icons/brand-icons/laravel.svg" width="50" height="50">`,
           percent: 35,
         },
         {
-          name: 'GraphQL',
+          name: `<img src="assets/icons/brand-icons/graphql.svg" width="50" height="50">`,
           percent: 45,
         },
         {
-          name: 'Node.js',
+          name: `<img src="assets/icons/brand-icons/nodejs.svg" width="50" height="50">`,
           percent: 38,
         },
         {
-          name: 'Drupal',
+          name: `<img src="assets/icons/brand-icons/drupal.svg" width="50" height="50">`,
           percent: 39,
         },
         {
-          name: 'Sass',
+          name: `<img src="assets/icons/brand-icons/sass.svg" width="50" height="50">`,
           percent: 70,
         },
         {
-          name: 'Docker',
+          name: `<img src="assets/icons/brand-icons/docker.svg" width="50" height="50">`,
           percent: 57,
         },
       ],
@@ -80,10 +80,34 @@ export class AbilitiesListComponent {
       ],
     },
     {
+      name: 'Operating Systems',
+      items: [
+        {
+          name:
+            '<img src="assets/icons/brand-icons/ubuntu.svg" width="50" height="50">',
+          percent: 57,
+        },
+        {
+          name:
+            '<img src="assets/icons/brand-icons/macos.svg" width="50" height="50">',
+          percent: 50,
+        },
+        {
+          name:
+            '<img src="assets/icons/brand-icons/win2.svg" width="50" height="50">',
+          percent: 50,
+        },
+      ],
+    },
+    {
       name: 'Tools',
       items: [
         {
-          name: 'VSCode',
+          name: `<img src="assets/icons/brand-icons/vscode.svg" width="50" height="50">`,
+          percent: 80,
+        },
+        {
+          name: `<img src="assets/icons/brand-icons/axd.svg" width="50" height="50">`,
           percent: 80,
         },
       ],
