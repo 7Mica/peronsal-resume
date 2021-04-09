@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class TextSectionComponent {
   public location = 'Tepic, NAY. México.';
   public resumeFile = '';
-  public profileImage = 'assets/images/road@2x.jpg';
+  public profileImage = 'assets/images/profile.png';
   public age = 28;
   public bodyMessage = `
     <h2 id="about" class="section-title"> A little about me </h2>
@@ -27,7 +27,7 @@ export class TextSectionComponent {
       self and the support as team mates is worth.
     </p>
 
-    <a target="_blank" class="btn btn-primary" href="assets/files/Resume--Fermin-Casillas.pdf">
+    <a target="_blank" aria-label="download resume" class="btn btn-primary" href="assets/files/Resume--Fermin-Casillas.pdf">
       Download Resume
     </a>
   `;

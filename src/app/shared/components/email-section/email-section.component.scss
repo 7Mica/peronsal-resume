@@ -14,8 +14,17 @@
     padding-top: 25px;
     padding-bottom: 25px;
 
-    h2 {
+    h2, h3 {
       color: $secondary-color;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      text-transform: none;
+
+      &::after {
+        background-color: $secondary-color;
+      }
     }
 
     .row {

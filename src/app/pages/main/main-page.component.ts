@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { Slide } from '@core/interfaces/slide.interface';
+import { ISlide } from '@core/interfaces/slide.interface';
 
 @Component({
   templateUrl: 'main-page.component.html',
   styleUrls: ['main-page.component.scss'],
 })
 export class MainPageComponent {
-  public slides: Slide[] = [
+  public slides: ISlide[] = [
     {
       image: '/assets/images/cat-in-a-box@2x.jpg',
     },

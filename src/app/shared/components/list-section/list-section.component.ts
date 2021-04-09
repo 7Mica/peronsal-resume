@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Career as ICareer } from '@core/interfaces/career.interface';
+import { ICareer } from '@core/interfaces/career.interface';
 
 @Component({
   selector: 'list-section',

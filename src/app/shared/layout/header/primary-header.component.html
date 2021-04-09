@@ -1,9 +1,9 @@
 <header class="header">
-  <nav class="header__main-navigation" fixedHeader>
+  <nav class="header__main-navigation" fixedHeader role="navigation">
     <div class="limiter">
       <div #parent class="container-fluid d-flex justify-content-between">
         <div class="header__logo">
-          <a routerLink="/" rel="noopener noreferrer">Home</a>
+          <a routerLink="/">Home</a>
         </div>
 
         <ul class="header__menu" #menu>
@@ -50,6 +50,7 @@
 
         <button
           openMobileMenu
+          aria-label="menu"
           [menu]="menu"
           [parent]="parent"
           type="button"

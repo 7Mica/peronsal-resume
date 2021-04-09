@@ -8,7 +8,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IHobby } from '@core/interfaces/hobby.interface';
 
 @Component({
   templateUrl: 'card-hover-effect.component.html',
@@ -16,7 +17,7 @@ import { Component } from '@angular/core';
   styleUrls: ['card-hover-effect.component.scss'],
   animations: [
     trigger('animateHeight', [
-      state('init', style({ height: '*', transform: 'translateY(50%)' })),
+      state('init', style({ height: '*', transform: 'translateY(10%)' })),
       state('ends', style({ height: '100%', transform: 'translateY(0)' })),
 
       transition('* <=> *', [
@@ -31,17 +32,12 @@ import { Component } from '@angular/core';
   ],
 })
 export class CardHoverEffectComponent {
-  isTriggered = false;
+  @Input()
+  hobby: IHobby;
+
+  public isTriggered = false;
 
   get triggerEp(): string {
     return this.isTriggered ? 'ends' : 'init';
-  }
-
-  eventHandler(): void {
-    this.isTriggered = !this.isTriggered;
-  }
-
-  mouseLeave(): void {
-    this.isTriggered = !this.isTriggered;
   }
 }

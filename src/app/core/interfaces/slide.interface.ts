@@ -1,3 +1,3 @@
-export interface Slide {
+export interface ISlide {
   image: string;
 }

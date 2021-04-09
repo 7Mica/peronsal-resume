@@ -8,12 +8,11 @@
 .btn-primary {
   background-color: $primary-color;
   padding: 10px 25px;
-  color: $speedy-color;
-  transition: all 2s;
+  color: rgba($secondary-color, 0.3);
+  transition: background-color 500ms, color 500ms;
 
   &:hover {
     background-color: $btn-secondary-hover;
-    transition: all 1s;
   }
 }
 
@@ -21,10 +20,9 @@
   background-color: $secondary-color;
   padding: 10px 25px;
   color: white;
-  transition: all 2s;
+  transition: background-color 500ms, color 500ms;
 
   &:hover {
     background-color: $btn-secondary-hover;
-    transition: all 1s;
   }
 }

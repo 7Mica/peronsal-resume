@@ -1,4 +1,4 @@
-export interface Career {
+export interface ICareer {
   company: string;
   yearRange: string;
   job: string;

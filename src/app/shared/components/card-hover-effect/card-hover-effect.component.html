@@ -1,14 +1,19 @@
 <div
   class="card-hover-effect"
-  (mouseenter)="eventHandler()"
-  (mouseleave)="mouseLeave()"
+  (mouseenter)="this.isTriggered = !this.isTriggered"
+  (mouseleave)="this.isTriggered = !this.isTriggered"
 >
   <div class="card-hover-effect__text" [@animateHeight]="triggerEp">
-    <h3 class="card-hover-effect__title">Lorem ipsum</h3>
+    <h3 class="card-hover-effect__title">{{ hobby.name }}</h3>
+
     <p class="card-hover-effect__body" [@childAnimation]="triggerEp">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo,
-      doloremque culpa.
+      {{ hobby.description }}
     </p>
   </div>
-  <img src="assets/images/road@2x.jpg" alt="Road" />
+
+  <picture>
+    <source srcset="{{ hobby.image }}, {{ hobby.image2x }} 2x" />
+
+    <img src="{{ hobby.image }}" alt="{{ hobby.altText }}" />
+  </picture>
 </div>

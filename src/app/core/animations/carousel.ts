@@ -63,10 +63,6 @@ export const flipIn = animation([
   ),
 ]);
 
-export const flipOut = animation([
-  // just hide it
-]);
-
 // =========================
 // Jack in the box
 // =========================
@@ -94,8 +90,4 @@ export const jackIn = animation([
       }),
     ])
   ),
-]);
-
-export const jackOut = animation([
-  // just hide it
 ]);

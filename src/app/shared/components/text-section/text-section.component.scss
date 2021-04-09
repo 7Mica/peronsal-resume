@@ -19,10 +19,6 @@
         margin: 0 auto 30px;
       }
     }
-
-    > * + * {
-      margin-top: 40px;
-    }
   }
 
   &__paragraph {
@@ -36,7 +32,7 @@
       width: 300px;
       height: 300px;
       border-radius: 50%;
-      box-shadow: 0 0 0px 10px $secondary-color, 10px 10px 20px #000000cc;
+      box-shadow: 0 0 0px 4px $secondary-color, 10px 10px 20px #000000cc;
     }
 
     figcaption {

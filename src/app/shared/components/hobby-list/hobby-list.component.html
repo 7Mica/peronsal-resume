@@ -1,15 +1,11 @@
-<section class="hobby-list">
+<section class="hobby-list" aria-label="hobbies">
   <div class="limiter">
     <div class="hobby-list__container container-fluid">
       <h2 class="section-title text-center" id="hobby-list">Hobbies</h2>
       <div class="row">
         <card-hover-effect
-          class="col-12 col-md-4 hobby-list__card-item"
-        ></card-hover-effect>
-        <card-hover-effect
-          class="col-12 col-md-4 hobby-list__card-item"
-        ></card-hover-effect>
-        <card-hover-effect
+          *ngFor="let card of hobbyList"
+          [hobby]="card"
           class="col-12 col-md-4 hobby-list__card-item"
         ></card-hover-effect>
       </div>

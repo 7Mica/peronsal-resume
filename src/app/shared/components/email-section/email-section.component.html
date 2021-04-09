@@ -1,8 +1,8 @@
-<section class="email-section">
+<section class="email-section" aria-label="contact">
   <div class="limiter">
     <div class="email-section__container container-fluid shadow-lg rounded">
       <h2 class="section-title text-center" id="contact">Contact</h2>
-      <p class="text-center">Wanna get in tocuh? Just send an email</p>
+      <h3 class="text-center">Wanna get in tocuh? Just send an email</h3>
 
       <div class="row">
         <div class="email-section__svg col-12 col-md-6">
@@ -37,6 +37,7 @@
               <label for="name">Name</label>
 
               <input
+                aria-label="your name"
                 formControlName="name"
                 class="form-control"
                 placeholder="Name"
@@ -49,6 +50,7 @@
               <label for="last-name">Last Name</label>
 
               <input
+                aria-label="your lastname"
                 formControlName="lastName"
                 class="form-control"
                 placeholder="Last name"
@@ -61,6 +63,7 @@
               <label for="email-contact">Email</label>
 
               <input
+                aria-label="your email"
                 formControlName="email"
                 class="form-control"
                 placeholder="Email address"
@@ -73,6 +76,7 @@
               <label for="message">Message</label>
 
               <textarea
+                aria-label="message"
                 formControlName="message"
                 class="form-control"
                 placeholder="Message"
