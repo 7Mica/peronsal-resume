@@ -46,4 +46,10 @@
       margin: 0;
     }
   }
+
+  &__first-list {
+    > * + * {
+      margin-top: 10px;
+    }
+  }
 }

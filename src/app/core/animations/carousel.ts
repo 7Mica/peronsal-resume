@@ -4,10 +4,10 @@ import { style, animate, animation, keyframes } from '@angular/animations';
 // Enum for referencing animations
 // =========================
 export enum AnimationType {
-  Scale = 'scale',
-  Fade = 'fade',
-  Flip = 'flip',
-  JackInTheBox = 'jackInTheBox',
+  scale = 'scale',
+  fade = 'fade',
+  flip = 'flip',
+  jackInTheBox = 'jackInTheBox',
 }
 
 // =========================

@@ -1,8 +1,22 @@
-$primary-color: #fed049;
-$secondary-color: #007580;
-$speedy-color: #282846;
-$quiet-color: #d8ebe4;
-$btn-secondary-hover: #0199a7;
+:root {
+  --primary-color-c: #e48257;
+  --secondary-color-c: #3a6351;
+  --speedy-color-c: #393232;
+  --quiet-color-c: #f2edd7;
+  --btn-secondary-hover-c: #3a6351a2;
+
+  --primary-color-rgb: 228, 130, 87;
+  --secondary-color-rgb: 58, 99, 81;
+  --speedy-color-rgb: 57, 50, 50;
+  --quiet-color-rgb: 242, 237, 215;
+  --btn-secondary-hover-rgb: 58, 99, 79;
+}
+
+$primary-color: var(--primary-color-c);
+$secondary-color: var(--secondary-color-c);
+$speedy-color: var(--speedy-color-c);
+$quiet-color: var(--quiet-color-c);
+$btn-secondary-hover: var(--btn-secondary-hover-c);
 
 $grid-breakpoints: (
   xs: 0,
@@ -10,5 +24,5 @@ $grid-breakpoints: (
   md: 768px,
   lg: 1020px,
   xl: 1440px,
-  xxl: 1920px
+  xxl: 1920px,
 );

@@ -4,13 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LocalStorageService {
-  private _name: string;
+  private nameProp: string;
 
   get name(): string {
-    return this._name;
+    return this.nameProp;
   }
 
   set name(value: string) {
-    this._name = value;
+    this.nameProp = value;
   }
 }

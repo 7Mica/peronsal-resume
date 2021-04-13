@@ -54,14 +54,6 @@ export class AnimateElementOnScrollDirective implements AfterViewInit {
     private renderer: Renderer2
   ) {}
 
-  ngAfterViewInit(): void {
-    this.renderer.addClass(this.elem.nativeElement, 'a-opacity-0');
-
-    if (scrollY > this.elem.nativeElement.getBoundingClientRect().bottom) {
-      this.renderer.removeClass(this.elem.nativeElement, 'a-opacity-0');
-    }
-  }
-
   @HostListener('window:scroll', ['$event'])
   scrollHandler(): void {
     const scrolled = scrollY;
@@ -84,6 +76,14 @@ export class AnimateElementOnScrollDirective implements AfterViewInit {
         this.animated = true;
         this.animate();
       }
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.renderer.addClass(this.elem.nativeElement, 'a-opacity-0');
+
+    if (scrollY > this.elem.nativeElement.getBoundingClientRect().bottom) {
+      this.renderer.removeClass(this.elem.nativeElement, 'a-opacity-0');
     }
   }
 

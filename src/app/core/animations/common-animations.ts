@@ -7,10 +7,10 @@ import {
 
 /**********  Entries Animations **********/
 
-export function entryAnimation(
+export const entryAnimation = (
   name: string,
   delay = 0.1
-): AnimationAnimateMetadata {
+): AnimationAnimateMetadata => {
   switch (name) {
     case 'scaleInTop':
       return animate(
@@ -58,4 +58,4 @@ export function entryAnimation(
     default:
       return null;
   }
-}
+};
