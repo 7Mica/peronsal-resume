@@ -45,6 +45,7 @@ export class ThemeColorDirective implements OnInit, OnDestroy {
           );
           this.renderer.addClass(this.elementRef.nativeElement, 'main-theme');
           break;
+
         case 'secondary':
           this.renderer.removeClass(
             this.elementRef.nativeElement,
@@ -59,6 +60,7 @@ export class ThemeColorDirective implements OnInit, OnDestroy {
             'secondary-theme'
           );
           break;
+
         case 'tertiary':
           this.renderer.removeClass(
             this.elementRef.nativeElement,
@@ -73,6 +75,7 @@ export class ThemeColorDirective implements OnInit, OnDestroy {
             'tertiary-theme'
           );
           break;
+
         default:
           break;
       }
