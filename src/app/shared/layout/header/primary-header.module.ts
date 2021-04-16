@@ -4,6 +4,7 @@ import { FixedHeaderDirective } from './fixed-header.directive';
 import { RouterModule } from '@angular/router';
 import { OpenMobileDirective } from './open-mobile-menu.directive';
 import { CloseMenuDirective } from './close-menu.directive';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { CloseMenuDirective } from './close-menu.directive';
     OpenMobileDirective,
     CloseMenuDirective,
   ],
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   exports: [PrimaryHeaderComponent],
 })
 export class PrimaryHeaderModule {}

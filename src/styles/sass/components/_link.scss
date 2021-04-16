@@ -1,10 +1,12 @@
+@import "abstract/variables";
+
 a {
   &,
   &:link,
   &:active {
     display: inline-block;
     text-decoration: none;
-    color: white;
+    color: $secondary-color;
     font-weight: 500;
   }
 }

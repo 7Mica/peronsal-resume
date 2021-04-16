@@ -38,11 +38,23 @@
     z-index: 999;
     background-color: transparent;
     transition: all 1s linear;
+
+    a {
+      &,
+      &:link,
+      &:active {
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+      }
+    }
   }
 
   &__logo {
     display: flex;
     align-items: center;
+    background-image: url("../../../../assets/icons/logo.svg");
 
     @include media-breakpoint-down(sm) {
       font-size: 1.5rem;
