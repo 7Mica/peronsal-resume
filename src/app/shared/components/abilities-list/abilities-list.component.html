@@ -2,10 +2,10 @@
   <div class="limiter">
     <div class="abilities-list-section__container container-fluid">
       <h2 class="section-title text-center" id="abilities">
-        {{ sectionTitle }}
+        {{ data.sectionTitle }}
       </h2>
 
-      <ng-container *ngFor="let ability of abilities">
+      <ng-container *ngFor="let ability of data.abilities">
         <div class="abilities-list-section__list">
           <h3>{{ ability.name }}</h3>
 

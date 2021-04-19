@@ -4,14 +4,14 @@
       <div class="row gx-5">
         <div class="text-section__image_wrapper col-12 col-lg-4">
           <figure class="text-section__image">
-            <img src="{{ profileImage }}" alt="Profile picture" />
+            <img src="{{ data.profileImage }}" alt="Profile picture" />
 
             <figcaption class="figure-caption text-center">
               <p>
-                Age: <strong>{{ age }}</strong>
+                Age: <strong>{{ data.age }}</strong>
               </p>
               <p>
-                Location: <strong>{{ location }}</strong>
+                Location: <strong>{{ data.location }}</strong>
               </p>
             </figcaption>
           </figure>
@@ -19,7 +19,7 @@
 
         <div
           class="text-section__text-wrapper text-center text-lg-left col-12 col-lg-8"
-          [innerHtml]="bodyMessage | HTMLSanitizer"
+          [innerHtml]="data.bodyMessage | HTMLSanitizer"
         ></div>
       </div>
     </div>

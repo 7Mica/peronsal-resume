@@ -2,14 +2,14 @@
   <div class="limiter">
     <div class="list-section__container container-fluid">
       <h2 class="section-title text-center" id="experience">
-        {{ sectionTitle }}
+        {{ data.sectionTitle }}
       </h2>
 
       <div class="list-section__list">
-        <h3>{{ subsectionTitle }}</h3>
+        <h3>{{ data.subSectionTitle }}</h3>
 
         <div class="list-section__list-wrapper row">
-          <ng-container *ngFor="let item of careers">
+          <ng-container *ngFor="let item of data.careers">
             <div class="list-section__item col-12">
               <div class="row">
                 <div class="list-section__item-title col-12 col-md-4">
