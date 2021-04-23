@@ -11,42 +11,50 @@
             <a
               closeMenu
               [parent]="parent"
-              href="#about"
+              routerLink="/"
+              fragment="about"
               class="header__menu-link"
-              >Who am I?</a
             >
+              Who am I?
+            </a>
           </li>
           <li>
             <a
               closeMenu
               [parent]="parent"
               class="header__menu-link"
-              href="#experience"
-              >Experiencie</a
+              routerLink="/"
+              fragment="experience"
             >
+              Experiencie
+            </a>
           </li>
           <li>
             <a
               closeMenu
               [parent]="parent"
               class="header__menu-link"
-              href="#abilities"
-              >Abilities</a
+              routerLink="/"
+              fragment="abilities"
             >
+              Abilities
+            </a>
           </li>
           <li>
             <a
               closeMenu
               [parent]="parent"
               class="header__menu-link"
-              href="#contact"
-              >Contact</a
+              routerLink="/"
+              fragment="contact"
             >
+              Contact
+            </a>
           </li>
           <li>
-            <a class="header__menu-link" routerLink="/about-this-page"
-              >What about this page?</a
-            >
+            <a class="header__menu-link" routerLink="/about-this-page">
+              What about this page?
+            </a>
           </li>
         </ul>
 

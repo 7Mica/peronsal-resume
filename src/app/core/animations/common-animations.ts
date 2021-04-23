@@ -56,6 +56,13 @@ export const entryAnimation = (
         ])
       );
     default:
-      return null;
+      return animate(
+        `0.5s ${delay}s cubic-bezier(0.250, 0.460, 0.450, 0.940)`,
+        keyframes([
+          style({ visibility: 'visible', opacity: 0 }),
+          style({ transform: 'translateX(50%)' }),
+          style({ transform: 'translateX(-50%)', opacity: 1 }),
+        ])
+      );
   }
 };

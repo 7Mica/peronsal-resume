@@ -1,4 +1,4 @@
-export class ITheme {
+export interface ITheme {
   name: string;
   properties: any;
 }

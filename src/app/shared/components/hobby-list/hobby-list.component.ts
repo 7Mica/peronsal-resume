@@ -8,5 +8,5 @@ import { IHobbyListData } from '@core/interfaces/hobby-list-data.interface';
 })
 export class HobbyListComponent {
   @Input()
-  data: IHobbyListData;
+  data: IHobbyListData | null = null;
 }

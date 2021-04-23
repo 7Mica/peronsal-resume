@@ -8,5 +8,5 @@ import { ITextSectionData } from '@core/interfaces/text-section-data.interface';
 })
 export class TextSectionComponent {
   @Input()
-  data: ITextSectionData;
+  data: ITextSectionData | null = null;
 }

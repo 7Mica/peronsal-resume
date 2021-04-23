@@ -2,25 +2,27 @@
   <div class="limiter">
     <div class="text-section__container container-fluid">
       <div class="row gx-5">
-        <div class="text-section__image_wrapper col-12 col-lg-4">
-          <figure class="text-section__image">
-            <img src="{{ data.profileImage }}" alt="Profile picture" />
+        <ng-container *ngIf="data as data">
+          <div class="text-section__image_wrapper col-12 col-lg-4">
+            <figure class="text-section__image">
+              <img src="{{ data.profileImage }}" alt="Profile picture" />
 
-            <figcaption class="figure-caption text-center">
-              <p>
-                Age: <strong>{{ data.age }}</strong>
-              </p>
-              <p>
-                Location: <strong>{{ data.location }}</strong>
-              </p>
-            </figcaption>
-          </figure>
-        </div>
+              <figcaption class="figure-caption text-center">
+                <p>
+                  Age: <strong>{{ data.age }}</strong>
+                </p>
+                <p>
+                  Location: <strong>{{ data.location }}</strong>
+                </p>
+              </figcaption>
+            </figure>
+          </div>
 
-        <div
-          class="text-section__text-wrapper text-center text-lg-left col-12 col-lg-8"
-          [innerHtml]="data.bodyMessage | HTMLSanitizer"
-        ></div>
+          <div
+            class="text-section__text-wrapper text-center text-lg-left col-12 col-lg-8"
+            [innerHtml]="data.bodyMessage | HTMLSanitizer"
+          ></div>
+        </ng-container>
       </div>
     </div>
   </div>

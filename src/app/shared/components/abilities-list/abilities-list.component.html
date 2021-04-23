@@ -1,36 +1,38 @@
 <section class="abilities-list-section" aria-label="abilities">
   <div class="limiter">
     <div class="abilities-list-section__container container-fluid">
-      <h2 class="section-title text-center" id="abilities">
-        {{ data.sectionTitle }}
-      </h2>
+      <ng-container *ngIf="data as data">
+        <h2 class="section-title text-center" id="abilities">
+          {{ data.sectionTitle }}
+        </h2>
 
-      <ng-container *ngFor="let ability of data.abilities">
-        <div class="abilities-list-section__list">
-          <h3>{{ ability.name }}</h3>
+        <ng-container *ngFor="let ability of data.abilities">
+          <div class="abilities-list-section__list">
+            <h3>{{ ability.name }}</h3>
 
-          <div class="abilities-list-section__list-wrapper row">
-            <ng-container *ngFor="let item of ability.items">
-              <div class="abilities-list-section__item col-12 col-md-6">
-                <div class="row">
-                  <div class="abilities-list-section__ability-name col-5">
-                    <span [innerHtml]="item.name | HTMLSanitizer"></span>
-                  </div>
+            <div class="abilities-list-section__list-wrapper row">
+              <ng-container *ngFor="let item of ability.items">
+                <div class="abilities-list-section__item col-12 col-md-6">
+                  <div class="row">
+                    <div class="abilities-list-section__ability-name col-5">
+                      <span [innerHtml]="item.name | HTMLSanitizer"></span>
+                    </div>
 
-                  <div class="abilities-list-section__progress col-7">
-                    <span class="abilities-list-section__progress-bar">
-                      <span
-                        animateWith
-                        [percent]="item.percent"
-                        class="abilities-list-section__progress-bar-increment"
-                      ></span
-                    ></span>
+                    <div class="abilities-list-section__progress col-7">
+                      <span class="abilities-list-section__progress-bar">
+                        <span
+                          animateWith
+                          [percent]="item.percent"
+                          class="abilities-list-section__progress-bar-increment"
+                        ></span
+                      ></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </ng-container>
+              </ng-container>
+            </div>
           </div>
-        </div>
+        </ng-container>
       </ng-container>
     </div>
   </div>

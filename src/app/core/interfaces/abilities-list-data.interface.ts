@@ -1,6 +1,6 @@
 import { IAbility } from './ability.interface';
 
-export class IAbilitiesListData {
+export interface IAbilitiesListData {
   sectionTitle: string;
   abilities: IAbility[];
 }

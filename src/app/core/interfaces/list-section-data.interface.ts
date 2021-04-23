@@ -1,6 +1,6 @@
 import { ICareer } from './career.interface';
 
-export class IListSectionData {
+export interface IListSectionData {
   sectionTitle: string;
   subSectionTitle: string;
   careers: ICareer[];

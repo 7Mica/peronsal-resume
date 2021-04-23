@@ -8,5 +8,5 @@ import { IListSectionData } from '@core/interfaces/list-section-data.interface';
 })
 export class ListSectionComponent {
   @Input()
-  data: IListSectionData;
+  data: IListSectionData | null = null;
 }

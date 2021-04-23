@@ -15,8 +15,6 @@ import { Subject } from 'rxjs';
   selector: '[themeColor]',
 })
 export class ThemeColorDirective implements OnInit, OnDestroy {
-  @Input()
-  mainTheme: boolean;
   themeChanged$: Subject<ITheme>;
 
   constructor(

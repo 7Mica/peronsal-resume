@@ -204,6 +204,7 @@ export class MainPageComponent implements OnInit {
   };
 
   public hobbyListData: IHobbyListData = {
+    sectionTitle: 'Hobbies',
     hobbyList: [
       {
         name: 'Biking',

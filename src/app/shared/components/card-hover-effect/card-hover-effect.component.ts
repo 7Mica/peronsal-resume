@@ -33,7 +33,7 @@ import { IHobby } from '@core/interfaces/hobby.interface';
 })
 export class CardHoverEffectComponent {
   @Input()
-  hobby: IHobby;
+  hobby: IHobby | null = null;
 
   public isTriggered = false;
 

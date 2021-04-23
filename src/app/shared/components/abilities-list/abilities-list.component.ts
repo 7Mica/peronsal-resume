@@ -8,5 +8,5 @@ import { IAbilitiesListData } from '@core/interfaces/abilities-list-data.interfa
 })
 export class AbilitiesListComponent {
   @Input()
-  data: IAbilitiesListData;
+  data: IAbilitiesListData | null = null;
 }

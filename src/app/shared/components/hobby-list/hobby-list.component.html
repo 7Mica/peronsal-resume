@@ -1,14 +1,16 @@
 <section class="hobby-list" aria-label="hobbies">
   <div class="limiter">
     <div class="hobby-list__container container-fluid">
-      <h2 class="section-title text-center" id="hobby-list">Hobbies</h2>
-      <div class="row">
-        <card-hover-effect
-          *ngFor="let card of data.hobbyList"
-          [hobby]="card"
-          class="col-12 col-md-4 hobby-list__card-item"
-        ></card-hover-effect>
-      </div>
+      <ng-container *ngIf="data as data">
+        <h2 class="section-title text-center" id="hobby-list">{{ data.sectionTitle  }}</h2>
+        <div class="row">
+          <card-hover-effect
+            *ngFor="let card of data.hobbyList"
+            [hobby]="card"
+            class="col-12 col-md-4 hobby-list__card-item"
+          ></card-hover-effect>
+        </div>
+      </ng-container>
     </div>
   </div>
 </section>

@@ -27,7 +27,7 @@ export class AnimateWidthDirective {
 
   @HostListener('window:scroll')
   onClick(): void {
-    if (!this.animated && this.isInViewport(this.elemRef.nativeElement)) {
+    if (!this.animated && this.isInViewport(this.elemRef)) {
       this.animate();
       this.animated = true;
     }
@@ -50,8 +50,8 @@ export class AnimateWidthDirective {
     );
   }
 
-  private isInViewport(element): boolean {
-    const rect = element.getBoundingClientRect();
+  private isInViewport(element: ElementRef): boolean {
+    const rect = element?.nativeElement.getBoundingClientRect();
 
     return (
       rect.top >= 0 &&
