@@ -1,0 +1,90 @@
+<div class="hobby">
+  <form [formGroup]="hobbyForm">
+    <div class="hobby__array row" formArrayName="hobbiesFormArray">
+      <ng-container *ngFor="let hobby of hobbies.controls; index as i">
+        <div [formGroupName]="i" class="col-12 hobby__item" @hobbyAction>
+          <div class="hobby__item-collapse-panel row">
+            <button
+              class="hobby__item-collapse-panel-button"
+              (click)="collapseAndExpandHobby(i)"
+            >
+              <i class="bi bi-caret-down"></i>
+            </button>
+
+            <span
+              (click)="collapseAndExpandHobby(i)"
+              class="career__item-title"
+            >
+              {{
+                hobbies.at(i).get("name")?.value
+                  ? hobbies.at(i).get("name")?.value
+                  : "New Career"
+              }}
+              {{ hobbies.at(i).pristine ? "" : "*" }}
+            </span>
+
+            <div class="hobby__item-right-actions">
+              <button
+                class="hobby__item-delete-hobby-button"
+                (click)="deleteHobbyFromHobbyFormArray(i)"
+              >
+                <i class="bi bi-x-circle"></i>
+              </button>
+              <span class="hobby__item-number">
+                {{ i + 1 }}
+              </span>
+            </div>
+          </div>
+
+          <div
+            @collapse
+            *ngIf="hobbies.controls[i].get('expanded')?.value"
+            class="row hobby__wrapper"
+          >
+            <div class="col-12 col-md-9 col-lg-6">
+              <div class="form-group">
+                <label for="name{{ i }}">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name{{ i }}"
+                  formControlName="name"
+                />
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-group">
+                <label for="description{{ i }}">Description</label>
+
+                <ckeditor
+                  id="description{{ i }}"
+                  formControlName="description"
+                  [editor]="ckEditor"
+                ></ckeditor>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <button
+                type="button"
+                (click)="sendAddedHobby(i)"
+                class="btn btn-secondary"
+                [disabled]="hobbies.at(i).pristine"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <button
+        type="button"
+        class="hobby__btn-add-new"
+        (click)="hobbies.controls.push(newHobbyFormGroup(true))"
+      >
+        Add Hobby
+      </button>
+    </div>
+  </form>
+</div>

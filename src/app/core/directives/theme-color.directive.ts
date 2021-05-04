@@ -1,7 +1,6 @@
 import {
   Directive,
   ElementRef,
-  Input,
   NgModule,
   OnDestroy,
   OnInit,
@@ -83,7 +82,6 @@ export class ThemeColorDirective implements OnInit, OnDestroy {
 
 @NgModule({
   declarations: [ThemeColorDirective],
-  providers: [ThemeColorService],
   exports: [ThemeColorDirective],
 })
 export class ThemeColorDirectiveModule {}

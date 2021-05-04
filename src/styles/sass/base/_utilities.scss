@@ -1,21 +1,3 @@
-.u-text {
-  &-center {
-    text-align: center;
-  }
-
-  &-right {
-    text-align: right;
-  }
-}
-
-.clearfix {
-  &::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-}
-
 .fixed {
   position: fixed;
 }

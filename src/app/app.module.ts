@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ThemeColorDirectiveModule } from '@core/directives/theme-color.directive';
-import { HeaderTitleService } from '@core/services/header-title.service';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,8 +18,9 @@ import { HeaderTitleService } from '@core/services/header-title.service';
     FormsModule,
     BrowserAnimationsModule,
     ThemeColorDirectiveModule,
+    GraphQLModule,
+    HttpClientModule,
   ],
-  providers: [HeaderTitleService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

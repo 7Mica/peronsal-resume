@@ -1,0 +1,102 @@
+<div class="ability">
+  <form [formGroup]="abilityForm">
+    <div class="ability__array row" formArrayName="abilitiesFormArray">
+      <ng-container *ngFor="let ability of abilities.controls; index as i">
+        <div [formGroupName]="i" class="col-12 ability__item" @abilityAction>
+          <div class="ability__item-collapse-panel row">
+            <button
+              class="ability__item-collapse-panel-button"
+              (click)="collapseAndExpandAbility(i)"
+            >
+              <i class="bi bi-caret-down"></i>
+            </button>
+
+            <span
+              (click)="collapseAndExpandAbility(i)"
+              class="ability__item-title"
+            >
+              {{
+                abilities.at(i).get("abilityName")?.value
+                  ? abilities.at(i).get("abilityName")?.value
+                  : "New Ability"
+              }}
+              {{ abilities.at(i).pristine ? "" : "*" }}
+            </span>
+
+            <div class="ability__item-right-actions">
+              <button
+                class="ability__item-delete-ability-button"
+                (click)="deleteAbilityFromAbilityFormArray(i)"
+              >
+                <i class="bi bi-x-circle"></i>
+              </button>
+              <span class="ability__item-number">
+                {{ i + 1 }}
+              </span>
+            </div>
+          </div>
+
+          <div
+            @collapse
+            *ngIf="abilities.at(i).get('expanded')?.value"
+            class="row ability__wrapper"
+          >
+            <div class="col-12 col-md-9 col-lg-6">
+              <div class="form-group">
+                <label for="logo{{ i }}">Logo</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="logo{{ i }}"
+                  formControlName="logo"
+                />
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="form-group">
+                <label for="percent{{ i }}">Percent</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="percent{{ i }}"
+                  formControlName="percent"
+                />
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="form-group">
+                <label for="ability-name{{ i }}">Ability Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ability-name{{ i }}"
+                  formControlName="abilityName"
+                />
+              </div>
+            </div>
+
+            <div class="col-4">
+              <button
+                type="button"
+                (click)="sendAddedAbility(i)"
+                class="btn btn-secondary"
+                [disabled]="abilities.at(i).pristine"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <button
+        type="button"
+        class="ability__btn-add-new"
+        (click)="abilities.push(newAbilityFormGroup(true))"
+      >
+        Add Ability
+      </button>
+    </div>
+  </form>
+</div>

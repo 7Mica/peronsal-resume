@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LocalStorageService {
-  private nameProp: string;
+  private nameProp = '';
 
   get name(): string {
     return this.nameProp;

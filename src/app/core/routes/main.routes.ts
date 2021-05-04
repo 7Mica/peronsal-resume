@@ -26,6 +26,13 @@ export const MAIN_ROUTES: Routes = [
       ),
   },
   {
+    path: 'edit-resume',
+    loadChildren: () =>
+      import('../../pages/admin/resume/resume.module').then(
+        (m) => m.ResumeModule
+      ),
+  },
+  {
     path: '404',
     loadChildren: () =>
       import('../../pages/notfound/notfound-page.module').then(

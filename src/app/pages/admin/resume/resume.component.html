@@ -1,0 +1,207 @@
+<div class="edit-resume">
+  <div class="limiter">
+    <div class="row">
+      <div class="resume-list-wrapper col-12 col-md-4">
+        <div class="resume-list">
+          <ul class="resume-list__list">
+            <ng-container *ngIf="result | async as query">
+              <li class="resume-list__title">
+                <strong>Resume List</strong>
+                <button
+                  type="button"
+                  class="resume-list__new-resume"
+                  (click)="newResume()"
+                >
+                  Add new resume
+                </button>
+              </li>
+              <li
+                *ngFor="let item of query; let i = index"
+                tabindex="0"
+                class="resume-list__item"
+              >
+                Resume {{ item.id }}
+                <button
+                  type="button"
+                  class="resume-list__item-btn-edit"
+                  (click)="editResume(i, item.id)"
+                >
+                  Edit
+                </button>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-preview-wrapper col-12 col-md-8">
+        <div class="resume-preview">
+          <h2>{{ resumeEditTitle }}</h2>
+          <button
+            type="button"
+            class="edit-resume__save-btn"
+            saveBtnScroll
+            (click)="saveResume()"
+          >
+            <i class="bi bi-save"></i>
+          </button>
+          <h3>General Information</h3>
+
+          <form [formGroup]="resumeForm">
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <div class="form-group">
+                  <label for="first-name">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="first-name"
+                    formControlName="firstName"
+                  />
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <div class="form-group">
+                  <label for="last-name">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="last-name"
+                    formControlName="lastName"
+                  />
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <div class="form-group">
+                  <label for="state">State</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="state"
+                    formControlName="state"
+                  />
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="city"
+                    formControlName="city"
+                  />
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <div class="form-group">
+                  <label for="country">Country</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="country"
+                    formControlName="country"
+                  />
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <div class="form-group">
+                  <label for="age">Age</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="age"
+                    formControlName="age"
+                  />
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <div class="form-group">
+                  <label for="resumeFileUrl">Resume File Url</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="resumeFileUrl"
+                    formControlName="resumeFileUrl"
+                  />
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <div class="form-group">
+                  <label for="profile-image">Profile Image</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="profile-image"
+                    formControlName="profileImage"
+                  />
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <div class="form-group">
+                  <label for="selected">Selected</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="selected"
+                    formControlName="selected"
+                  />
+                </div>
+              </div>
+
+              <div class="col-12 col-md-12">
+                <div class="form-group">
+                  <label for="about">About</label>
+
+                  <ckeditor
+                    type="text"
+                    id="about"
+                    formControlName="about"
+                    [editor]="editor"
+                  ></ckeditor>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <h3>Careers</h3>
+
+          <div class="career-container container-fluid">
+            <admin-career-list
+              [careerList]="selectedResumeCareers"
+              (addedCareer)="reciveAddedCareer($event)"
+              (removedCareer)="reciveDeletedCareer($event)"
+            ></admin-career-list>
+          </div>
+
+          <h3>Abilities</h3>
+
+          <div class="ability-container container-fluid">
+            <admin-ability-list
+              [abilityList]="selectedResumeAbilities"
+              (addedAbility)="reciveAddedAbility($event)"
+              (removedAbility)="reciveDeletedAbility($event)"
+            ></admin-ability-list>
+          </div>
+
+          <h3>Hobbies</h3>
+
+          <div class="hobby-container container-fluid">
+            <admin-hobby-list
+              [hobbyList]="selectedResumeHobbies"
+              (addedHobby)="reciveAddedHobby($event)"
+              (removedHobby)="reciveDeletedHobby($event)"
+            ></admin-hobby-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,5 @@ const routes: Routes = [
 @NgModule({
   declarations: [NotFoundPageComponent],
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
 })
 export class NotFoundPageModule {}

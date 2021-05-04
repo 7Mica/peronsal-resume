@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
@@ -12,7 +13,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [MainPageComponent],
-  imports: [SharedModule, RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  imports: [SharedModule, RouterModule.forChild(routes), CommonModule],
 })
 export class MainPageModule {}

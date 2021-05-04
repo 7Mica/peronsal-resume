@@ -3,9 +3,32 @@ import {
   animate,
   keyframes,
   AnimationAnimateMetadata,
+  transition,
 } from '@angular/animations';
 
 /**********  Entries Animations **********/
+
+export const fadeInOutTransition = [
+  transition(':enter', [
+    style({ opacity: '0' }),
+    animate(250, style({ opacity: '1' })),
+  ]),
+  transition(':leave', [
+    style({ opacity: '*' }),
+    animate(250, style({ opacity: '0' })),
+  ]),
+];
+
+export const scaleAndOpaque = [
+  transition(':enter', [
+    style({ transform: 'scale(0)', opacity: 0 }),
+    animate(250, style({ transform: 'scale(1)', opacity: 1 })),
+  ]),
+  transition(':leave', [
+    style({ transform: '*', opacity: '*' }),
+    animate(250, style({ transform: 'scale(0)', opacity: 0 })),
+  ]),
+];
 
 export const entryAnimation = (
   name: string,
