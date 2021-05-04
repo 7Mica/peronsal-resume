@@ -7,6 +7,7 @@ import { ResumeComponent } from './resume.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { SaveButtonScrollResumeModule } from '@core/directives/save-button-scroll-resume.directive';
 import { FormArrayPipe } from '@core/pipes/form-array.pipe';
+import { ToggleButtonModule } from '@shared/components/form/toggle-button/toggle-button.module';
 
 const ROUTES: Routes = [
   {
@@ -22,6 +23,7 @@ const ROUTES: Routes = [
     CommonModule,
     SharedModule,
     CKEditorModule,
+    ToggleButtonModule,
     SaveButtonScrollResumeModule,
     RouterModule.forChild(ROUTES),
   ],

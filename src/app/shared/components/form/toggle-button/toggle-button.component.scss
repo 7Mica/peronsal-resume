@@ -1,0 +1,87 @@
+@import "abstract/variables";
+
+.toggle {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+
+  .toggle-component {
+    display: inline-block;
+  }
+
+  span {
+    display: block;
+  }
+
+  .toggle-bar {
+    position: relative;
+    width: 36px;
+    height: 14px;
+    flex-shrink: 0;
+    border-radius: 8px;
+
+    input {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+      outline: 0;
+      -webkit-appearance: none;
+
+      &:checked {
+        & ~ .toggle-thumb-container {
+          .toggle-thumb {
+            transform: translate3d(16px, 0, 0);
+          }
+        }
+
+        & ~ .toggle-fill {
+          background-color: $primary-color;
+          transition-property: background-color;
+        }
+      }
+    }
+
+    .toggle-fill {
+      width: 36px;
+      height: 14px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background-color: gray;
+      transition: all 80ms linear;
+      transition-property: background-color;
+      transition-delay: 50ms;
+    }
+
+    .toggle-thumb-container {
+      position: absolute;
+      z-index: 1;
+      width: 20px;
+      height: 20px;
+      top: -3px;
+      left: 0;
+      transform: translate3d(0, 0, 0);
+      transition: transform 80ms linear;
+    }
+
+    .toggle-thumb {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+        0 1px 3px 0 rgb(0 0 0 / 12%);
+      background-color: #fafafa;
+      transition: transform 100ms;
+    }
+  }
+
+  .toggle-content {
+    margin-left: 5px;
+  }
+}
