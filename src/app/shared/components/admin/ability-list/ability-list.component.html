@@ -41,6 +41,38 @@
             *ngIf="abilities.at(i).get('expanded')?.value"
             class="row ability__wrapper"
           >
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="form-group">
+                <label for="ability-name{{ i }}">Ability Name</label>
+                <select
+                  class="form-control"
+                  id="ability-name{{ i }}"
+                  formControlName="abilityName"
+                >
+                  <option
+                    *ngFor="let option of abilityListOptions"
+                    [value]="option"
+                  >
+                    {{ option }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="form-group">
+                <label for="percent{{ i }}">Percent</label>
+                <input
+                  type="number"
+                  max="100"
+                  min="1"
+                  class="form-control"
+                  id="percent{{ i }}"
+                  formControlName="percent"
+                />
+              </div>
+            </div>
+
             <div class="col-12 col-md-9 col-lg-6">
               <div class="form-group">
                 <label for="logo{{ i }}">Logo</label>
@@ -49,30 +81,6 @@
                   class="form-control"
                   id="logo{{ i }}"
                   formControlName="logo"
-                />
-              </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-3">
-              <div class="form-group">
-                <label for="percent{{ i }}">Percent</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="percent{{ i }}"
-                  formControlName="percent"
-                />
-              </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-3">
-              <div class="form-group">
-                <label for="ability-name{{ i }}">Ability Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="ability-name{{ i }}"
-                  formControlName="abilityName"
                 />
               </div>
             </div>

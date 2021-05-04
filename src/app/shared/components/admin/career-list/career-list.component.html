@@ -40,7 +40,7 @@
             *ngIf="careers.at(i).get('expanded')?.value"
             class="row career__wrapper"
           >
-            <div class="col-12 col-md-9 col-lg-6">
+            <div class="col-12 col-md-9 col-lg-9">
               <div class="form-group">
                 <label for="company-name{{ i }}">Company Name</label>
                 <input
@@ -52,11 +52,11 @@
               </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
                 <label for="start-date{{ i }}">Start Date</label>
                 <input
-                  type="text"
+                  type="date"
                   class="form-control"
                   id="start-date{{ i }}"
                   formControlName="startDate"
@@ -64,11 +64,11 @@
               </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
                 <label for="end-date{{ i }}">End Date</label>
                 <input
-                  type="text"
+                  type="date"
                   class="form-control"
                   id="end-date{{ i }}"
                   formControlName="endDate"
@@ -76,7 +76,7 @@
               </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-6 col-lg-5">
               <div class="form-group">
                 <label for="career-city{{ i }}">City</label>
                 <input
@@ -100,7 +100,7 @@
               </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-6 col-lg-3">
               <div class="form-group">
                 <label for="career-country{{ i }}">Country</label>
                 <input

@@ -40,6 +40,7 @@ export class AbilityListComponent implements OnChanges {
 
   public abilityForm: FormGroup;
   public ckEditor = ClassicEditor;
+  public abilityListOptions = ['SKILL', 'LANGUAGE', 'OS', 'TOOL'];
 
   constructor(private fb: FormBuilder) {
     this.abilityForm = fb.group({
