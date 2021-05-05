@@ -13,6 +13,7 @@ import {
   fadeInOutTransition,
   scaleAndOpaque,
 } from '@core/animations/common-animations';
+import { validateAllFormFields } from '@core/functions/validate-all-form-fields';
 import {
   ICareerData,
   ICareerInterchange,
@@ -76,22 +77,24 @@ export class CareerListComponent implements OnChanges {
 
   public newCareerFormGroup(isNewCareer: boolean): FormGroup {
     return this.fb.group({
-      id: this.fb.control(uuidv4(), [Validators.required]),
-      companyName: this.fb.control('', [Validators.required]),
-      startDate: this.fb.control('', [Validators.required]),
-      endDate: this.fb.control('', [Validators.required]),
-      city: this.fb.control('', [Validators.required]),
-      state: this.fb.control('', [Validators.required]),
-      country: this.fb.control('', [Validators.required]),
-      jobTitle: this.fb.control('', [Validators.required]),
-      description: this.fb.control('', [Validators.required]),
-      new: this.fb.control(isNewCareer),
-      expanded: this.fb.control(false),
+      id: [uuidv4(), [Validators.required]],
+      companyName: ['', [Validators.required]],
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      jobTitle: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      new: [isNewCareer],
+      expanded: [false],
     });
   }
 
   public sendAddedCareer(i: number): void {
-    if (this.careers.at(i).pristine) {
+    if (this.careers.at(i).invalid) {
+      validateAllFormFields(this.careers.at(i) as FormGroup);
+
       return;
     }
 

@@ -56,6 +56,11 @@
                     {{ option }}
                   </option>
                 </select>
+
+                <validator
+                  [isTouched]="abilities.at(i).get('abilityName')?.touched"
+                  [controlErrors]="abilities.at(i).get('abilityName')?.errors"
+                ></validator>
               </div>
             </div>
 
@@ -70,6 +75,11 @@
                   id="percent{{ i }}"
                   formControlName="percent"
                 />
+
+                <validator
+                  [isTouched]="abilities.at(i).get('percent')?.touched"
+                  [controlErrors]="abilities.at(i).get('percent')?.errors"
+                ></validator>
               </div>
             </div>
 
@@ -82,6 +92,11 @@
                   id="logo{{ i }}"
                   formControlName="logo"
                 />
+
+                <validator
+                  [isTouched]="abilities.at(i).get('logo')?.touched"
+                  [controlErrors]="abilities.at(i).get('logo')?.errors"
+                ></validator>
               </div>
             </div>
 

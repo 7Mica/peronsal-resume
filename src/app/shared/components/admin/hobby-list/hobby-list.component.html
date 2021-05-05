@@ -50,6 +50,11 @@
                   id="name{{ i }}"
                   formControlName="name"
                 />
+
+                <validator
+                  [isTouched]="hobbies.at(i).get('name')?.touched"
+                  [controlErrors]="hobbies.at(i).get('name')?.errors"
+                ></validator>
               </div>
             </div>
 
@@ -62,6 +67,11 @@
                   formControlName="description"
                   [editor]="ckEditor"
                 ></ckeditor>
+
+                <validator
+                  [isTouched]="hobbies.at(i).get('description')?.touched"
+                  [controlErrors]="hobbies.at(i).get('description')?.errors"
+                ></validator>
               </div>
             </div>
 

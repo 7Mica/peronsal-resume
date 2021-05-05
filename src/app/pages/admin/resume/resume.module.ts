@@ -8,6 +8,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { SaveButtonScrollResumeModule } from '@core/directives/save-button-scroll-resume.directive';
 import { FormArrayPipe } from '@core/pipes/form-array.pipe';
 import { ToggleButtonModule } from '@shared/components/form/toggle-button/toggle-button.module';
+import { ValidatorModule } from '@shared/components/form/validator/validator.module';
 
 const ROUTES: Routes = [
   {
@@ -22,6 +23,7 @@ const ROUTES: Routes = [
     ReactiveFormsModule,
     CommonModule,
     SharedModule,
+    ValidatorModule,
     CKEditorModule,
     ToggleButtonModule,
     SaveButtonScrollResumeModule,

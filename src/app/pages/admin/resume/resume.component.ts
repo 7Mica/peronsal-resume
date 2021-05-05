@@ -18,6 +18,7 @@ import {
   IHobbyInterchange,
 } from '@core/interfaces/hobby.interface';
 import { IResume } from '@core/interfaces/resume.interface';
+import { validateAllFormFields } from '@core/functions/validate-all-form-fields';
 
 @Component({
   selector: 'resume-page',
@@ -128,6 +129,11 @@ export class ResumeComponent implements OnInit {
   }
 
   public saveResume(): void {
+    if (this.resumeForm.invalid) {
+      validateAllFormFields(this.resumeForm);
+      return;
+    }
+
     const dataToSave: IResume = {
       ...this.resumeForm.value,
       careers: [...this.updatedOrNewCareers.values()],
@@ -140,16 +146,16 @@ export class ResumeComponent implements OnInit {
 
   private newResumeFormGroup(): FormGroup {
     return this.fb.group({
-      firstName: this.fb.control('', [Validators.required]),
-      lastName: this.fb.control('', [Validators.required]),
-      state: this.fb.control(''),
-      city: this.fb.control(''),
-      country: this.fb.control(''),
-      age: this.fb.control('', [Validators.required]),
-      resumeFileUrl: this.fb.control('', [Validators.required]),
-      profileImage: this.fb.control('', [Validators.required]),
-      about: this.fb.control('', [Validators.required]),
-      selected: this.fb.control(false, [Validators.required]),
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      state: [''],
+      city: [''],
+      country: [''],
+      age: ['', [Validators.required]],
+      resumeFileUrl: ['', [Validators.required]],
+      profileImage: ['', [Validators.required]],
+      about: ['', [Validators.required]],
+      selected: [false, [Validators.required]],
     });
   }
 }

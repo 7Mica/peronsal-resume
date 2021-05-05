@@ -15,6 +15,7 @@
                   Add new resume
                 </button>
               </li>
+
               <li
                 *ngFor="let item of query; let i = index"
                 tabindex="0"
@@ -56,7 +57,13 @@
                     class="form-control"
                     id="first-name"
                     formControlName="firstName"
+                    required
                   />
+
+                  <validator
+                    [isTouched]="resumeForm.get('firstName')?.touched"
+                    [controlErrors]="resumeForm.get('firstName')?.errors"
+                  ></validator>
                 </div>
               </div>
 
@@ -69,6 +76,11 @@
                     id="last-name"
                     formControlName="lastName"
                   />
+
+                  <validator
+                    [isTouched]="resumeForm.get('lastName')?.touched"
+                    [controlErrors]="resumeForm.get('lastName')?.errors"
+                  ></validator>
                 </div>
               </div>
 
@@ -81,6 +93,11 @@
                     id="state"
                     formControlName="state"
                   />
+
+                  <validator
+                    [isTouched]="resumeForm.get('state')?.touched"
+                    [controlErrors]="resumeForm.get('state')?.errors"
+                  ></validator>
                 </div>
               </div>
 
@@ -93,6 +110,11 @@
                     id="city"
                     formControlName="city"
                   />
+
+                  <validator
+                    [isTouched]="resumeForm.get('city')?.touched"
+                    [controlErrors]="resumeForm.get('city')?.errors"
+                  ></validator>
                 </div>
               </div>
 
@@ -105,6 +127,11 @@
                     id="country"
                     formControlName="country"
                   />
+
+                  <validator
+                    [isTouched]="resumeForm.get('country')?.touched"
+                    [controlErrors]="resumeForm.get('country')?.errors"
+                  ></validator>
                 </div>
               </div>
 
@@ -117,6 +144,11 @@
                     id="age"
                     formControlName="age"
                   />
+
+                  <validator
+                    [isTouched]="resumeForm.get('age')?.touched"
+                    [controlErrors]="resumeForm.get('age')?.errors"
+                  ></validator>
                 </div>
               </div>
 
@@ -129,6 +161,11 @@
                     id="resumeFileUrl"
                     formControlName="resumeFileUrl"
                   />
+
+                  <validator
+                    [isTouched]="resumeForm.get('resumeFileUrl')?.touched"
+                    [controlErrors]="resumeForm.get('resumeFileUrl')?.errors"
+                  ></validator>
                 </div>
               </div>
 
@@ -141,6 +178,11 @@
                     id="profile-image"
                     formControlName="profileImage"
                   />
+
+                  <validator
+                    [isTouched]="resumeForm.get('profileImage')?.touched"
+                    [controlErrors]="resumeForm.get('profileImage')?.errors"
+                  ></validator>
                 </div>
               </div>
 
@@ -163,6 +205,11 @@
                     formControlName="about"
                     [editor]="editor"
                   ></ckeditor>
+
+                  <validator
+                    [isTouched]="resumeForm.get('about')?.touched"
+                    [controlErrors]="resumeForm.get('about')?.errors"
+                  ></validator>
                 </div>
               </div>
             </div>

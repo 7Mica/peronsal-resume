@@ -18,6 +18,7 @@ import {
 } from '@core/interfaces/ability.interface';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { v4 as uuidv4 } from 'uuid';
+import { validateAllFormFields } from '@core/functions/validate-all-form-fields';
 
 @Component({
   selector: 'admin-ability-list',
@@ -77,17 +78,22 @@ export class AbilityListComponent implements OnChanges {
 
   public newAbilityFormGroup(isNewAbility: boolean): FormGroup {
     return this.fb.group({
-      id: this.fb.control(uuidv4(), [Validators.required]),
-      logo: this.fb.control('', [Validators.required]),
-      percent: this.fb.control('', [Validators.required]),
-      abilityName: this.fb.control('', [Validators.required]),
-      expanded: this.fb.control(false),
-      new: this.fb.control(isNewAbility),
+      id: [uuidv4(), [Validators.required]],
+      logo: ['', [Validators.required]],
+      percent: [
+        1,
+        [Validators.required, Validators.min(1), Validators.max(100)],
+      ],
+      abilityName: ['', [Validators.required]],
+      expanded: [false],
+      new: [isNewAbility],
     });
   }
 
   public sendAddedAbility(i: number): void {
-    if (this.abilities.at(i).pristine) {
+    if (this.abilities.at(i).invalid) {
+      validateAllFormFields(this.abilities.at(i) as FormGroup);
+
       return;
     }
 

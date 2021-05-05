@@ -13,6 +13,7 @@ import {
   fadeInOutTransition,
   scaleAndOpaque,
 } from '@core/animations/common-animations';
+import { validateAllFormFields } from '@core/functions/validate-all-form-fields';
 import {
   IHobbyData,
   IHobbyInterchange,
@@ -76,16 +77,18 @@ export class HobbyListComponent implements OnChanges {
 
   public newHobbyFormGroup(isNewHobby: boolean): FormGroup {
     return this.fb.group({
-      id: this.fb.control(uuidv4(), [Validators.required]),
-      name: this.fb.control('', [Validators.required]),
-      description: this.fb.control('', [Validators.required]),
-      expanded: this.fb.control(false),
-      new: this.fb.control(isNewHobby),
+      id: [uuidv4(), [Validators.required]],
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      expanded: [false],
+      new: [isNewHobby],
     });
   }
 
   public sendAddedHobby(i: number): void {
-    if (this.hobbies.at(i).pristine) {
+    if (this.hobbies.at(i).invalid) {
+      validateAllFormFields(this.hobbies.at(i) as FormGroup);
+
       return;
     }
 

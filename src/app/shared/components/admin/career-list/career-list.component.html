@@ -49,6 +49,11 @@
                   id="company-name{{ i }}"
                   formControlName="companyName"
                 />
+
+                <validator
+                  [isTouched]="careers.at(i).get('companyName')?.touched"
+                  [controlErrors]="careers.at(i).get('companyName')?.errors"
+                ></validator>
               </div>
             </div>
 
@@ -61,6 +66,11 @@
                   id="start-date{{ i }}"
                   formControlName="startDate"
                 />
+
+                <validator
+                  [isTouched]="careers.at(i).get('startDate')?.touched"
+                  [controlErrors]="careers.at(i).get('startDate')?.errors"
+                ></validator>
               </div>
             </div>
 
@@ -73,6 +83,11 @@
                   id="end-date{{ i }}"
                   formControlName="endDate"
                 />
+
+                <validator
+                  [isTouched]="careers.at(i).get('endDate')?.touched"
+                  [controlErrors]="careers.at(i).get('endDate')?.errors"
+                ></validator>
               </div>
             </div>
 
@@ -85,6 +100,11 @@
                   id="career-city{{ i }}"
                   formControlName="city"
                 />
+
+                <validator
+                  [isTouched]="careers.at(i).get('city')?.touched"
+                  [controlErrors]="careers.at(i).get('city')?.errors"
+                ></validator>
               </div>
             </div>
 
@@ -97,6 +117,11 @@
                   id="career-state{{ i }}"
                   formControlName="state"
                 />
+
+                <validator
+                  [isTouched]="careers.at(i).get('state')?.touched"
+                  [controlErrors]="careers.at(i).get('state')?.errors"
+                ></validator>
               </div>
             </div>
 
@@ -109,6 +134,11 @@
                   id="career-country{{ i }}"
                   formControlName="country"
                 />
+
+                <validator
+                  [isTouched]="careers.at(i).get('country')?.touched"
+                  [controlErrors]="careers.at(i).get('country')?.errors"
+                ></validator>
               </div>
             </div>
 
@@ -121,6 +151,11 @@
                   id="job-title{{ i }}"
                   formControlName="jobTitle"
                 />
+
+                <validator
+                  [isTouched]="careers.at(i).get('jobTitle')?.touched"
+                  [controlErrors]="careers.at(i).get('jobTitle')?.errors"
+                ></validator>
               </div>
             </div>
 
@@ -133,6 +168,11 @@
                   formControlName="description"
                   [editor]="ckEditor"
                 ></ckeditor>
+
+                <validator
+                  [isTouched]="careers.at(i).get('description')?.touched"
+                  [controlErrors]="careers.at(i).get('description')?.errors"
+                ></validator>
               </div>
             </div>
 
