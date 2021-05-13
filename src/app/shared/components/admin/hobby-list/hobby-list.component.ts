@@ -81,7 +81,7 @@ export class HobbyListComponent implements OnChanges {
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       expanded: [false],
-      new: [isNewHobby],
+      isNew: [isNewHobby],
     });
   }
 
@@ -92,9 +92,11 @@ export class HobbyListComponent implements OnChanges {
       return;
     }
 
+    const { expanded, ...finalFormValue } = this.hobbies.at(i).value;
     this.addedHobby.emit({
-      data: this.hobbies.at(i).value,
+      data: finalFormValue,
       index: this.hobbies.at(i).get('id')?.value,
     });
+    this.hobbies.at(i).markAsPristine();
   }
 }

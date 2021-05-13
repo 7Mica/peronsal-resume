@@ -3,6 +3,7 @@ import { ICareerData } from './career.interface';
 import { IHobbyData } from './hobby.interface';
 
 export interface IResume {
+  id: string;
   firstName: string;
   lastName: string;
   state: string;

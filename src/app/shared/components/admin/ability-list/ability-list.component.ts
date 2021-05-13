@@ -86,7 +86,7 @@ export class AbilityListComponent implements OnChanges {
       ],
       abilityName: ['', [Validators.required]],
       expanded: [false],
-      new: [isNewAbility],
+      isNew: [isNewAbility],
     });
   }
 
@@ -97,9 +97,12 @@ export class AbilityListComponent implements OnChanges {
       return;
     }
 
+    const { expanded, ...finalFormValue } = this.abilities.at(i).value;
+
     this.addedAbility.emit({
-      data: this.abilities.at(i).value,
+      data: finalFormValue,
       index: this.abilities.at(i).get('id')?.value,
     });
+    this.abilities.at(i).markAsPristine();
   }
 }

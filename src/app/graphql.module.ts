@@ -11,7 +11,22 @@ const uri = 'http://localhost:3000/graphql';
       provide: APOLLO_OPTIONS,
       useFactory: (httpLink: HttpLink): ApolloClientOptions<any> => ({
         link: httpLink.create({ uri }),
-        cache: new InMemoryCache(),
+        cache: new InMemoryCache({
+          addTypename: false,
+          typePolicies: {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            Query: {
+              fields: {
+                resumeList: {
+                  // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+                  merge(existing, incoming) {
+                    return incoming;
+                  },
+                },
+              },
+            },
+          },
+        }),
       }),
       deps: [HttpLink],
     },

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HeaderTitleService } from '@core/services/header-title.service';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo, QueryRef } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -19,6 +19,13 @@ import {
 } from '@core/interfaces/hobby.interface';
 import { IResume } from '@core/interfaces/resume.interface';
 import { validateAllFormFields } from '@core/functions/validate-all-form-fields';
+import { FormActions } from '@core/enums/form-actions.enum';
+import {
+  DELETE_RESUME,
+  NEW_RESUME,
+  RESUME_LIST,
+  UPDATE_RESUME,
+} from '@core/graphql/queries/resume-queries';
 
 @Component({
   selector: 'resume-page',
@@ -29,7 +36,8 @@ export class ResumeComponent implements OnInit {
   public editor = ClassicEditor;
   public resumeEditTitle = 'New Resume';
   public resumeForm: FormGroup;
-  public result: Observable<any> | null = null;
+  public resumeListResult$: Observable<IResume[]> | null = null;
+  postsQuery: QueryRef<any> | any = null;
 
   public selectedResumeAbilities: IAbilityData[] = [];
   public selectedResumeCareers: ICareerData[] = [];
@@ -39,6 +47,7 @@ export class ResumeComponent implements OnInit {
   public updatedOrNewCareers: Map<string, ICareerData> = new Map();
   public updatedOrNewHobbies: Map<string, IHobbyData> = new Map();
 
+  private formActionState = FormActions.CREATE;
   private resumeListResult: IResume[] = [];
 
   constructor(
@@ -55,19 +64,39 @@ export class ResumeComponent implements OnInit {
       description: 'Edit or set as default any resume',
     });
 
-    this.result = this.apollo
-      .watchQuery({
-        query,
+    this.postsQuery = this.apollo.watchQuery({
+      query: RESUME_LIST,
+    });
+
+    this.resumeListResult$ = this.postsQuery.valueChanges.pipe(
+      map((e: any) => {
+        this.resumeListResult = e.data.resumeList;
+        return e.data.resumeList;
       })
-      .valueChanges.pipe(
-        map((e: any) => {
-          this.resumeListResult = e.data.resumeList;
-          return e.data.resumeList;
-        })
+    );
+  }
+
+  public deleteResume(resumeId: string) {
+    this.apollo
+      .mutate({
+        mutation: DELETE_RESUME,
+        variables: {
+          resumeId,
+        },
+      })
+      .subscribe(
+        () => {
+          this.postsQuery.refetch();
+          this.newResume();
+        },
+        (error) => {
+          console.log('There was an error sending the query', error);
+        }
       );
   }
 
-  public editResume(index: number, resumeId: number) {
+  public editResume(index: number, resumeId: string) {
+    this.formActionState = FormActions.UPDATE;
     this.resumeForm.patchValue(this.resumeListResult[index]);
 
     const careersOriginalCopy = this.resumeListResult[index].careers;
@@ -92,6 +121,7 @@ export class ResumeComponent implements OnInit {
   }
 
   public newResume(): void {
+    this.formActionState = FormActions.CREATE;
     this.resumeForm.reset();
     this.resumeEditTitle = 'New Resume';
 
@@ -134,18 +164,65 @@ export class ResumeComponent implements OnInit {
       return;
     }
 
-    const dataToSave: IResume = {
+    const {
+      id,
+      firstName,
+      lastName,
+      state,
+      city,
+      country,
+      age,
+      resumeFileUrl,
+      profileImage,
+      about,
+      selected,
+      hobbies,
+      careers,
+      abilities,
+    }: IResume = {
       ...this.resumeForm.value,
       careers: [...this.updatedOrNewCareers.values()],
       abilities: [...this.updatedOrNewAbilities.values()],
       hobbies: [...this.updatedOrNewHobbies.values()],
     };
 
-    console.log(dataToSave);
+    this.apollo
+      .mutate({
+        mutation:
+          this.formActionState === FormActions.CREATE
+            ? NEW_RESUME
+            : UPDATE_RESUME,
+        variables: {
+          id,
+          firstName,
+          lastName,
+          state,
+          city,
+          country,
+          age,
+          resumeFileUrl,
+          profileImage,
+          about,
+          selected,
+          hobbies,
+          careers,
+          abilities,
+        },
+      })
+      .subscribe(
+        () => {
+          this.postsQuery.refetch();
+          this.newResume();
+        },
+        (error) => {
+          console.log('There was an error sending the query', error);
+        }
+      );
   }
 
   private newResumeFormGroup(): FormGroup {
     return this.fb.group({
+      id: [''],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       state: [''],
@@ -155,47 +232,7 @@ export class ResumeComponent implements OnInit {
       resumeFileUrl: ['', [Validators.required]],
       profileImage: ['', [Validators.required]],
       about: ['', [Validators.required]],
-      selected: [false, [Validators.required]],
+      selected: [false],
     });
   }
 }
-
-const query = gql`
-  {
-    resumeList {
-      id
-      firstName
-      lastName
-      about
-      age
-      city
-      country
-      profileImage
-      resumeFileUrl
-      selected
-      state
-      abilities {
-        id
-        abilityName
-        percent
-        logo
-      }
-      careers {
-        companyName
-        country
-        description
-        id
-        state
-        jobTitle
-        city
-        startDate
-        endDate
-      }
-      hobbies {
-        id
-        description
-        name
-      }
-    }
-  }
-`;

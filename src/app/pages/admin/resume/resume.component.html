@@ -4,7 +4,7 @@
       <div class="resume-list-wrapper col-12 col-md-4">
         <div class="resume-list">
           <ul class="resume-list__list">
-            <ng-container *ngIf="result | async as query">
+            <ng-container *ngIf="resumeListResult$ | async as query">
               <li class="resume-list__title">
                 <strong>Resume List</strong>
                 <button
@@ -22,13 +22,26 @@
                 class="resume-list__item"
               >
                 Resume {{ item.id }}
-                <button
-                  type="button"
-                  class="resume-list__item-btn-edit"
-                  (click)="editResume(i, item.id)"
-                >
-                  Edit
-                </button>
+                <div class="resume-list__item-btn-set">
+                  <button
+                    (click)="editResume(i, item.id)"
+                    type="button"
+                    class="resume-list__item-btn-edit"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    (click)="deleteResume(item.id)"
+                    type="button"
+                    class="
+                      resume-list__item-btn-edit
+                      background-secondary
+                      color-white
+                    "
+                  >
+                    <i class="bi bi-x-circle"></i>
+                  </button>
+                </div>
               </li>
             </ng-container>
           </ul>

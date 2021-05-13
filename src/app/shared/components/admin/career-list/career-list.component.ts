@@ -86,7 +86,7 @@ export class CareerListComponent implements OnChanges {
       country: ['', [Validators.required]],
       jobTitle: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      new: [isNewCareer],
+      isNew: [isNewCareer],
       expanded: [false],
     });
   }
@@ -98,9 +98,11 @@ export class CareerListComponent implements OnChanges {
       return;
     }
 
+    const { expanded, ...finalFormValue } = this.careers.at(i).value;
     this.addedCareer.emit({
-      data: this.careers.at(i).value,
+      data: finalFormValue,
       index: this.careers.at(i).get('id')?.value,
     });
+    this.careers.at(i).markAsPristine();
   }
 }
