@@ -5,6 +5,7 @@ import { MAIN_ROUTES } from './routes/main.routes';
 const routerOptions: ExtraOptions = {
   anchorScrolling: 'enabled',
   scrollPositionRestoration: 'enabled',
+  scrollOffset: [0, 66],
 };
 
 @NgModule({

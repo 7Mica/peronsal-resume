@@ -3,7 +3,13 @@
     <div class="limiter">
       <div #parent class="container-fluid d-flex justify-content-between">
         <div class="header__logo">
-          <a routerLink="/">Home</a>
+          <a
+            routerLink="/"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Home
+          </a>
         </div>
 
         <ul class="header__menu" #menu>
@@ -13,6 +19,9 @@
               [parent]="parent"
               routerLink="/"
               fragment="about"
+              [ngClass]="{
+                'active-link': (route.fragment | async) === 'about'
+              }"
               class="header__menu-link"
             >
               Who am I?
@@ -25,6 +34,9 @@
               class="header__menu-link"
               routerLink="/"
               fragment="experience"
+              [ngClass]="{
+                'active-link': (route.fragment | async) === 'experience'
+              }"
             >
               Experiencie
             </a>
@@ -36,6 +48,9 @@
               class="header__menu-link"
               routerLink="/"
               fragment="abilities"
+              [ngClass]="{
+                'active-link': (route.fragment | async) === 'abilities'
+              }"
             >
               Abilities
             </a>
@@ -47,12 +62,19 @@
               class="header__menu-link"
               routerLink="/"
               fragment="contact"
+              [ngClass]="{
+                'active-link': (route.fragment | async) === 'contact'
+              }"
             >
               Contact
             </a>
           </li>
           <li>
-            <a class="header__menu-link" routerLink="/about-this-page">
+            <a
+              class="header__menu-link"
+              routerLink="/about-this-page"
+              routerLinkActive="active-link"
+            >
               What about this page?
             </a>
           </li>
