@@ -3,80 +3,70 @@ import {
   ElementRef,
   NgModule,
   OnDestroy,
-  OnInit,
   Renderer2,
 } from '@angular/core';
 import { ITheme } from '@core/interfaces/theme.interface';
 import { ThemeColorService } from '@core/services/theme-color.service';
-import { Subject } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[themeColor]',
 })
-export class ThemeColorDirective implements OnInit, OnDestroy {
-  themeChanged$: Subject<ITheme>;
+export class ThemeColorDirective implements OnDestroy {
+  themeChangedSubscription: Subscription;
 
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
     private themeService: ThemeColorService
   ) {
-    this.themeChanged$ = this.themeService.themeValueChanged();
+    this.themeChangedSubscription = this.themeService
+      .themeValueChanged()
+      .subscribe((currentTheme: ITheme) => this.switchTheme(currentTheme));
   }
 
   ngOnDestroy(): void {
-    this.themeChanged$.unsubscribe();
+    this.themeChangedSubscription.unsubscribe();
   }
 
-  ngOnInit(): void {
-    this.themeChanged$.subscribe((currentTheme: ITheme) => {
-      switch (currentTheme.name) {
-        case 'primary':
-          this.renderer.removeClass(
-            this.elementRef.nativeElement,
-            'secondary-theme'
-          );
-          this.renderer.removeClass(
-            this.elementRef.nativeElement,
-            'tertiary-theme'
-          );
-          this.renderer.addClass(this.elementRef.nativeElement, 'main-theme');
-          break;
+  protected switchTheme(theme: ITheme): void {
+    switch (theme.name) {
+      case 'primary':
+        this.renderer.removeClass(
+          this.elementRef.nativeElement,
+          'secondary-theme'
+        );
+        this.renderer.removeClass(
+          this.elementRef.nativeElement,
+          'tertiary-theme'
+        );
+        this.renderer.addClass(this.elementRef.nativeElement, 'main-theme');
+        break;
 
-        case 'secondary':
-          this.renderer.removeClass(
-            this.elementRef.nativeElement,
-            'main-theme'
-          );
-          this.renderer.removeClass(
-            this.elementRef.nativeElement,
-            'tertiary-theme'
-          );
-          this.renderer.addClass(
-            this.elementRef.nativeElement,
-            'secondary-theme'
-          );
-          break;
+      case 'secondary':
+        this.renderer.removeClass(this.elementRef.nativeElement, 'main-theme');
+        this.renderer.removeClass(
+          this.elementRef.nativeElement,
+          'tertiary-theme'
+        );
+        this.renderer.addClass(
+          this.elementRef.nativeElement,
+          'secondary-theme'
+        );
+        break;
 
-        case 'tertiary':
-          this.renderer.removeClass(
-            this.elementRef.nativeElement,
-            'secondary-theme'
-          );
-          this.renderer.removeClass(
-            this.elementRef.nativeElement,
-            'main-theme'
-          );
-          this.renderer.addClass(
-            this.elementRef.nativeElement,
-            'tertiary-theme'
-          );
-          break;
+      case 'tertiary':
+        this.renderer.removeClass(
+          this.elementRef.nativeElement,
+          'secondary-theme'
+        );
+        this.renderer.removeClass(this.elementRef.nativeElement, 'main-theme');
+        this.renderer.addClass(this.elementRef.nativeElement, 'tertiary-theme');
+        break;
 
-        default:
-          break;
-      }
-    });
+      default:
+        break;
+    }
   }
 }
 

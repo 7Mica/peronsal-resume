@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ITheme } from '@core/interfaces/theme.interface';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 export const primary: ITheme = {
   name: 'secondary',
@@ -69,8 +69,8 @@ export class ThemeColorService {
     return this.availableThemes;
   }
 
-  themeValueChanged(): Subject<ITheme> {
-    return this.themeChanged$;
+  themeValueChanged(): Observable<ITheme> {
+    return this.themeChanged$.asObservable();
   }
 
   getActiveTheme(): ITheme {
