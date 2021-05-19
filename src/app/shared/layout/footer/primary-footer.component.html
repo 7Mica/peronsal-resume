@@ -7,16 +7,18 @@
         >
           <ul>
             <li>
-              <select
-                name="theme"
-                id="theme-selector"
-                [(ngModel)]="theme"
-                (change)="handleChange()"
-              >
-                <option value="main-theme">🤔️</option>
-                <option value="secondary-theme">👽️</option>
-                <option value="tertiary-theme">🙈️</option>
-              </select>
+              <ng-container *ngIf="selectedTheme$ | async">
+                <select
+                  name="theme"
+                  id="theme-selector"
+                  [(ngModel)]="theme"
+                  (change)="handleChangedTheme()"
+                >
+                  <option value="primary-theme">🤔️</option>
+                  <option value="secondary-theme">👽️</option>
+                  <option value="tertiary-theme">🙈️</option>
+                </select>
+              </ng-container>
             </li>
             <li><i class="bi bi-geo-alt"></i> Tepic, Nayarit. México.</li>
 

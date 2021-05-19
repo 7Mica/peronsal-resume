@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ITheme } from '@core/interfaces/theme.interface';
-import { Observable, Subject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
 
 export const primary: ITheme = {
-  name: 'secondary',
+  name: 'primary-theme',
   properties: {
     '--primary-color-c': '#e48257',
     '--secondary-color-c': '#3a6351',
@@ -20,7 +21,7 @@ export const primary: ITheme = {
 };
 
 export const secondary: ITheme = {
-  name: 'primary',
+  name: 'secondary-theme',
   properties: {
     '--primary-color-c': '#fed049',
     '--secondary-color-c': '#007580',
@@ -37,7 +38,7 @@ export const secondary: ITheme = {
 };
 
 export const tertiary: ITheme = {
-  name: 'tertiary',
+  name: 'tertiary-theme',
   properties: {
     '--primary-color-c': '#008891',
     '--secondary-color-c': '#00587a',
@@ -59,11 +60,9 @@ export const tertiary: ITheme = {
 export class ThemeColorService {
   private active: ITheme = primary;
   private availableThemes: ITheme[] = [primary, secondary, tertiary];
-  private themeChanged$: Subject<ITheme>;
+  private themeChanged$: ReplaySubject<ITheme> = new ReplaySubject<ITheme>();
 
-  constructor() {
-    this.themeChanged$ = new Subject<ITheme>();
-  }
+  constructor(private localStorageService: LocalStorageService) {}
 
   getAvailableThemes(): ITheme[] {
     return this.availableThemes;
@@ -79,16 +78,19 @@ export class ThemeColorService {
 
   setPrimaryTheme(): void {
     this.setActiveTheme(primary);
+    this.localStorageService.setValue('themeConfig', 'primary-theme');
     this.themeChanged$.next(primary);
   }
 
   setSecondaryTheme(): void {
     this.setActiveTheme(secondary);
+    this.localStorageService.setValue('themeConfig', 'secondary-theme');
     this.themeChanged$.next(secondary);
   }
 
   setTertiaryTheme(): void {
     this.setActiveTheme(tertiary);
+    this.localStorageService.setValue('themeConfig', 'tertiary-theme');
     this.themeChanged$.next(tertiary);
   }
 

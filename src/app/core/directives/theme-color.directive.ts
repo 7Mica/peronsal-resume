@@ -3,26 +3,48 @@ import {
   ElementRef,
   NgModule,
   OnDestroy,
+  OnInit,
   Renderer2,
 } from '@angular/core';
 import { ITheme } from '@core/interfaces/theme.interface';
+import { LocalStorageService } from '@core/services/local-storage.service';
 import { ThemeColorService } from '@core/services/theme-color.service';
 import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[themeColor]',
 })
-export class ThemeColorDirective implements OnDestroy {
-  themeChangedSubscription: Subscription;
+export class ThemeColorDirective implements OnDestroy, OnInit {
+  themeChangedSubscription: Subscription = new Subscription();
 
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private themeService: ThemeColorService
-  ) {
+    private themeService: ThemeColorService,
+    private localStorageService: LocalStorageService
+  ) {}
+
+  ngOnInit(): void {
     this.themeChangedSubscription = this.themeService
       .themeValueChanged()
       .subscribe((currentTheme: ITheme) => this.switchTheme(currentTheme));
+
+    const savedThemeConfig = this.localStorageService.getValue('themeConfig');
+
+    switch (savedThemeConfig) {
+      case 'primary-theme':
+        this.themeService.setPrimaryTheme();
+        break;
+      case 'secondary-theme':
+        this.themeService.setSecondaryTheme();
+        break;
+      case 'tertiary-theme':
+        this.themeService.setTertiaryTheme();
+        break;
+      default:
+        this.themeService.setPrimaryTheme();
+        break;
+    }
   }
 
   ngOnDestroy(): void {
@@ -31,36 +53,48 @@ export class ThemeColorDirective implements OnDestroy {
 
   protected switchTheme(theme: ITheme): void {
     switch (theme.name) {
-      case 'primary':
+      case 'primary-theme':
         this.renderer.removeClass(
           this.elementRef.nativeElement,
           'secondary-theme'
         );
+
         this.renderer.removeClass(
           this.elementRef.nativeElement,
           'tertiary-theme'
         );
-        this.renderer.addClass(this.elementRef.nativeElement, 'main-theme');
+
+        this.renderer.addClass(this.elementRef.nativeElement, 'primary-theme');
         break;
 
-      case 'secondary':
-        this.renderer.removeClass(this.elementRef.nativeElement, 'main-theme');
+      case 'secondary-theme':
+        this.renderer.removeClass(
+          this.elementRef.nativeElement,
+          'primary-theme'
+        );
+
         this.renderer.removeClass(
           this.elementRef.nativeElement,
           'tertiary-theme'
         );
+
         this.renderer.addClass(
           this.elementRef.nativeElement,
           'secondary-theme'
         );
         break;
 
-      case 'tertiary':
+      case 'tertiary-theme':
         this.renderer.removeClass(
           this.elementRef.nativeElement,
           'secondary-theme'
         );
-        this.renderer.removeClass(this.elementRef.nativeElement, 'main-theme');
+
+        this.renderer.removeClass(
+          this.elementRef.nativeElement,
+          'primary-theme'
+        );
+
         this.renderer.addClass(this.elementRef.nativeElement, 'tertiary-theme');
         break;
 

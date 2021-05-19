@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ITheme } from '@core/interfaces/theme.interface';
 import { AccountService } from '@core/services/account.service';
 import { ThemeColorService } from '@core/services/theme-color.service';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'primary-footer',
   templateUrl: 'primary-footer.component.html',
   styleUrls: ['primary-footer.component.scss'],
 })
-export class PrimaryFooterComponent {
-  theme = 'main-theme';
+export class PrimaryFooterComponent implements OnInit {
+  theme = 'primary-theme';
+  public selectedTheme$: Observable<ITheme> = EMPTY;
   public accountInformation$: Observable<any>;
 
   constructor(
@@ -19,13 +22,19 @@ export class PrimaryFooterComponent {
     this.accountInformation$ = this.accountService.getAccountInformation();
   }
 
+  ngOnInit(): void {
+    this.selectedTheme$ = this.themeService
+      .themeValueChanged()
+      .pipe(tap((theme: ITheme) => (this.theme = theme.name)));
+  }
+
   public closeSession(): void {
     this.accountService.closeSession();
   }
 
-  handleChange(): void {
+  handleChangedTheme(): void {
     switch (this.theme) {
-      case 'main-theme':
+      case 'primary-theme':
         this.themeService.setPrimaryTheme();
         break;
       case 'secondary-theme':
