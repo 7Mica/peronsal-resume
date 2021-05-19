@@ -1,0 +1,25 @@
+@import "abstract/variables";
+
+.sign-in-page {
+  &__wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__sign-in-section {
+    background-color: rgba($primary-color, 0.5);
+    max-width: 350px;
+    width: 100%;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px 5px rgba(#000, 0.1);
+  }
+
+  &__sign-in-section-wrapper {
+    .form-group {
+      margin-bottom: 2rem;
+    }
+  }
+}

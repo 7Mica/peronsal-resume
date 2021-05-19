@@ -27,7 +27,7 @@
   }
 
   &__container {
-    padding: 60px;
+    padding: 60px 60px 20px;
   }
 
   &__made-by {
@@ -44,12 +44,18 @@
   &__copyright {
     p {
       margin: 0;
+      font-size: 12px;
     }
   }
 
   &__first-list {
-    > * + * {
-      margin-top: 10px;
+    ul {
+      list-style: none;
+      padding-inline-start: 0;
+
+      > li + li {
+        margin-top: 10px;
+      }
     }
   }
 }

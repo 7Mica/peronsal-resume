@@ -4,38 +4,17 @@ export const MAIN_ROUTES: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('../../pages/main/main-page.module').then((m) => m.MainPageModule),
+      import('../../pages/pages.module').then((m) => m.PagesModule),
   },
   {
-    path: 'thanks',
+    path: 'auth',
     loadChildren: () =>
-      import('../../pages/thanks/thanks.module').then((m) => m.ThanksModule),
-  },
-  {
-    path: 'playground',
-    loadChildren: () =>
-      import('../../pages/playground/playground.module').then(
-        (m) => m.PlaygroundModule
-      ),
-  },
-  {
-    path: 'about-this-page',
-    loadChildren: () =>
-      import('../../pages/about-this-page/about-this-page.module').then(
-        (m) => m.AboutThisPageModule
-      ),
-  },
-  {
-    path: 'edit-resume',
-    loadChildren: () =>
-      import('../../pages/admin/resume/resume.module').then(
-        (m) => m.ResumeModule
-      ),
+      import('../../auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '404',
     loadChildren: () =>
-      import('../../pages/notfound/notfound-page.module').then(
+      import('../../pages/public/notfound/notfound-page.module').then(
         (m) => m.NotFoundPageModule
       ),
   },

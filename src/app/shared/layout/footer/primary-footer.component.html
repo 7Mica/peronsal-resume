@@ -5,23 +5,42 @@
         <div
           class="footer__first-list col-12 col-md-4 text-sm-center text-md-left"
         >
-          <select
-            name="theme"
-            id="theme-selector"
-            [(ngModel)]="theme"
-            (change)="handleChange()"
-          >
-            <option value="main-theme">🤔️</option>
-            <option value="secondary-theme">👽️</option>
-            <option value="tertiary-theme">🙈️</option>
-          </select>
+          <ul>
+            <li>
+              <select
+                name="theme"
+                id="theme-selector"
+                [(ngModel)]="theme"
+                (change)="handleChange()"
+              >
+                <option value="main-theme">🤔️</option>
+                <option value="secondary-theme">👽️</option>
+                <option value="tertiary-theme">🙈️</option>
+              </select>
+            </li>
+            <li><i class="bi bi-geo-alt"></i> Tepic, Nayarit. México.</li>
 
-          <p>
-            <i class="bi bi-geo-alt"></i>
-            Tepic, Nayarit. México.
-          </p>
+            <li><a routerLink="/thanks"> Thanks for the free assets</a></li>
+            <li>
+              <ng-container
+                *ngIf="
+                  accountInformation$ | async as accountInformation;
+                  else toSignIn
+                "
+              >
+                <p>
+                  Signed in as: <strong>{{ accountInformation.email }}</strong>
+                  <span (click)="closeSession()" style="cursor: pointer">
+                    (sign out)
+                  </span>
+                </p>
+              </ng-container>
 
-          <a routerLink="/thanks"> Thanks for the free assets</a>
+              <ng-template #toSignIn>
+                <a routerLink="/auth/sign-in"> Sign In</a>
+              </ng-template>
+            </li>
+          </ul>
         </div>
 
         <div class="col-12 col-md-4">

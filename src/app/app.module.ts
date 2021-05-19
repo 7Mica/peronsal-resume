@@ -5,21 +5,29 @@ import { LayoutModule } from '@shared/layout/layout.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { ThemeColorDirectiveModule } from '@core/directives/theme-color.directive';
 import { GraphQLModule } from './graphql.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HeaderTitleModule } from '@core/services/header-title.service';
+import { ReplaySubject } from 'rxjs';
+import { IHeaderTitle } from '@core/interfaces/header-title.interface';
+import { TokenInterceptor } from '@core/interceptors/token.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    CoreModule,
     LayoutModule,
     FormsModule,
     BrowserAnimationsModule,
-    ThemeColorDirectiveModule,
     GraphQLModule,
     HttpClientModule,
+    HeaderTitleModule.forRoot({
+      titleSource: new ReplaySubject<IHeaderTitle>(),
+    }),
+    CoreModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
