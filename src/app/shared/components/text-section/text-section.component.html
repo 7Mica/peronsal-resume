@@ -12,15 +12,23 @@
                   Age: <strong>{{ data.age }}</strong>
                 </p>
                 <p>
-                  Location: <strong>{{ data.location }}</strong>
+                  Location:
+                  <strong>
+                    {{ data.city }}, {{ data.state }}.
+                    {{ data.country }}
+                  </strong>
                 </p>
               </figcaption>
             </figure>
           </div>
 
           <div
-            class="text-section__text-wrapper text-center text-lg-left col-12 col-lg-8"
-            [innerHtml]="data.bodyMessage | HTMLSanitizer"
+            class="
+              text-section__text-wrapper
+              text-center text-lg-left
+              col-12 col-lg-8
+            "
+            [innerHtml]="data.about | HTMLSanitizer"
           ></div>
         </ng-container>
       </div>

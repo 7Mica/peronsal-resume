@@ -1,11 +1,7 @@
 export interface IAbility {
-  name: string;
-  items: IAbilityItem[];
-}
-
-interface IAbilityItem {
-  name: string;
+  abilityName: string;
   percent: number;
+  logo: string;
 }
 
 export interface IAbilityData {

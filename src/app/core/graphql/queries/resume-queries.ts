@@ -14,7 +14,6 @@ export const NEW_RESUME = gql`
     $state: String
     $city: String
     $age: Int!
-    $resumeFileUrl: String!
     $profileImage: String!
     $about: String!
     $selected: Boolean!
@@ -30,7 +29,6 @@ export const NEW_RESUME = gql`
         state: $state
         city: $city
         age: $age
-        resumeFileUrl: $resumeFileUrl
         profileImage: $profileImage
         about: $about
         selected: $selected
@@ -47,7 +45,6 @@ export const NEW_RESUME = gql`
       city
       country
       profileImage
-      resumeFileUrl
       selected
       state
       abilities {
@@ -85,7 +82,6 @@ export const UPDATE_RESUME = gql`
     $state: String
     $city: String
     $age: Int!
-    $resumeFileUrl: String!
     $profileImage: String!
     $about: String!
     $selected: Boolean!
@@ -102,7 +98,6 @@ export const UPDATE_RESUME = gql`
         state: $state
         city: $city
         age: $age
-        resumeFileUrl: $resumeFileUrl
         profileImage: $profileImage
         about: $about
         selected: $selected
@@ -110,13 +105,16 @@ export const UPDATE_RESUME = gql`
         abilities: $abilities
         hobbies: $hobbies
       }
-    )
+    ) {
+      success
+      error
+    }
   }
 `;
 
-export const RESUME_LIST = gql`
-  {
-    resumeList {
+export const SELECTED_RESUME = gql`
+  query {
+    getDefaultResume {
       id
       firstName
       lastName
@@ -125,7 +123,6 @@ export const RESUME_LIST = gql`
       city
       country
       profileImage
-      resumeFileUrl
       selected
       state
       abilities {
@@ -149,6 +146,49 @@ export const RESUME_LIST = gql`
         id
         description
         name
+        image
+        imagehd
+      }
+    }
+  }
+`;
+
+export const RESUME_LIST = gql`
+  {
+    resumeList {
+      id
+      firstName
+      lastName
+      about
+      age
+      city
+      country
+      profileImage
+      selected
+      state
+      abilities {
+        id
+        abilityName
+        percent
+        logo
+      }
+      careers {
+        companyName
+        country
+        description
+        id
+        state
+        jobTitle
+        city
+        startDate
+        endDate
+      }
+      hobbies {
+        id
+        description
+        name
+        image
+        imagehd
       }
     }
   }

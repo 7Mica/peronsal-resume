@@ -3,19 +3,21 @@
   (mouseenter)="this.isTriggered = !this.isTriggered"
   (mouseleave)="this.isTriggered = !this.isTriggered"
 >
-  <ng-container *ngIf="hobby as hobby">
+  <ng-container *ngIf="hobby">
     <div class="card-hover-effect__text" [@animateHeight]="triggerEp">
       <h3 class="card-hover-effect__title">{{ hobby.name }}</h3>
 
-      <p class="card-hover-effect__body" [@childAnimation]="triggerEp">
-        {{ hobby.description }}
-      </p>
+      <div
+        class="card-hover-effect__body"
+        [@childAnimation]="triggerEp"
+        [innerHtml]="hobby.description | HTMLSanitizer"
+      ></div>
     </div>
 
     <picture>
-      <source srcset="{{ hobby.image }}, {{ hobby.image2x }} 2x" />
+      <source srcset="{{ hobby.image }}, {{ hobby.imagehd }} 2x" />
 
-      <img src="{{ hobby.image }}" alt="{{ hobby.altText }}" />
+      <img src="{{ hobby.image }}" [alt]="hobby.name" />
     </picture>
   </ng-container>
 </div>

@@ -167,23 +167,6 @@
 
               <div class="col-12 col-md-4">
                 <div class="form-group">
-                  <label for="resumeFileUrl">Resume File Url</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="resumeFileUrl"
-                    formControlName="resumeFileUrl"
-                  />
-
-                  <validator
-                    [isTouched]="resumeForm.get('resumeFileUrl')?.touched"
-                    [controlErrors]="resumeForm.get('resumeFileUrl')?.errors"
-                  ></validator>
-                </div>
-              </div>
-
-              <div class="col-12 col-md-4">
-                <div class="form-group">
                   <label for="profile-image">Profile Image</label>
                   <input
                     type="text"
@@ -217,6 +200,7 @@
                     id="about"
                     formControlName="about"
                     [editor]="editor"
+                    [config]="config"
                   ></ckeditor>
 
                   <validator

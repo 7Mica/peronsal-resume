@@ -1,6 +1,8 @@
 export interface ITextSectionData {
-  location: string;
   profileImage: string;
   age: number;
-  bodyMessage: string;
+  about: string;
+  city: string;
+  country: string;
+  state: string;
 }

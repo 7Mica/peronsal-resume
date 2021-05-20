@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IListSectionData } from '@core/interfaces/list-section-data.interface';
+import { ICareer } from '@core/interfaces/career.interface';
 
 @Component({
   selector: 'list-section',
@@ -8,5 +8,8 @@ import { IListSectionData } from '@core/interfaces/list-section-data.interface';
 })
 export class ListSectionComponent {
   @Input()
-  data: IListSectionData | null = null;
+  data: ICareer[] | null = null;
+
+  public sectionTitle = 'Experiencie';
+  public subSectionTitle = 'Careers';
 }

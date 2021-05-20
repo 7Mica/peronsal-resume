@@ -1,8 +1,13 @@
 export interface ICareer {
-  company: string;
-  yearRange: string;
-  job: string;
+  companyName: string;
+  country: string;
+  state: string;
+  city: string;
+  jobTitle: string;
   description: string;
+  startDate: Date;
+  endDate: Date;
+  yearRange: string;
   location: string;
 }
 

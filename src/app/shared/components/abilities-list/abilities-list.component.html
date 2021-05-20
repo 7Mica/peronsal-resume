@@ -1,38 +1,39 @@
 <section class="abilities-list-section" aria-label="abilities">
   <div class="limiter">
     <div class="abilities-list-section__container container-fluid">
-      <ng-container *ngIf="data as data">
-        <h2 class="section-title text-center" id="abilities">
-          {{ data.sectionTitle }}
-        </h2>
+      <h2 class="section-title text-center" id="abilities">
+        {{ sectionTitle }}
+      </h2>
 
-        <ng-container *ngFor="let ability of data.abilities">
-          <div class="abilities-list-section__list">
-            <h3>{{ ability.name }}</h3>
+      <ng-container *ngFor="let abilitySet of abilitiesObserver$ | async">
+        <div class="abilities-list-section__list">
+          <ng-container [ngSwitch]="abilitySet[0]">
+            <h3 *ngSwitchCase="'SKILL'">Skills</h3>
+            <h3 *ngSwitchCase="'LANGUAGE'">Languages</h3>
+            <h3 *ngSwitchCase="'OS'">Operating Systems</h3>
+            <h3 *ngSwitchCase="'TOOL'">Tools (Other Software)</h3>
+          </ng-container>
 
-            <div class="abilities-list-section__list-wrapper row">
-              <ng-container *ngFor="let item of ability.items">
-                <div class="abilities-list-section__item col-12 col-md-6">
-                  <div class="row">
-                    <div class="abilities-list-section__ability-name col-5">
-                      <span [innerHtml]="item.name | HTMLSanitizer"></span>
-                    </div>
-
-                    <div class="abilities-list-section__progress col-7">
-                      <span class="abilities-list-section__progress-bar">
-                        <span
-                          animateWith
-                          [percent]="item.percent"
-                          class="abilities-list-section__progress-bar-increment"
-                        ></span
-                      ></span>
-                    </div>
-                  </div>
+          <div class="abilities-list-section__list-wrapper row">
+            <div class="abilities-list-section__item col-12 col-md-6">
+              <div class="row">
+                <div class="abilities-list-section__ability-name col-5">
+                  <img [src]="abilitySet[1][0].logo" height="50" width="50" />
                 </div>
-              </ng-container>
+
+                <div class="abilities-list-section__progress col-7">
+                  <span class="abilities-list-section__progress-bar">
+                    <span
+                      animateWith
+                      [percent]="abilitySet[1][0].percent"
+                      class="abilities-list-section__progress-bar-increment"
+                    ></span
+                  ></span>
+                </div>
+              </div>
             </div>
           </div>
-        </ng-container>
+        </div>
       </ng-container>
     </div>
   </div>

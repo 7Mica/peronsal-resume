@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IHobbyListData } from '@core/interfaces/hobby-list-data.interface';
+import { IHobby } from '@core/interfaces/hobby.interface';
 
 @Component({
   selector: 'hobby-list',
@@ -8,5 +8,7 @@ import { IHobbyListData } from '@core/interfaces/hobby-list-data.interface';
 })
 export class HobbyListComponent {
   @Input()
-  data: IHobbyListData | null = null;
+  data: IHobby[] | null = null;
+
+  public sectionTitle = 'Hobbies';
 }

@@ -1,5 +1,19 @@
-<text-section [data]="textSectionData"></text-section>
-<list-section [data]="listSectionData"></list-section>
-<abilities-list [data]="abilitiesListData"></abilities-list>
-<hobby-list [data]="hobbyListData"></hobby-list>
+<ng-container *ngIf="selectedResume$ | async as selectedResume">
+  <text-section [data]="selectedResume.personalInformation"></text-section>
+  <list-section
+    *ngIf="selectedResume.careers.length > 0"
+    [data]="selectedResume.careers"
+  ></list-section>
+
+  <abilities-list
+    *ngIf="selectedResume.abilities.length > 0"
+    [data]="selectedResume.abilities"
+  ></abilities-list>
+
+  <hobby-list
+    *ngIf="selectedResume.hobbies.length > 0"
+    [data]="selectedResume.hobbies"
+  ></hobby-list>
+</ng-container>
+
 <email-section></email-section>

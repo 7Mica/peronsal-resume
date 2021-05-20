@@ -10,7 +10,6 @@ export interface IResume {
   city: string;
   country: string;
   age: string;
-  resumeFileUrl: string;
   profileImage: string;
   about: string;
   selected: boolean;

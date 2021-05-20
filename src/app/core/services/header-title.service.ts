@@ -5,6 +5,7 @@ import {
   Optional,
   SkipSelf,
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { IHeaderTitle } from '@core/interfaces/header-title.interface';
 import { Observable, ReplaySubject } from 'rxjs';
 
@@ -12,7 +13,10 @@ import { Observable, ReplaySubject } from 'rxjs';
 export class HeaderTitleService {
   private titleSource: ReplaySubject<IHeaderTitle>;
 
-  constructor(@Optional() titleConfig: HeaderTitleConfig) {
+  constructor(
+    @Optional() titleConfig: HeaderTitleConfig,
+    private titlePage: Title
+  ) {
     this.titleSource = titleConfig.titleSource;
   }
 
@@ -21,6 +25,7 @@ export class HeaderTitleService {
   }
 
   public setTitle(headerTitle: IHeaderTitle): void {
+    this.titlePage.setTitle(`FMCU Resume - ${headerTitle.title}`);
     this.titleSource.next(headerTitle);
   }
 }

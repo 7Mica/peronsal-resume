@@ -18,7 +18,7 @@
               {{
                 hobbies.at(i).get("name")?.value
                   ? hobbies.at(i).get("name")?.value
-                  : "New Career"
+                  : "New Hobby"
               }}
               {{ hobbies.at(i).pristine ? "" : "*" }}
             </span>
@@ -54,6 +54,40 @@
                 <validator
                   [isTouched]="hobbies.at(i).get('name')?.touched"
                   [controlErrors]="hobbies.at(i).get('name')?.errors"
+                ></validator>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-9 col-lg-6">
+              <div class="form-group">
+                <label for="image{{ i }}">Image</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="image{{ i }}"
+                  formControlName="image"
+                />
+
+                <validator
+                  [isTouched]="hobbies.at(i).get('image')?.touched"
+                  [controlErrors]="hobbies.at(i).get('image')?.errors"
+                ></validator>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-9 col-lg-6">
+              <div class="form-group">
+                <label for="imagehd{{ i }}">Image HD</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="imagehd{{ i }}"
+                  formControlName="imagehd"
+                />
+
+                <validator
+                  [isTouched]="hobbies.at(i).get('imagehd')?.touched"
+                  [controlErrors]="hobbies.at(i).get('imagehd')?.errors"
                 ></validator>
               </div>
             </div>

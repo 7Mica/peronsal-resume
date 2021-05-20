@@ -1,15 +1,16 @@
 export interface IHobby {
   name: string;
   description: string;
-  altText: string;
   image: string;
-  image2x: string;
+  imagehd: string;
 }
 
 export interface IHobbyData {
   id: string;
   description: string;
   name: string;
+  image: string;
+  imagehd: string;
   expanded?: boolean;
   new?: boolean;
 }

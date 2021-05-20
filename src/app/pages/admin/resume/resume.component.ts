@@ -26,6 +26,7 @@ import {
   RESUME_LIST,
   UPDATE_RESUME,
 } from '@core/graphql/queries/resume-queries';
+import { CKEDITOR_GLOBAL_CONF } from '@core/config/ckeditor/global.conf';
 
 @Component({
   selector: 'resume-page',
@@ -38,6 +39,8 @@ export class ResumeComponent implements OnInit {
   public resumeForm: FormGroup;
   public resumeListResult$: Observable<IResume[]> | null = null;
   postsQuery: QueryRef<any> | any = null;
+
+  public config = CKEDITOR_GLOBAL_CONF;
 
   public selectedResumeAbilities: IAbilityData[] = [];
   public selectedResumeCareers: ICareerData[] = [];
@@ -172,7 +175,6 @@ export class ResumeComponent implements OnInit {
       city,
       country,
       age,
-      resumeFileUrl,
       profileImage,
       about,
       selected,
@@ -200,7 +202,6 @@ export class ResumeComponent implements OnInit {
           city,
           country,
           age,
-          resumeFileUrl,
           profileImage,
           about,
           selected,
@@ -229,7 +230,6 @@ export class ResumeComponent implements OnInit {
       city: [''],
       country: [''],
       age: ['', [Validators.required]],
-      resumeFileUrl: ['', [Validators.required]],
       profileImage: ['', [Validators.required]],
       about: ['', [Validators.required]],
       selected: [false],
