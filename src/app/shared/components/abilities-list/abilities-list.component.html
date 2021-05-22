@@ -15,17 +15,20 @@
           </ng-container>
 
           <div class="abilities-list-section__list-wrapper row">
-            <div class="abilities-list-section__item col-12 col-md-6">
+            <div
+              *ngFor="let abilityItem of abilitySet[1]"
+              class="abilities-list-section__item col-12 col-md-6"
+            >
               <div class="row">
                 <div class="abilities-list-section__ability-name col-5">
-                  <img [src]="abilitySet[1][0].logo" height="50" width="50" />
+                  <img [src]="abilityItem.logo" height="50" width="50" />
                 </div>
 
                 <div class="abilities-list-section__progress col-7">
                   <span class="abilities-list-section__progress-bar">
                     <span
                       animateWith
-                      [percent]="abilitySet[1][0].percent"
+                      [percent]="abilityItem.percent"
                       class="abilities-list-section__progress-bar-increment"
                     ></span
                   ></span>
