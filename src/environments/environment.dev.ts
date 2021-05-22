@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  graphQLServerUri: 'https://dev.greenparrot.biz:3000/graphql',
+  graphQLServerUri: '143.198.133.49:3000/graphql',
 };

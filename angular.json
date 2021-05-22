@@ -97,6 +97,9 @@
             "browserTarget": "personal-resume:build"
           },
           "configurations": {
+            "dev": {
+              "browserTarget": "personal-resume:build:dev"
+            },
             "production": {
               "browserTarget": "personal-resume:build:production"
             }
