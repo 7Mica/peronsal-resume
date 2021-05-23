@@ -69,8 +69,8 @@ export class SignInComponent {
     private router: Router
   ) {
     this.signInFormGroup = formBuilder.group({
-      email: ['mich@gmail.com', [Validators.required, Validators.email]],
-      password: ['1234', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
   }
 
