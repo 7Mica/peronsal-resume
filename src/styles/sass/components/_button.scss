@@ -26,3 +26,15 @@
     background-color: $btn-secondary-hover;
   }
 }
+
+.btn-icon {
+  background: none;
+}
+
+.action-span {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

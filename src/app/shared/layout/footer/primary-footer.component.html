@@ -31,16 +31,21 @@
                 "
               >
                 <p>
-                  Signed in as: <strong>{{ accountInformation.email }}</strong>
-                  <span (click)="closeSession()" style="cursor: pointer">
-                    (sign out)
+                  Signed in as: <strong>{{ accountInformation.email }} </strong>
+                  <span (click)="closeSession()" class="action-span"
+                    >(sign out)
                   </span>
                 </p>
               </ng-container>
 
               <ng-template #toSignIn>
-                <a routerLink="/auth/sign-in"> Sign In</a>
+                <a routerLink="/auth/sign-in">Sign In</a>
               </ng-template>
+            </li>
+            <li *ngIf="accountInformation$ | async">
+              <span (click)="updatePassword()" class="action-span">
+                Update password
+              </span>
             </li>
           </ul>
         </div>

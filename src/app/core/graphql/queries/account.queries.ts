@@ -14,6 +14,20 @@ export const IS_SIGNEDIN = gql`
   }
 `;
 
+export const UPDATE_PASSWORD = gql`
+  mutation updateUserPassword(
+    $oldPassword: String!
+    $newPassword: String!
+    $repeatPassword: String!
+  ) {
+    updateUserPassword(
+      oldPassword: $oldPassword
+      newPassword: $newPassword
+      repeatPassword: $repeatPassword
+    )
+  }
+`;
+
 export const ACCOUNT_INFORMATION = gql`
   query getAccountDetails {
     getAccountDetails {

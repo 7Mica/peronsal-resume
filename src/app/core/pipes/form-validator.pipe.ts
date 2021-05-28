@@ -17,9 +17,15 @@ export class FormValidtor implements PipeTransform {
             case 'email':
               return 'Email format is not correct';
             case 'min':
-              return 'Min number is 0';
+              return `Min number is ${value.min.min}`;
             case 'max':
-              return 'Max number is 100';
+              return `Max number is ${value.max.max}`;
+            case 'minlength':
+              return `Min length is ${value.minlength.requiredLength}`;
+            case 'maxlength':
+              return `Max length is ${value.maxlength.requiredLength}`;
+            case 'notMatch':
+              return 'Passwords don\'t match';
             default:
               return;
           }

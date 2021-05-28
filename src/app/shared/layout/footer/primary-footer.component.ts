@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ITheme } from '@core/interfaces/theme.interface';
 import { AccountService } from '@core/services/account.service';
 import { ThemeColorService } from '@core/services/theme-color.service';
+import { UpdateUserPasswordModalComponent } from '@shared/components/admin/update-user-password-modal/update-user-password-modal.component';
 import { EMPTY, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -17,7 +19,8 @@ export class PrimaryFooterComponent implements OnInit {
 
   constructor(
     private themeService: ThemeColorService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private matDialog: MatDialog
   ) {
     this.accountInformation$ = this.accountService.getAccountInformation();
   }
@@ -46,5 +49,12 @@ export class PrimaryFooterComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  updatePassword(): void {
+    this.matDialog.open(UpdateUserPasswordModalComponent, {
+      width: '100%',
+      maxWidth: '480px',
+    });
   }
 }
