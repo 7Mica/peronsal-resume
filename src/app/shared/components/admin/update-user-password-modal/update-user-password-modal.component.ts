@@ -29,7 +29,7 @@ import { Apollo } from 'apollo-angular';
             <label for="old-password">Old password</label>
             <input
               focus
-              type="text"
+              type="password"
               class="form-control"
               id="old-password"
               formControlName="oldPassword"
@@ -44,7 +44,7 @@ import { Apollo } from 'apollo-angular';
           <div class="form-group">
             <label for="new-password">New password</label>
             <input
-              type="text"
+              type="password"
               class="form-control"
               id="new-password"
               formControlName="newPassword"
@@ -59,7 +59,7 @@ import { Apollo } from 'apollo-angular';
           <div class="form-group">
             <label for="repeat-password">Repeat new password</label>
             <input
-              type="text"
+              type="password"
               class="form-control"
               id="repeat-password"
               formControlName="repeatPassword"
