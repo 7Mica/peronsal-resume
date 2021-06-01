@@ -85,6 +85,7 @@ export class AbilityListComponent implements OnChanges {
         [Validators.required, Validators.min(1), Validators.max(100)],
       ],
       abilityName: ['', [Validators.required]],
+      weight: [0, [Validators.required]],
       expanded: [false],
       isNew: [isNewAbility],
     });

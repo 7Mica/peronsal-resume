@@ -86,6 +86,7 @@ export class CareerListComponent implements OnChanges {
       country: ['', [Validators.required]],
       jobTitle: ['', [Validators.required]],
       description: ['', [Validators.required]],
+      weight: [0, [Validators.required]],
       isNew: [isNewCareer],
       expanded: [false],
     });

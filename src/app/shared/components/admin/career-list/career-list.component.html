@@ -24,14 +24,20 @@
 
             <div class="career__item-right-actions">
               <button
+                type="button"
+                (click)="sendAddedCareer(i)"
+                class="btn btn-secondary career__item-save-career-button"
+                [disabled]="careers.at(i).pristine"
+              >
+                <i class="bi bi-save"></i>
+              </button>
+
+              <button
                 class="career__item-delete-career-button"
                 (click)="deleteCareerFromCareerFormArray(i)"
               >
                 <i class="bi bi-x-circle"></i>
               </button>
-              <span class="career__item-number">
-                {{ i + 1 }}
-              </span>
             </div>
           </div>
 
@@ -159,6 +165,23 @@
               </div>
             </div>
 
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="form-group">
+                <label for="weight{{ i }}">Weight</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="weight{{ i }}"
+                  formControlName="weight"
+                />
+
+                <validator
+                  [isTouched]="careers.at(i).get('imagehd')?.touched"
+                  [controlErrors]="careers.at(i).get('imagehd')?.errors"
+                ></validator>
+              </div>
+            </div>
+
             <div class="col-12">
               <div class="form-group">
                 <label for="description{{ i }}">Description</label>
@@ -174,17 +197,6 @@
                   [controlErrors]="careers.at(i).get('description')?.errors"
                 ></validator>
               </div>
-            </div>
-
-            <div class="col-4">
-              <button
-                type="button"
-                (click)="sendAddedCareer(i)"
-                class="btn btn-secondary"
-                [disabled]="careers.at(i).pristine"
-              >
-                Save
-              </button>
             </div>
           </div>
         </div>

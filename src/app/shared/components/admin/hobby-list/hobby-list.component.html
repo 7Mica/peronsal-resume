@@ -13,7 +13,7 @@
 
             <span
               (click)="collapseAndExpandHobby(i)"
-              class="career__item-title"
+              class="hobby__item-title"
             >
               {{
                 hobbies.at(i).get("name")?.value
@@ -25,14 +25,19 @@
 
             <div class="hobby__item-right-actions">
               <button
+                type="button"
+                (click)="sendAddedHobby(i)"
+                class="btn btn-secondary hobby__item-save-hobby-button"
+                [disabled]="hobbies.at(i).pristine"
+              >
+                <i class="bi bi-save"></i>
+              </button>
+              <button
                 class="hobby__item-delete-hobby-button"
                 (click)="deleteHobbyFromHobbyFormArray(i)"
               >
                 <i class="bi bi-x-circle"></i>
               </button>
-              <span class="hobby__item-number">
-                {{ i + 1 }}
-              </span>
             </div>
           </div>
 
@@ -92,6 +97,23 @@
               </div>
             </div>
 
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="form-group">
+                <label for="weight{{ i }}">Weight</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="weight{{ i }}"
+                  formControlName="weight"
+                />
+
+                <validator
+                  [isTouched]="hobbies.at(i).get('imagehd')?.touched"
+                  [controlErrors]="hobbies.at(i).get('imagehd')?.errors"
+                ></validator>
+              </div>
+            </div>
+
             <div class="col-12">
               <div class="form-group">
                 <label for="description{{ i }}">Description</label>
@@ -107,17 +129,6 @@
                   [controlErrors]="hobbies.at(i).get('description')?.errors"
                 ></validator>
               </div>
-            </div>
-
-            <div class="col-4">
-              <button
-                type="button"
-                (click)="sendAddedHobby(i)"
-                class="btn btn-secondary"
-                [disabled]="hobbies.at(i).pristine"
-              >
-                Save
-              </button>
             </div>
           </div>
         </div>

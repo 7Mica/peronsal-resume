@@ -51,6 +51,7 @@ export const NEW_RESUME = gql`
         id
         abilityName
         percent
+        weight
         logo
       }
       careers {
@@ -62,12 +63,14 @@ export const NEW_RESUME = gql`
         jobTitle
         city
         startDate
+        weight
         endDate
       }
       hobbies {
         id
         description
         name
+        weight
       }
     }
   }
@@ -130,6 +133,7 @@ export const SELECTED_RESUME = gql`
         abilityName
         percent
         logo
+        weight
       }
       careers {
         companyName
@@ -141,6 +145,7 @@ export const SELECTED_RESUME = gql`
         city
         startDate
         endDate
+        weight
       }
       hobbies {
         id
@@ -148,6 +153,7 @@ export const SELECTED_RESUME = gql`
         name
         image
         imagehd
+        weight
       }
     }
   }
@@ -171,6 +177,7 @@ export const RESUME_LIST = gql`
         abilityName
         percent
         logo
+        weight
       }
       careers {
         companyName
@@ -182,6 +189,7 @@ export const RESUME_LIST = gql`
         city
         startDate
         endDate
+        weight
       }
       hobbies {
         id
@@ -189,6 +197,7 @@ export const RESUME_LIST = gql`
         name
         image
         imagehd
+        weight
       }
     }
   }

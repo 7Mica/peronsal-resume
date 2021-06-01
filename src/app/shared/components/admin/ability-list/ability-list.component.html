@@ -25,14 +25,20 @@
 
             <div class="ability__item-right-actions">
               <button
+                type="button"
+                (click)="sendAddedAbility(i)"
+                class="btn btn-secondary ability__item-save-ability-button"
+                [disabled]="abilities.at(i).pristine"
+              >
+                <i class="bi bi-save"></i>
+              </button>
+
+              <button
                 class="ability__item-delete-ability-button"
                 (click)="deleteAbilityFromAbilityFormArray(i)"
               >
                 <i class="bi bi-x-circle"></i>
               </button>
-              <span class="ability__item-number">
-                {{ i + 1 }}
-              </span>
             </div>
           </div>
 
@@ -83,6 +89,23 @@
               </div>
             </div>
 
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="form-group">
+                <label for="weight{{ i }}">Weight</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="weight{{ i }}"
+                  formControlName="weight"
+                />
+
+                <validator
+                  [isTouched]="abilities.at(i).get('imagehd')?.touched"
+                  [controlErrors]="abilities.at(i).get('imagehd')?.errors"
+                ></validator>
+              </div>
+            </div>
+
             <div class="col-12 col-md-9 col-lg-6">
               <div class="form-group">
                 <label for="logo{{ i }}">Logo</label>
@@ -98,17 +121,6 @@
                   [controlErrors]="abilities.at(i).get('logo')?.errors"
                 ></validator>
               </div>
-            </div>
-
-            <div class="col-4">
-              <button
-                type="button"
-                (click)="sendAddedAbility(i)"
-                class="btn btn-secondary"
-                [disabled]="abilities.at(i).pristine"
-              >
-                Save
-              </button>
             </div>
           </div>
         </div>

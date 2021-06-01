@@ -82,6 +82,7 @@ export class HobbyListComponent implements OnChanges {
       description: ['', [Validators.required]],
       image: ['', [Validators.required]],
       imagehd: ['', [Validators.required]],
+      weight: [0, [Validators.required]],
       expanded: [false],
       isNew: [isNewHobby],
     });
