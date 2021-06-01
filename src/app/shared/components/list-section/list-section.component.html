@@ -18,7 +18,8 @@
                   </h4>
 
                   <p class="list-section__item-period">
-                    {{ item.yearRange }}
+                    {{ item.startDate }} -
+                    {{ item.endDate ? item.endDate : "Current" }}
                   </p>
 
                   <p class="list-section__item-location">

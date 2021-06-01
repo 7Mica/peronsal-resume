@@ -79,8 +79,8 @@ export class CareerListComponent implements OnChanges {
     return this.fb.group({
       id: [uuidv4(), [Validators.required]],
       companyName: ['', [Validators.required]],
-      startDate: ['', [Validators.required]],
-      endDate: ['', [Validators.required]],
+      startDate: [null, [Validators.required]],
+      endDate: [null],
       city: ['', [Validators.required]],
       state: ['', [Validators.required]],
       country: ['', [Validators.required]],
