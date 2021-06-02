@@ -6,7 +6,10 @@ a {
   &:active {
     display: inline-block;
     text-decoration: none;
-    color: $secondary-color;
     font-weight: 500;
+
+    &:not(.btn) {
+      color: $secondary-color;
+    }
   }
 }

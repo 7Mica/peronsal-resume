@@ -10,9 +10,9 @@ export const NEW_RESUME = gql`
   mutation newResume(
     $firstName: String!
     $lastName: String!
-    $country: String
-    $state: String
-    $city: String
+    $country: String!
+    $state: String!
+    $city: String!
     $age: Int!
     $profileImage: String!
     $about: String!
@@ -81,9 +81,9 @@ export const UPDATE_RESUME = gql`
     $id: String!
     $firstName: String!
     $lastName: String!
-    $country: String
-    $state: String
-    $city: String
+    $country: String!
+    $state: String!
+    $city: String!
     $age: Int!
     $profileImage: String!
     $about: String!

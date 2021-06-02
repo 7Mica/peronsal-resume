@@ -2,7 +2,7 @@
   <div class="limiter">
     <div class="email-section__container container-fluid shadow-lg rounded">
       <h2 class="section-title text-center" id="contact">Contact</h2>
-      <h3 class="text-center">Wanna get in tocuh? Just send an email</h3>
+      <h3 class="text-center">Wanna get in touch? Just send me an email</h3>
 
       <div class="row">
         <div class="email-section__svg col-12 col-md-6">
@@ -32,60 +32,29 @@
         </div>
 
         <div class="email-section__form col-12 col-md-6 rounded">
-          <form [formGroup]="emailForm" (ngSubmit)="handleSubmit()">
+          <form [formGroup]="emailForm">
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="subject">Subject</label>
 
               <input
-                aria-label="your name"
-                formControlName="name"
+                aria-label="subject"
+                formControlName="subject"
                 class="form-control"
-                placeholder="Name"
+                placeholder="Subject"
                 type="text"
-                id="name"
+                id="subject"
               />
             </div>
 
-            <div class="form-group">
-              <label for="last-name">Last Name</label>
-
-              <input
-                aria-label="your lastname"
-                formControlName="lastName"
-                class="form-control"
-                placeholder="Last name"
-                type="text"
-                id="last-name"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="email-contact">Email</label>
-
-              <input
-                aria-label="your email"
-                formControlName="email"
-                class="form-control"
-                placeholder="Email address"
-                type="email"
-                id="email-contact"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="message">Message</label>
-
-              <textarea
-                aria-label="message"
-                formControlName="message"
-                class="form-control"
-                placeholder="Message"
-                id="message"
-                rows="5"
-              ></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-secondary">Submit</button>
+            <a
+              [href]="
+                'mailto:mcasillasur@gmail.com?subject=' +
+                emailForm.get('subject')?.value
+              "
+              class="btn btn-secondary"
+            >
+              Send an Email
+            </a>
           </form>
         </div>
       </div>

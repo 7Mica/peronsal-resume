@@ -34,10 +34,11 @@
 
   &__main-navigation {
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px 20px;
     z-index: 999;
     background-color: transparent;
     transition: all 1s linear;
+    box-shadow: 0 1px 8px 1px rgba(0, 0, 0, 0.43);
 
     a {
       &,
@@ -68,7 +69,7 @@
     background-image: url("../../../../assets/icons/logo.svg");
 
     @include media-breakpoint-down(sm) {
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
 
     a {
@@ -122,7 +123,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-size: 2rem;
+        font-size: 1.5rem;
         padding-inline-start: 0;
 
         li {
@@ -161,7 +162,7 @@
     border: none;
     z-index: 100;
     color: white;
-    font-size: 3rem;
+    font-size: 1.5rem;
 
     @include media-breakpoint-up(md) {
       display: none;

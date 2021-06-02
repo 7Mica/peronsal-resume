@@ -1,8 +1,14 @@
+@import "~bootstrap/scss/mixins/breakpoints";
+
 .btn {
   border: none;
   background-color: $quiet-color;
   text-transform: uppercase;
   font-weight: 500;
+
+  @include media-breakpoint-down(sm) {
+    font-size: 12px;
+  }
 }
 
 .btn-primary {

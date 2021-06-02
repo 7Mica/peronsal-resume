@@ -25,7 +25,7 @@ export class HeaderTitleService {
   }
 
   public setTitle(headerTitle: IHeaderTitle): void {
-    this.titlePage.setTitle(`FMCU Resume - ${headerTitle.title}`);
+    this.titlePage.setTitle(`Resume - ${headerTitle.title}`);
     this.titleSource.next(headerTitle);
   }
 }
