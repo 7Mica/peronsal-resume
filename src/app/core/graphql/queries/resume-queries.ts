@@ -133,6 +133,7 @@ export const SELECTED_RESUME = gql`
         abilityName
         percent
         logo
+        description
         weight
       }
       careers {
@@ -177,6 +178,7 @@ export const RESUME_LIST = gql`
         abilityName
         percent
         logo
+        description
         weight
       }
       careers {

@@ -15,6 +15,7 @@ import {
 } from '@core/animations/common-animations';
 import { validateAllFormFields } from '@core/functions/validate-all-form-fields';
 import {
+  IHobby,
   IHobbyData,
   IHobbyInterchange,
 } from '@core/interfaces/hobby.interface';
@@ -52,9 +53,9 @@ export class HobbyListComponent implements OnChanges {
     this.hobbies.clear();
 
     if (currentValue.length > 0) {
-      for (const i of currentValue) {
-        this.hobbies.push(this.newHobbyFormGroup(false));
-      }
+      currentValue.forEach((hobby: IHobby) =>
+        this.hobbies.push(this.newHobbyFormGroup(false))
+      );
 
       this.hobbies.patchValue(currentValue);
     }

@@ -15,6 +15,7 @@ import {
 } from '@core/animations/common-animations';
 import { validateAllFormFields } from '@core/functions/validate-all-form-fields';
 import {
+  ICareer,
   ICareerData,
   ICareerInterchange,
 } from '@core/interfaces/career.interface';
@@ -52,9 +53,9 @@ export class CareerListComponent implements OnChanges {
     this.careers.clear();
 
     if (currentValue.length > 0) {
-      for (const i of currentValue) {
-        this.careers.push(this.newCareerFormGroup(false));
-      }
+      currentValue.forEach((career: ICareer) =>
+        this.careers.push(this.newCareerFormGroup(false))
+      );
 
       this.careers.patchValue(currentValue);
     }

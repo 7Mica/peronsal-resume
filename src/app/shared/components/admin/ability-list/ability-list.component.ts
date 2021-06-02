@@ -13,6 +13,7 @@ import {
   scaleAndOpaque,
 } from '@core/animations/common-animations';
 import {
+  IAbility,
   IAbilityData,
   IAbilityInterchange,
 } from '@core/interfaces/ability.interface';
@@ -53,9 +54,11 @@ export class AbilityListComponent implements OnChanges {
     this.abilities.clear();
 
     if (currentValue.length > 0) {
-      for (const i of currentValue) {
-        this.abilities.push(this.newAbilityFormGroup(false));
-      }
+      currentValue.forEach((ability: IAbility) => {
+        this.abilities.push(
+          this.newAbilityFormGroup(false, ability.abilityName === 'LANGUAGE')
+        );
+      });
 
       this.abilities.patchValue(currentValue);
     }
@@ -76,19 +79,39 @@ export class AbilityListComponent implements OnChanges {
     this.abilities.removeAt(index);
   }
 
-  public newAbilityFormGroup(isNewAbility: boolean): FormGroup {
+  public newAbilityFormGroup(
+    isNewAbility: boolean,
+    isLanguage = false
+  ): FormGroup {
     return this.fb.group({
       id: [uuidv4(), [Validators.required]],
-      logo: ['', [Validators.required]],
+      logo: ['', isLanguage ? [] : [Validators.required]],
       percent: [
         1,
         [Validators.required, Validators.min(1), Validators.max(100)],
       ],
       abilityName: ['', [Validators.required]],
+      description: [''],
       weight: [0, [Validators.required]],
       expanded: [false],
       isNew: [isNewAbility],
     });
+  }
+
+  public selectedAbilityOnChange(formGroupIndex: number) {
+    if (
+      this.abilities.at(formGroupIndex).get('abilityName')?.value === 'LANGUAGE'
+    ) {
+      this.abilities.at(formGroupIndex).get('logo')?.clearValidators();
+    } else {
+      this.abilities
+        .at(formGroupIndex)
+        .get('logo')
+        ?.setValidators(Validators.required);
+    }
+
+    this.abilities.at(formGroupIndex).get('logo')?.reset('');
+    this.abilities.at(formGroupIndex).get('logo')?.updateValueAndValidity();
   }
 
   public sendAddedAbility(i: number): void {

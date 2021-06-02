@@ -54,6 +54,7 @@
                   class="form-control"
                   id="ability-name{{ i }}"
                   formControlName="abilityName"
+                  (change)="selectedAbilityOnChange(i)"
                 >
                   <option
                     *ngFor="let option of abilityListOptions"
@@ -106,7 +107,10 @@
               </div>
             </div>
 
-            <div class="col-12 col-md-9 col-lg-6">
+            <div
+              class="col-12 col-md-9 col-lg-6"
+              *ngIf="abilities.at(i).get('abilityName')?.value !== 'LANGUAGE'"
+            >
               <div class="form-group">
                 <label for="logo{{ i }}">Logo</label>
                 <input
@@ -119,6 +123,23 @@
                 <validator
                   [isTouched]="abilities.at(i).get('logo')?.touched"
                   [controlErrors]="abilities.at(i).get('logo')?.errors"
+                ></validator>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-9 col-lg-6">
+              <div class="form-group">
+                <label for="description{{ i }}">Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="description{{ i }}"
+                  formControlName="description"
+                />
+
+                <validator
+                  [isTouched]="abilities.at(i).get('description')?.touched"
+                  [controlErrors]="abilities.at(i).get('description')?.errors"
                 ></validator>
               </div>
             </div>
