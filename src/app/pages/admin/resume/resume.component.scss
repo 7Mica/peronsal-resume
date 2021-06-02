@@ -35,6 +35,12 @@
     box-shadow: 0 5px 15px -3px rgb(0 0 0 / 30%);
   }
 
+  .resume-list-wrapper + .resume-preview-wrapper {
+    @include media-breakpoint-down(sm) {
+      margin-top: 20px;
+    }
+  }
+
   .resume-list {
     &__list {
       padding-inline-start: 0;
@@ -76,6 +82,8 @@
       }
 
       &-btn-set {
+        display: flex;
+
         button + button {
           margin-left: 10px;
         }
