@@ -18,8 +18,10 @@
                   </h4>
 
                   <p class="list-section__item-period">
-                    {{ item.startDate }} -
-                    {{ item.endDate ? item.endDate : "Current" }}
+                    {{ item.startDate | date: "MMMM y" }} -
+                    {{
+                      item.endDate ? (item.endDate | date: "MMMM y") : "Current"
+                    }}
                   </p>
 
                   <p class="list-section__item-location">
