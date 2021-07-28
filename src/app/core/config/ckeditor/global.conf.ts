@@ -1,21 +1,24 @@
 export const CKEDITOR_GLOBAL_CONF = {
   link: {
     decorators: {
-      checkClass: {
-        mode: 'automatic',
-        defaultValue: true,
-        callback: (url: any) => true,
-      },
-      addClassStyle1: {
+      openInNewTab: {
         mode: 'manual',
-        label: 'Button primary',
+        label: 'Open in a new tab',
+        attributes: {
+          target: '_blank',
+          rel: 'noopener noreferrer',
+        },
+      },
+      addClassPrimaryButton: {
+        mode: 'manual',
+        label: 'Primary Button',
         attributes: {
           class: 'btn btn-primary',
         },
       },
-      addClassStyle2: {
+      addClassSecondaryButton: {
         mode: 'manual',
-        label: 'Button Secondary',
+        label: 'Secondary Button',
         attributes: {
           class: 'btn btn-secondary',
         },
