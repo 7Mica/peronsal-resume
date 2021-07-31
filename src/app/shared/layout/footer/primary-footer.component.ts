@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { SignedStatus } from '@core/interfaces/signed-status.interface';
 import { ITheme } from '@core/interfaces/theme.interface';
 import { AccountService } from '@core/services/account.service';
 import { ThemeColorService } from '@core/services/theme-color.service';
-import { UpdateUserPasswordModalComponent } from '@shared/components/admin/update-user-password-modal/update-user-password-modal.component';
 import { EMPTY, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -15,14 +14,13 @@ import { tap } from 'rxjs/operators';
 export class PrimaryFooterComponent implements OnInit {
   theme = 'primary-theme';
   public selectedTheme$: Observable<ITheme> = EMPTY;
-  public accountInformation$: Observable<any>;
+  public signedStatus$: Observable<SignedStatus>;
 
   constructor(
     private themeService: ThemeColorService,
-    private accountService: AccountService,
-    private matDialog: MatDialog
+    private accountService: AccountService
   ) {
-    this.accountInformation$ = this.accountService.getAccountInformation();
+    this.signedStatus$ = this.accountService.listenIfUserIsSignedIn();
   }
 
   ngOnInit(): void {
@@ -49,12 +47,5 @@ export class PrimaryFooterComponent implements OnInit {
       default:
         break;
     }
-  }
-
-  updatePassword(): void {
-    this.matDialog.open(UpdateUserPasswordModalComponent, {
-      width: '100%',
-      maxWidth: '480px',
-    });
   }
 }

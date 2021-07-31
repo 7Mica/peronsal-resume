@@ -9,6 +9,9 @@ export const PAGES_ROUTES: Routes = [
     children: [
       {
         path: '',
+        data: {
+          editable: true,
+        },
         loadChildren: () =>
           import('./public/main/main-page.module').then(
             (m) => m.MainPageModule

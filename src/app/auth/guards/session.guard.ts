@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { AccountService } from '@core/services/account.service';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +23,21 @@ export class SessionGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    return this.accountService.isSignedIn().pipe(
-      tap((e) => {
-        if (e && state.url === '/auth/sign-in') {
+    return this.accountService.callIfUserIsSignedIn().pipe(
+      map((isSignedIn) => {
+        // If user is signed in and navigates to login page, it redirects to /
+        if (isSignedIn && state.url === '/auth/sign-in') {
           this.router.navigate(['/']);
+          return false;
         }
+
+        // If user is not signed in and navigates to login page, it can pass
+        if (!isSignedIn && state.url === '/auth/sign-in') {
+          return true;
+        }
+
+        // User can enter to any other pages depending if it is signed in or not
+        return isSignedIn;
       }),
       catchError((error) => {
         if (
