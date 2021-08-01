@@ -7,22 +7,18 @@ import {
   EditablePageService,
   EditableState,
 } from '@core/services/editable-page.service';
-import { EMPTY, Observable, Subscription } from 'rxjs';
-import { catchError, filter } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { UpdateUserPasswordModalComponent } from '../admin/update-user-password-modal/update-user-password-modal.component';
 
 @Component({
   selector: 'tool-bar',
   styleUrls: ['./tool-bar.component.scss'],
   template: `
-    <ng-container *ngIf="signedStatus$ | async as signedStatus">
-      <div class="tool-bar" *ngIf="signedStatus.isSignedIn">
+    <ng-container *ngIf="accountInformation$ | async as accountInformation">
+      <div class="tool-bar" *ngIf="accountInformation">
         <ul class="tool-bar-items">
-          <ng-container
-            *ngIf="accountInformation$ | async as accountInformation"
-          >
-            <li class="tool-bar-item">{{ accountInformation.email }}</li>
-          </ng-container>
+          <li class="tool-bar-item">{{ accountInformation.email }}</li>
           <ng-container
             *ngIf="editablePageStatus$ | async as editablePageStatus"
           >
@@ -43,7 +39,6 @@ import { UpdateUserPasswordModalComponent } from '../admin/update-user-password-
   `,
 })
 export class ToolBarComponent implements OnDestroy {
-  public signedStatus$: Observable<any>;
   public editablePageStatus$: Observable<EditableState>;
   public accountInformation$: Observable<any>;
   private routeChanged$: Subscription;
@@ -60,11 +55,10 @@ export class ToolBarComponent implements OnDestroy {
         this.editablePage.removeEditable();
       });
 
-    this.signedStatus$ = this.accountService
-      .listenIfUserIsSignedIn()
-      .pipe(catchError(() => EMPTY));
+    this.accountInformation$ =
+      this.accountService.accountInformationObservable();
+
     this.editablePageStatus$ = this.editablePage.tellMeIfEditable();
-    this.accountInformation$ = this.accountService.getAccountInformation();
   }
 
   ngOnDestroy(): void {

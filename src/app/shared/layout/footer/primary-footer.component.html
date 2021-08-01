@@ -23,8 +23,9 @@
             <li><i class="bi bi-geo-alt"></i> Tepic, Nayarit. México.</li>
 
             <li><a routerLink="/thanks"> Thanks for the free assets</a></li>
+
             <li *ngIf="signedStatus$ | async as signedStatus">
-            <ng-container  *ngIf="!signedStatus.isSignedIn">
+              <ng-container *ngIf="!signedStatus.isSignedIn">
                 <a routerLink="/auth/sign-in">Sign In </a>
               </ng-container>
             </li>
