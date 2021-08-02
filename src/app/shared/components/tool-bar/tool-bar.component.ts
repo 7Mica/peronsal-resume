@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Event, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { SignedStatus } from '@core/interfaces/signed-status.interface';
 import { AccountService } from '@core/services/account.service';
 import {
   EditablePageService,
   EditableState,
 } from '@core/services/editable-page.service';
-import { Observable, Subscription } from 'rxjs';
+import { EMPTY, Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { UpdateUserPasswordModalComponent } from '../admin/update-user-password-modal/update-user-password-modal.component';
 
@@ -15,10 +16,9 @@ import { UpdateUserPasswordModalComponent } from '../admin/update-user-password-
   selector: 'tool-bar',
   styleUrls: ['./tool-bar.component.scss'],
   template: `
-    <ng-container *ngIf="accountInformation$ | async as accountInformation">
-      <div class="tool-bar" *ngIf="accountInformation">
+    <ng-container *ngIf="signedStatus$ | async as signedStatus">
+      <div class="tool-bar" *ngIf="signedStatus.isSignedIn">
         <ul class="tool-bar-items">
-          <li class="tool-bar-item">{{ accountInformation.email }}</li>
           <ng-container
             *ngIf="editablePageStatus$ | async as editablePageStatus"
           >
@@ -31,7 +31,7 @@ import { UpdateUserPasswordModalComponent } from '../admin/update-user-password-
             <a (click)="updatePassword()"> Update Password </a>
           </li>
           <li class="tool-bar-item">
-            <a (click)="accountService.closeSession()"> Close session </a>
+            <a (click)="closeSession()"> Close session </a>
           </li>
         </ul>
       </div>
@@ -40,13 +40,13 @@ import { UpdateUserPasswordModalComponent } from '../admin/update-user-password-
 })
 export class ToolBarComponent implements OnDestroy {
   public editablePageStatus$: Observable<EditableState>;
-  public accountInformation$: Observable<any>;
+  public signedStatus$: Observable<SignedStatus> = EMPTY;
   private routeChanged$: Subscription;
 
   constructor(
     private editablePage: EditablePageService,
     private router: Router,
-    public accountService: AccountService,
+    private accountService: AccountService,
     private matDialog: MatDialog
   ) {
     this.routeChanged$ = this.router.events
@@ -55,14 +55,16 @@ export class ToolBarComponent implements OnDestroy {
         this.editablePage.removeEditable();
       });
 
-    this.accountInformation$ =
-      this.accountService.accountInformationObservable();
-
+    this.signedStatus$ = this.accountService.observeSignedInStatus();
     this.editablePageStatus$ = this.editablePage.tellMeIfEditable();
   }
 
   ngOnDestroy(): void {
     this.routeChanged$.unsubscribe();
+  }
+
+  public closeSession(): void {
+    this.accountService.signOut();
   }
 
   public updatePassword(): void {

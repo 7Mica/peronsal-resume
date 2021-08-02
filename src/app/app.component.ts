@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    // On first time load it checks if users is signed in or not
-    this.accountService.callIfUserIsSignedIn().subscribe();
+    // On first time Web site load, it checks if users is signed in or not
+    this.accountService.validateCurrentSession().subscribe();
   }
 }

@@ -23,7 +23,7 @@ export class SessionGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    return this.accountService.callIfUserIsSignedIn().pipe(
+    return this.accountService.validateCurrentSession().pipe(
       map((isSignedIn) => {
         // If user is signed in and navigates to login page, it redirects to /
         if (isSignedIn && state.url === '/auth/sign-in') {

@@ -1,90 +1,50 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  ACCOUNT_INFORMATION,
-  IS_SIGNEDIN,
-  SIGN_IN,
-} from '@core/graphql/queries/account.queries';
-import { AccountInformation } from '@core/interfaces/account-information.interface';
+import { IS_SIGNEDIN, SIGN_IN } from '@core/graphql/queries/account.queries';
 import { SignedStatus } from '@core/interfaces/signed-status.interface';
-import { Apollo, QueryRef } from 'apollo-angular';
-import { EMPTY, Observable, of, ReplaySubject } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { Apollo } from 'apollo-angular';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  private accountInformationFetch$: QueryRef<any> | any;
-  private announceIfUserSignedIn$: ReplaySubject<SignedStatus> =
-    new ReplaySubject<SignedStatus>(1);
-  private accountInformationSource$: ReplaySubject<AccountInformation | null> =
-    new ReplaySubject<AccountInformation | null>(1);
+  private signedInStatusSource: BehaviorSubject<SignedStatus> =
+    new BehaviorSubject<SignedStatus>({ isSignedIn: false });
 
   constructor(
     private apollo: Apollo,
     private localStorageService: LocalStorageService,
     private router: Router
-  ) {
-    this.accountInformationFetch$ = this.apollo.watchQuery({
-      query: ACCOUNT_INFORMATION,
-    });
+  ) {}
+
+  public observeSignedInStatus(): Observable<SignedStatus> {
+    return this.signedInStatusSource.asObservable();
   }
 
-  public closeSession(): void {
-    this.localStorageService.removeValue('ytkn');
-    this.announceIfUserSignedIn$.next({ isSignedIn: false });
-    this.accountInformationSource$.next(null);
-    this.router.navigate(['/']);
-  }
-
-  public getAccountInformation(): Observable<any> {
-    return this.accountInformationFetch$.valueChanges.pipe(
-      map(({ data: { getAccountDetails } }: any) => getAccountDetails),
-      tap((accountInformation: AccountInformation) =>
-        this.accountInformationSource$.next(accountInformation)
-      ),
-      catchError((error: any) => {
-        if (error.graphQLErrors.some((e: any) => e.statusCode === 401)) {
-          return of(null);
-        } else {
-          return EMPTY;
-        }
-      })
-    );
-  }
-
-  public listenIfUserIsSignedIn(): Observable<SignedStatus> {
-    return this.announceIfUserSignedIn$
-      .asObservable()
-      .pipe(
-        tap((signedStatus: SignedStatus) =>
-          signedStatus.isSignedIn
-            ? this.accountInformationFetch$.refetch()
-            : this.accountInformationSource$.next(null)
-        )
-      );
-  }
-
-  public accountInformationObservable(): Observable<AccountInformation | null> {
-    return this.accountInformationSource$.asObservable();
-  }
-
-  public callIfUserIsSignedIn(): Observable<boolean> {
+  /**
+   * @description
+   * Validates user's session in the server. It notifies to `signedInStatusSource`
+   * if the user is signed in/out.
+   *
+   * @returns Observable<boolean>
+   */
+  public validateCurrentSession(): Observable<boolean> {
     return this.apollo.mutate({ mutation: IS_SIGNEDIN }).pipe(
       map(({ data, error }: any) =>
         data
           ? data.isSignedIn
           : error.graphQLErrors.some((e: any) => e.statusCode === 401)
       ),
-      switchMap((isSignedIn: boolean) =>
-        isSignedIn
-          ? this.getAccountInformation().pipe(map(() => isSignedIn))
-          : EMPTY.pipe(map(() => isSignedIn))
+      // If the user is signed in/out, this will notify the status
+      // to signedInStatusSource
+      tap((isSignedIn: boolean) =>
+        this.signedInStatusSource.next({ isSignedIn })
       ),
       catchError(() => {
-        this.announceIfUserSignedIn$.next({ isSignedIn: false });
+        this.signedInStatusSource.next({ isSignedIn: false });
         return of(false);
       })
     );
@@ -99,10 +59,13 @@ export class AccountService {
           password,
         },
       })
-      .pipe(
-        tap((e) => this.saveTokenIfNoErrors(e)),
-        switchMap(() => this.callIfUserIsSignedIn())
-      );
+      .pipe(tap((e) => this.saveTokenIfNoErrors(e)));
+  }
+
+  public signOut(): void {
+    this.localStorageService.removeValue('ytkn');
+    this.signedInStatusSource.next({ isSignedIn: false });
+    this.router.navigate(['/']);
   }
 
   public getAccountToken(): string {
@@ -113,10 +76,9 @@ export class AccountService {
     const { signIn } = data;
     if (signIn) {
       this.localStorageService.setValue('ytkn', signIn.accessToken);
-      this.announceIfUserSignedIn$.next({ isSignedIn: true });
-      this.accountInformationFetch$.refetch();
+      this.signedInStatusSource.next({ isSignedIn: true });
     } else {
-      this.announceIfUserSignedIn$.next({ isSignedIn: false });
+      this.signedInStatusSource.next({ isSignedIn: false });
     }
   }
 }

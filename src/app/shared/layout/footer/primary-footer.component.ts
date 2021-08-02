@@ -20,7 +20,7 @@ export class PrimaryFooterComponent implements OnInit {
     private themeService: ThemeColorService,
     private accountService: AccountService
   ) {
-    this.signedStatus$ = this.accountService.listenIfUserIsSignedIn();
+    this.signedStatus$ = this.accountService.observeSignedInStatus();
   }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class PrimaryFooterComponent implements OnInit {
   }
 
   public closeSession(): void {
-    this.accountService.closeSession();
+    this.accountService.signOut();
   }
 
   handleChangedTheme(): void {
