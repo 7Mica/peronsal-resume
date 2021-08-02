@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Event, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { AccountInformation } from '@core/interfaces/account-information.interface';
 import { SignedStatus } from '@core/interfaces/signed-status.interface';
 import { AccountService } from '@core/services/account.service';
 import {
   EditablePageService,
   EditableState,
 } from '@core/services/editable-page.service';
-import { EMPTY, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { UpdateUserPasswordModalComponent } from '../admin/update-user-password-modal/update-user-password-modal.component';
 
@@ -19,6 +20,14 @@ import { UpdateUserPasswordModalComponent } from '../admin/update-user-password-
     <ng-container *ngIf="signedStatus$ | async as signedStatus">
       <div class="tool-bar" *ngIf="signedStatus.isSignedIn">
         <ul class="tool-bar-items">
+          <ng-container
+            *ngIf="accountInformation$ | async as accountInformation"
+          >
+            <li class="tool-bar-item" *ngIf="accountInformation">
+              <span> {{ accountInformation.email }} </span>
+            </li>
+          </ng-container>
+
           <ng-container
             *ngIf="editablePageStatus$ | async as editablePageStatus"
           >
@@ -40,7 +49,8 @@ import { UpdateUserPasswordModalComponent } from '../admin/update-user-password-
 })
 export class ToolBarComponent implements OnDestroy {
   public editablePageStatus$: Observable<EditableState>;
-  public signedStatus$: Observable<SignedStatus> = EMPTY;
+  public signedStatus$: Observable<SignedStatus>;
+  public accountInformation$: Observable<AccountInformation | null>;
   private routeChanged$: Subscription;
 
   constructor(
@@ -56,6 +66,7 @@ export class ToolBarComponent implements OnDestroy {
       });
 
     this.signedStatus$ = this.accountService.observeSignedInStatus();
+    this.accountInformation$ = this.accountService.observeAccountInformation();
     this.editablePageStatus$ = this.editablePage.tellMeIfEditable();
   }
 

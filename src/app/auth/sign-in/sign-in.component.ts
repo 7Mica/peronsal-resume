@@ -10,7 +10,7 @@ import { AccountService } from '@core/services/account.service';
       <div class="sign-in-page__wrapper">
         <div class="sign-in-page__sign-in-section">
           <div class="sign-in-page__sign-in-section-wrapper">
-            <h1 class="text-center">Welcome</h1>
+            <h1 class="text-center">Sign in to your account</h1>
 
             <form [formGroup]="signInFormGroup" (ngSubmit)="submit()">
               <div class="form-group">
@@ -68,7 +68,7 @@ export class SignInComponent {
     private accountService: AccountService,
     private router: Router
   ) {
-    this.signInFormGroup = formBuilder.group({
+    this.signInFormGroup = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });

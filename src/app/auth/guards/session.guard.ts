@@ -36,7 +36,12 @@ export class SessionGuard implements CanActivate {
           return true;
         }
 
-        // User can enter to any other pages depending if it is signed in or not
+        if (!isSignedIn) {
+          this.router.navigate(['/']);
+          return isSignedIn;
+        }
+
+        // User can enter to any other pages depending if it is signed in
         return isSignedIn;
       }),
       catchError((error) => {

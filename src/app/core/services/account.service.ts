@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { IS_SIGNEDIN, SIGN_IN } from '@core/graphql/queries/account.queries';
+import {
+  ACCOUNT_INFORMATION,
+  IS_SIGNEDIN,
+  SIGN_IN,
+} from '@core/graphql/queries/account.queries';
+import { AccountInformation } from '@core/interfaces/account-information.interface';
 import { SignedStatus } from '@core/interfaces/signed-status.interface';
 import { Apollo } from 'apollo-angular';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
+import { catchError, concatMap, map, tap } from 'rxjs/operators';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
@@ -14,6 +19,9 @@ export class AccountService {
   private signedInStatusSource: BehaviorSubject<SignedStatus> =
     new BehaviorSubject<SignedStatus>({ isSignedIn: false });
 
+  private accountInformationSource: BehaviorSubject<AccountInformation | null> =
+    new BehaviorSubject<AccountInformation | null>(null);
+
   constructor(
     private apollo: Apollo,
     private localStorageService: LocalStorageService,
@@ -22,6 +30,10 @@ export class AccountService {
 
   public observeSignedInStatus(): Observable<SignedStatus> {
     return this.signedInStatusSource.asObservable();
+  }
+
+  public observeAccountInformation(): Observable<AccountInformation | null> {
+    return this.accountInformationSource.asObservable();
   }
 
   /**
@@ -43,9 +55,28 @@ export class AccountService {
       tap((isSignedIn: boolean) =>
         this.signedInStatusSource.next({ isSignedIn })
       ),
+      // Get account information if user is signed in otherwise return a
+      // completed observable (EMPTY)
+      concatMap((isSignedIn: boolean) =>
+        isSignedIn
+          ? this.getAccountInformation().pipe(map(() => isSignedIn))
+          : EMPTY
+      ),
       catchError(() => {
         this.signedInStatusSource.next({ isSignedIn: false });
         return of(false);
+      })
+    );
+  }
+
+  public getAccountInformation(): Observable<any> {
+    return this.apollo.query({ query: ACCOUNT_INFORMATION }).pipe(
+      tap(({ data }: any) => {
+        if (data) {
+          this.accountInformationSource.next({
+            email: data.getAccountDetails.email,
+          });
+        }
       })
     );
   }
@@ -59,12 +90,16 @@ export class AccountService {
           password,
         },
       })
-      .pipe(tap((e) => this.saveTokenIfNoErrors(e)));
+      .pipe(
+        tap((e) => this.saveTokenIfNoErrors(e)),
+        concatMap(({ data }) => (data ? this.getAccountInformation() : EMPTY))
+      );
   }
 
   public signOut(): void {
     this.localStorageService.removeValue('ytkn');
     this.signedInStatusSource.next({ isSignedIn: false });
+    this.accountInformationSource.next(null);
     this.router.navigate(['/']);
   }
 
