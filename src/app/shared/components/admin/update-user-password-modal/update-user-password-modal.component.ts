@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { GraphQLClients } from '@core/enums/graphql-clients.enum';
 import { comparePasswords } from '@core/functions/form-validators';
 import { UPDATE_PASSWORD } from '@core/graphql/queries/account.queries';
 import { IUpdateUserPassword } from '@core/interfaces/update-user-password.interface';
-import { Apollo } from 'apollo-angular';
+import { Apollo, ApolloBase } from 'apollo-angular';
 
 @Component({
   selector: 'update-user-password',
@@ -89,12 +90,14 @@ import { Apollo } from 'apollo-angular';
 })
 export class UpdateUserPasswordModalComponent {
   public updatePasswordForm: FormGroup;
+  private apolloBase: ApolloBase;
 
   constructor(
     private formBuilder: FormBuilder,
-    private apollo: Apollo,
+    private apolloProvider: Apollo,
     public matDialogRef: MatDialogRef<UpdateUserPasswordModalComponent>
   ) {
+    this.apolloBase = this.apolloProvider.use(GraphQLClients.MAIN);
     this.updatePasswordForm = formBuilder.group(
       {
         oldPassword: ['', [Validators.required]],
@@ -113,7 +116,7 @@ export class UpdateUserPasswordModalComponent {
     const { oldPassword, newPassword, repeatPassword }: IUpdateUserPassword =
       this.updatePasswordForm.value;
 
-    this.apollo
+    this.apolloBase
       .mutate({
         mutation: UPDATE_PASSWORD,
         variables: {

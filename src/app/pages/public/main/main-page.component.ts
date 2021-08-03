@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { GraphQLClients } from '@core/enums/graphql-clients.enum';
 import { SELECTED_RESUME } from '@core/graphql/queries/resume-queries';
 import { EditablePageService } from '@core/services/editable-page.service';
 import { HeaderTitleService } from '@core/services/header-title.service';
-import { Apollo } from 'apollo-angular';
+import { Apollo, ApolloBase } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -12,13 +13,15 @@ import { map } from 'rxjs/operators';
 })
 export class MainPageComponent implements OnInit {
   public selectedResume$: Observable<any>;
+  private apolloBase: ApolloBase;
 
   constructor(
     private headerTitle: HeaderTitleService,
-    private apollo: Apollo,
+    private apolloProvider: Apollo,
     private editablePage: EditablePageService
   ) {
-    this.selectedResume$ = this.apollo
+    this.apolloBase = this.apolloProvider.use(GraphQLClients.MAIN);
+    this.selectedResume$ = this.apolloBase
       .query({ query: SELECTED_RESUME })
       .pipe(map((response: any) => this.mapResumeResponse(response)));
   }

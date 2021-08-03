@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HeaderTitleService } from '@core/services/header-title.service';
-import { Apollo, QueryRef } from 'apollo-angular';
+import { Apollo, ApolloBase, QueryRef } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -27,6 +27,7 @@ import {
   UPDATE_RESUME,
 } from '@core/graphql/queries/resume-queries';
 import { CKEDITOR_GLOBAL_CONF } from '@core/config/ckeditor/global.conf';
+import { GraphQLClients } from '@core/enums/graphql-clients.enum';
 
 @Component({
   selector: 'resume-page',
@@ -52,12 +53,14 @@ export class ResumeComponent implements OnInit {
 
   private formActionState = FormActions.CREATE;
   private resumeListResult: IResume[] = [];
+  private apolloBase: ApolloBase;
 
   constructor(
-    private apollo: Apollo,
+    private apolloProvider: Apollo,
     private fb: FormBuilder,
     private headerTitle: HeaderTitleService
   ) {
+    this.apolloBase = this.apolloProvider.use(GraphQLClients.MAIN);
     this.resumeForm = this.newResumeFormGroup();
   }
 
@@ -67,7 +70,7 @@ export class ResumeComponent implements OnInit {
       description: 'Edit or set as default any resume',
     });
 
-    this.postsQuery = this.apollo.watchQuery({
+    this.postsQuery = this.apolloBase.watchQuery({
       query: RESUME_LIST,
     });
 
@@ -80,7 +83,7 @@ export class ResumeComponent implements OnInit {
   }
 
   public deleteResume(resumeId: string) {
-    this.apollo
+    this.apolloBase
       .mutate({
         mutation: DELETE_RESUME,
         variables: {
@@ -188,7 +191,7 @@ export class ResumeComponent implements OnInit {
       hobbies: [...this.updatedOrNewHobbies.values()],
     };
 
-    this.apollo
+    this.apolloBase
       .mutate({
         mutation:
           this.formActionState === FormActions.CREATE

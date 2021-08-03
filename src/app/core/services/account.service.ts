@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { GraphQLClients } from '@core/enums/graphql-clients.enum';
 import {
   ACCOUNT_INFORMATION,
   IS_SIGNEDIN,
@@ -7,7 +8,7 @@ import {
 } from '@core/graphql/queries/account.queries';
 import { AccountInformation } from '@core/interfaces/account-information.interface';
 import { SignedStatus } from '@core/interfaces/signed-status.interface';
-import { Apollo } from 'apollo-angular';
+import { Apollo, ApolloBase } from 'apollo-angular';
 import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
 import { catchError, concatMap, map, tap } from 'rxjs/operators';
 import { LocalStorageService } from './local-storage.service';
@@ -22,11 +23,15 @@ export class AccountService {
   private accountInformationSource: BehaviorSubject<AccountInformation | null> =
     new BehaviorSubject<AccountInformation | null>(null);
 
+  private apolloBase: ApolloBase;
+
   constructor(
-    private apollo: Apollo,
+    private apolloProvider: Apollo,
     private localStorageService: LocalStorageService,
     private router: Router
-  ) {}
+  ) {
+    this.apolloBase = this.apolloProvider.use(GraphQLClients.MAIN);
+  }
 
   public observeSignedInStatus(): Observable<SignedStatus> {
     return this.signedInStatusSource.asObservable();
@@ -44,7 +49,7 @@ export class AccountService {
    * @returns Observable<boolean>
    */
   public validateCurrentSession(): Observable<boolean> {
-    return this.apollo.mutate({ mutation: IS_SIGNEDIN }).pipe(
+    return this.apolloBase.mutate({ mutation: IS_SIGNEDIN }).pipe(
       map(({ data, error }: any) =>
         data
           ? data.isSignedIn
@@ -70,7 +75,7 @@ export class AccountService {
   }
 
   public getAccountInformation(): Observable<any> {
-    return this.apollo.query({ query: ACCOUNT_INFORMATION }).pipe(
+    return this.apolloBase.query({ query: ACCOUNT_INFORMATION }).pipe(
       tap(({ data }: any) => {
         if (data) {
           this.accountInformationSource.next({
@@ -82,7 +87,7 @@ export class AccountService {
   }
 
   public signIn(email: string, password: string): Observable<any> {
-    return this.apollo
+    return this.apolloBase
       .mutate({
         mutation: SIGN_IN,
         variables: {
