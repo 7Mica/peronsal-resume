@@ -12,4 +12,8 @@ a {
       color: $secondary-color;
     }
   }
+
+  &.special-link {
+    text-decoration: underline;
+  }
 }

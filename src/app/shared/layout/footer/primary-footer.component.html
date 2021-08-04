@@ -73,7 +73,18 @@
 
       <div class="footer__copyright row">
         <div class="col-12">
-          <p class="text-center">Fermin © 2021 - 2021</p>
+          <p class="text-center">
+            Build
+            <a
+              class="special-link"
+              *ngIf="buildCommit$ | async as buildCommit"
+              [href]="
+                'https://github.com/7Mica/personal-resume/tree/' + buildCommit
+              "
+            >
+              {{ buildCommit }}
+            </a>
+          </p>
         </div>
       </div>
     </div>
