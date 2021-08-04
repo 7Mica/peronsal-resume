@@ -20,11 +20,16 @@
     cursor: pointer;
 
     &:not(:last-child) {
-      border-bottom: 1px solid gray;
+      border-bottom: 1px solid rgba(194, 189, 189, 0.70);
     }
 
     a {
-      color: $quiet-color;
+      color: $secondary-color;
+      font-weight: 400;
+    }
+
+    .email-account {
+      color: $speedy-color;
     }
   }
 }

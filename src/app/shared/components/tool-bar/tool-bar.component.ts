@@ -24,7 +24,7 @@ import { UpdateUserPasswordModalComponent } from '../admin/update-user-password-
             *ngIf="accountInformation$ | async as accountInformation"
           >
             <li class="tool-bar-item" *ngIf="accountInformation">
-              <span> {{ accountInformation.email }} </span>
+              <span class="email-account"> {{ accountInformation.email }} </span>
             </li>
           </ng-container>
 
