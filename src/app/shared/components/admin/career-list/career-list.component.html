@@ -2,7 +2,20 @@
   <form [formGroup]="careerForm">
     <div class="career__array row" formArrayName="careersFormArray">
       <ng-container *ngFor="let career of careers.controls; index as i">
-        <div [formGroupName]="i" class="col-12 career__item" @careerAction>
+        <div
+          [formGroupName]="i"
+          class="col-12 career__item"
+          [ngClass]="{
+            'd-none': isBeingDragged.index === i && !isBeingDragged.displayed
+          }"
+          @careerAction
+          draggable="true"
+          (dragstart)="dragStartsHandler($event, i)"
+          (dragend)="dragEndHandler(i)"
+          (drag)="dragHandler(i)"
+          (drop)="dropHandler($event, i)"
+          (dragover)="dragOverHandler($event)"
+        >
           <div class="career__item-collapse-panel row">
             <button
               class="career__item-collapse-panel-button"
@@ -161,23 +174,6 @@
                 <validator
                   [isTouched]="careers.at(i).get('jobTitle')?.touched"
                   [controlErrors]="careers.at(i).get('jobTitle')?.errors"
-                ></validator>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-3">
-              <div class="form-group">
-                <label for="weight{{ i }}">Weight</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="weight{{ i }}"
-                  formControlName="weight"
-                />
-
-                <validator
-                  [isTouched]="careers.at(i).get('imagehd')?.touched"
-                  [controlErrors]="careers.at(i).get('imagehd')?.errors"
                 ></validator>
               </div>
             </div>

@@ -31,10 +31,7 @@ export class PrimaryFooterComponent implements OnInit {
 
     this.buildCommit$ = this.apolloBase
       .query({ query: GITHUB_BUILDCOMMIT })
-      .pipe(
-        map(({ data }: any) => data?.getCurrentBuildCommit?.build_id),
-        tap((e) => console.log(e))
-      );
+      .pipe(map(({ data }: any) => data?.getCurrentBuildCommit?.build_id));
   }
 
   ngOnInit(): void {

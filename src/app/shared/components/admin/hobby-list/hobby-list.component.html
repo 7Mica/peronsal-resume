@@ -2,7 +2,17 @@
   <form [formGroup]="hobbyForm">
     <div class="hobby__array row" formArrayName="hobbiesFormArray">
       <ng-container *ngFor="let hobby of hobbies.controls; index as i">
-        <div [formGroupName]="i" class="col-12 hobby__item" @hobbyAction>
+        <div
+          [formGroupName]="i"
+          class="col-12 hobby__item"
+          @hobbyAction
+          draggable="true"
+          (dragstart)="dragStartsHandler($event, i)"
+          (dragend)="dragEndHandler(i)"
+          (drag)="dragHandler(i)"
+          (drop)="dropHandler($event, i)"
+          (dragover)="dragOverHandler($event)"
+        >
           <div class="hobby__item-collapse-panel row">
             <button
               class="hobby__item-collapse-panel-button"
@@ -11,10 +21,7 @@
               <i class="bi bi-caret-down"></i>
             </button>
 
-            <span
-              (click)="collapseAndExpandHobby(i)"
-              class="hobby__item-title"
-            >
+            <span (click)="collapseAndExpandHobby(i)" class="hobby__item-title">
               {{
                 hobbies.at(i).get("name")?.value
                   ? hobbies.at(i).get("name")?.value
@@ -88,23 +95,6 @@
                   class="form-control"
                   id="imagehd{{ i }}"
                   formControlName="imagehd"
-                />
-
-                <validator
-                  [isTouched]="hobbies.at(i).get('imagehd')?.touched"
-                  [controlErrors]="hobbies.at(i).get('imagehd')?.errors"
-                ></validator>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-3">
-              <div class="form-group">
-                <label for="weight{{ i }}">Weight</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="weight{{ i }}"
-                  formControlName="weight"
                 />
 
                 <validator

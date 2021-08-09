@@ -7,7 +7,13 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {
   fadeInOutTransition,
@@ -42,6 +48,7 @@ export class CareerListComponent implements OnChanges {
 
   public careerForm: FormGroup;
   public ckEditor = ClassicEditor;
+  public isBeingDragged = { index: 0, displayed: true };
 
   constructor(private fb: FormBuilder) {
     this.careerForm = fb.group({
@@ -106,5 +113,45 @@ export class CareerListComponent implements OnChanges {
       index: this.careers.at(i).get('id')?.value,
     });
     this.careers.at(i).markAsPristine();
+  }
+
+  public dragHandler(formGroupIndex: number): void {
+    this.isBeingDragged = { index: formGroupIndex, displayed: false };
+  }
+
+  public dragEndHandler(formGroupIndex: number): void {
+    this.isBeingDragged = { index: formGroupIndex, displayed: true };
+  }
+
+  public dragStartsHandler(event: any, formGroupIndex: number): void {
+    event.dataTransfer.setData('text/plain', formGroupIndex);
+    event.dataTransfer.effectAllowed = 'copy';
+  }
+
+  public dropHandler(event: any, formGroupIndex: number): void {
+    const itemToReplace = parseInt(
+      event.dataTransfer.getData('text/plain'),
+      10
+    );
+
+    const newItem = this.careers.at(itemToReplace);
+    this.careers.removeAt(itemToReplace);
+    this.careers.insert(formGroupIndex, newItem);
+    // Change the weight
+    this.refreshWeight();
+  }
+
+  public dragOverHandler(event: any): void {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'copy';
+  }
+
+  private refreshWeight(): void {
+    this.careers.controls.forEach(
+      (formGroup: AbstractControl, index: number) => {
+        formGroup.get('weight')?.setValue(index);
+        this.sendAddedCareer(index);
+      }
+    );
   }
 }

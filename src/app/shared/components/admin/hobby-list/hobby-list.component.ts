@@ -7,7 +7,13 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {
   fadeInOutTransition,
@@ -42,6 +48,7 @@ export class HobbyListComponent implements OnChanges {
 
   public hobbyForm: FormGroup;
   public ckEditor = ClassicEditor;
+  public isBeingDragged = { index: 0, displayed: true };
 
   constructor(private fb: FormBuilder) {
     this.hobbyForm = fb.group({
@@ -102,5 +109,44 @@ export class HobbyListComponent implements OnChanges {
       index: this.hobbies.at(i).get('id')?.value,
     });
     this.hobbies.at(i).markAsPristine();
+  }
+
+  public dragHandler(formGroupIndex: number): void {
+    this.isBeingDragged = { index: formGroupIndex, displayed: false };
+  }
+
+  public dragEndHandler(formGroupIndex: number): void {
+    this.isBeingDragged = { index: formGroupIndex, displayed: true };
+  }
+
+  public dragStartsHandler(event: any, formGroupIndex: number): void {
+    event.dataTransfer.setData('text/plain', formGroupIndex);
+    event.dataTransfer.effectAllowed = 'copy';
+  }
+
+  public dropHandler(event: any, formGroupIndex: number): void {
+    const itemToReplace = parseInt(
+      event.dataTransfer.getData('text/plain'),
+      10
+    );
+
+    const newItem = this.hobbies.at(itemToReplace);
+    this.hobbies.removeAt(itemToReplace);
+    this.hobbies.insert(formGroupIndex, newItem);
+    this.refreshWeight();
+  }
+
+  public dragOverHandler(event: any): void {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'copy';
+  }
+
+  private refreshWeight(): void {
+    this.hobbies.controls.forEach(
+      (formGroup: AbstractControl, index: number) => {
+        formGroup.get('weight')?.setValue(index);
+        this.sendAddedHobby(index);
+      }
+    );
   }
 }
