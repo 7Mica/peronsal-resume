@@ -129,6 +129,7 @@ export class ResumeComponent implements OnInit {
   public newResume(): void {
     this.formActionState = FormActions.CREATE;
     this.resumeForm.reset();
+    this.resumeForm.get('selected')?.setValue(false);
     this.resumeEditTitle = 'New Resume';
 
     this.selectedResumeCareers = [];
