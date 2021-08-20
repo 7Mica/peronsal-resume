@@ -1,15 +1,10 @@
-<div
-  class="card-hover-effect"
-  (mouseenter)="this.isTriggered = !this.isTriggered"
-  (mouseleave)="this.isTriggered = !this.isTriggered"
->
+<div class="card-hover-effect">
   <ng-container *ngIf="hobby">
-    <div class="card-hover-effect__text" [@animateHeight]="triggerEp">
+    <div class="card-hover-effect__text">
       <h3 class="card-hover-effect__title">{{ hobby.name }}</h3>
 
       <div
         class="card-hover-effect__body"
-        [@childAnimation]="triggerEp"
         [innerHtml]="hobby.description | HTMLSanitizer"
       ></div>
     </div>

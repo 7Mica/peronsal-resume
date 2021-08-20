@@ -21,12 +21,13 @@
     }
 
     &::after {
-      background-color: rgba(var(--secondary-color-rgb), 0.57);
+      background-color: rgba(var(--secondary-color-rgb), 0.85);
     }
 
     .card-hover-effect__text {
+      top: 0;
+
       h3 {
-        color: $primary-color;
         &::before {
           box-shadow: 0 20px 15px 20px rgba(var(--primary-color-rgb), 0);
         }
@@ -36,6 +37,11 @@
         }
       }
     }
+
+    .card-hover-effect__body {
+      opacity: 1;
+      top: 0;
+    }
   }
 
   &__text {
@@ -43,24 +49,25 @@
     bottom: 0;
     left: 0;
     right: 0;
+    top: calc(100% - 120px);
     padding: 20px 15px;
     color: $primary-color;
     z-index: 9;
+    transition: inset 800ms;
 
     h3 {
       color: $primary-color;
-      transition: color 0.5s;
       margin-bottom: 10px;
 
       &::before {
         content: "";
         display: block;
         transition: box-shadow 0.5s;
-        box-shadow: 0 20px 15px 20px rgba(var(--secondary-color-rgb), 0.5);
+        box-shadow: 0 20px 15px 20px rgba(var(--secondary-color-rgb), 0.85);
       }
 
       &::after {
-        transition: width 1s;
+        transition: width 800ms;
         width: 0%;
         background-color: $primary-color;
       }
@@ -68,8 +75,14 @@
   }
 
   &__body {
+    position: relative;
     font-weight: 500;
     letter-spacing: 1px;
+    opacity: 0;
+    top: 25px;
+    transition: opacity 800ms, inset 800ms;
+    transition-delay: 200ms;
+
     @include media-breakpoint-down(md) {
       font-size: 14px;
     }
