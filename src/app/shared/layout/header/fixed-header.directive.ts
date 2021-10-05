@@ -17,27 +17,26 @@ export class FixedHeaderDirective {
       return;
     }
 
-    if (window.pageYOffset > navHeight.height) {
+    if (
+      scrollY > innerHeight &&
+      (this.elem.nativeElement as Element).classList.contains('fixed-nav-menu')
+    ) {
+      return;
+    }
+
+    if (scrollY > navHeight.height) {
       this.renderer.addClass(this.elem.nativeElement, 'opacity-0');
     } else {
       this.renderer.removeClass(this.elem.nativeElement, 'opacity-0');
     }
 
-    if (window.pageYOffset > window.innerHeight / 2) {
+    if (scrollY > innerHeight / 2) {
       this.renderer.removeClass(this.elem.nativeElement, 'opacity-0');
       this.renderer.addClass(this.elem.nativeElement, 'fixed-nav-menu');
     }
 
-    if (window.pageYOffset < window.innerHeight / 6) {
+    if (scrollY < innerHeight / 6) {
       this.renderer.removeClass(this.elem.nativeElement, 'fixed-nav-menu');
-    }
-
-    if (
-      window.pageYOffset > window.innerHeight / 3 &&
-      window.pageYOffset < window.innerHeight / 2
-    ) {
-      this.renderer.removeClass(this.elem.nativeElement, 'opacity-0');
-      this.renderer.addClass(this.elem.nativeElement, 'opacity-0');
     }
   }
 }
