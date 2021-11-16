@@ -23,12 +23,6 @@
             <li><i class="bi bi-geo-alt"></i> Tepic, Nayarit. México.</li>
 
             <li><a routerLink="/thanks"> Thanks for the free assets</a></li>
-
-            <li *ngIf="signedStatus$ | async as signedStatus">
-              <ng-container *ngIf="!signedStatus.isSignedIn">
-                <a routerLink="/auth/sign-in">Sign In </a>
-              </ng-container>
-            </li>
           </ul>
         </div>
 
@@ -72,20 +66,7 @@
       </div>
 
       <div class="footer__copyright row">
-        <div class="col-12">
-          <p class="text-center">
-            Build
-            <a
-              class="special-link"
-              *ngIf="buildCommit$ | async as buildCommit"
-              [href]="
-                'https://github.com/7Mica/personal-resume/tree/' + buildCommit
-              "
-            >
-              {{ buildCommit }}
-            </a>
-          </p>
-        </div>
+        <div class="col-12"></div>
       </div>
     </div>
   </div>

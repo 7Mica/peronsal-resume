@@ -6,15 +6,13 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { AccountService } from '@core/services/account.service';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SessionGuard implements CanActivate {
-  constructor(private accountService: AccountService, private router: Router) {}
+  constructor(private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -23,38 +21,6 @@ export class SessionGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    return this.accountService.validateCurrentSession().pipe(
-      map((isSignedIn) => {
-        // If user is signed in and navigates to login page, it redirects to /
-        if (isSignedIn && state.url === '/auth/sign-in') {
-          this.router.navigate(['/']);
-          return false;
-        }
-
-        // If user is not signed in and navigates to login page, it can pass
-        if (!isSignedIn && state.url === '/auth/sign-in') {
-          return true;
-        }
-
-        if (!isSignedIn) {
-          this.router.navigate(['/']);
-          return isSignedIn;
-        }
-
-        // User can enter to any other pages depending if it is signed in
-        return isSignedIn;
-      }),
-      catchError((error) => {
-        if (
-          error.graphQLErrors.some((e: any) => e.statusCode === 401) &&
-          state.url === '/auth/sign-in'
-        ) {
-          return of(true);
-        } else {
-          this.router.navigate(['/']);
-          return of(false);
-        }
-      })
-    );
+    return false;
   }
 }

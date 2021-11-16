@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   graphQLServerUri: 'http://localhost:3000/graphql',
+  apiUrl: 'https://cms.palmserviciosdigitales.com',
 };
 
 /*

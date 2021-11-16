@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AccountService } from '@core/services/account.service';
 
 @Component({
   selector: 'sign-in-page',
@@ -63,11 +62,7 @@ import { AccountService } from '@core/services/account.service';
 export class SignInComponent {
   public signInFormGroup: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private accountService: AccountService,
-    private router: Router
-  ) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     this.signInFormGroup = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
@@ -79,12 +74,7 @@ export class SignInComponent {
       return;
     }
 
-    this.accountService
-      .signIn(
-        this.signInFormGroup.get('email')?.value,
-        this.signInFormGroup.get('password')?.value
-      )
-      .subscribe(() => this.redirectToMainPage());
+    // Should submit the form
   }
 
   private redirectToMainPage(): void {
