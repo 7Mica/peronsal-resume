@@ -8,10 +8,10 @@
       <ng-container *ngFor="let abilitySet of abilitiesObserver$ | async">
         <div class="abilities-list-section__list">
           <ng-container [ngSwitch]="abilitySet[0]">
-            <h3 *ngSwitchCase="'SKILL'">Skills</h3>
-            <h3 *ngSwitchCase="'LANGUAGE'">Languages</h3>
+            <h3 *ngSwitchCase="'Skill'">Skills</h3>
+            <h3 *ngSwitchCase="'Language'">Languages</h3>
             <h3 *ngSwitchCase="'OS'">Operating Systems</h3>
-            <h3 *ngSwitchCase="'TOOL'">Tools (Other Software)</h3>
+            <h3 *ngSwitchCase="'Tool'">Tools (Other Software)</h3>
           </ng-container>
 
           <div class="abilities-list-section__list-wrapper row">
@@ -22,15 +22,15 @@
               <div class="row">
                 <div class="abilities-list-section__ability-name col-5">
                   <img
-                    [src]="abilityItem.logo"
+                    [src]="apiUrl + abilityItem.logo.url"
                     height="50"
                     width="50"
-                    [alt]="abilityItem.description"
-                    *ngIf="abilitySet[0] !== 'LANGUAGE'"
+                    [alt]="abilityItem.abilityName"
+                    *ngIf="abilitySet[0] !== 'Language'"
                   />
-                  <span *ngIf="abilitySet[0] === 'LANGUAGE'">
+                  <span *ngIf="abilitySet[0] === 'Language'">
                     <i>
-                      {{ abilityItem.description | uppercase }}
+                      {{ abilityItem.abilityName | uppercase }}
                     </i>
                   </span>
                 </div>

@@ -1,5 +1,7 @@
 export interface ITextSectionData {
-  profileImage: string;
+  profileImage: {
+    url: string;
+  };
   age: number;
   about: string;
   city: string;

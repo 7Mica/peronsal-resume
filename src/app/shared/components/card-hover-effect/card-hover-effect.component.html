@@ -10,9 +10,11 @@
     </div>
 
     <picture>
-      <source srcset="{{ hobby.image }}, {{ hobby.imagehd }} 2x" />
+      <source
+        srcset="{{ apiUrl + hobby.Image.url }}, {{ apiUrl + hobby.imageHd.url }} 2x"
+      />
 
-      <img src="{{ hobby.image }}" [alt]="hobby.name" />
+      <img [src]="apiUrl + hobby.Image.url" [alt]="hobby.name" />
     </picture>
   </ng-container>
 </div>

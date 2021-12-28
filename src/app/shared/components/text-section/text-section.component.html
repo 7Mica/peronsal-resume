@@ -5,7 +5,10 @@
         <ng-container *ngIf="data as data">
           <div class="text-section__image_wrapper col-12 col-lg-4">
             <figure class="text-section__image">
-              <img src="{{ data.profileImage }}" alt="Profile picture" />
+              <img
+                [src]="apiUrl + data.profileImage.url"
+                alt="Profile picture"
+              />
 
               <figcaption class="figure-caption text-center">
                 <p>

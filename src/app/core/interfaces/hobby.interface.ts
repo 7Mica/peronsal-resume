@@ -1,8 +1,13 @@
 export interface IHobby {
   name: string;
   description: string;
-  image: string;
-  imagehd: string;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  Image: {
+    url: string;
+  };
+  imageHd: {
+    url: string;
+  };
 }
 
 export interface IHobbyData {

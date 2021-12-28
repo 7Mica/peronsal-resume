@@ -2,6 +2,7 @@ export interface IAbility {
   abilityName: string;
   percent: number;
   logo: string;
+  abilityKind: string;
   description?: string;
 }
 
