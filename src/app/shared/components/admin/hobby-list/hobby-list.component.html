@@ -108,11 +108,7 @@
               <div class="form-group">
                 <label for="description{{ i }}">Description</label>
 
-                <ckeditor
-                  id="description{{ i }}"
-                  formControlName="description"
-                  [editor]="ckEditor"
-                ></ckeditor>
+                <textarea id="description{{ i }}" formControlName="description"></textarea>
 
                 <validator
                   [isTouched]="hobbies.at(i).get('description')?.touched"
