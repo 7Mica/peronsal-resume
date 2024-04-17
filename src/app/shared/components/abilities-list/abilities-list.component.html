@@ -18,6 +18,7 @@
             <div
               *ngFor="let abilityItem of abilitySet[1]"
               class="abilities-list-section__item col-12 col-md-6"
+              [title]="abilityItem.description"
             >
               <div class="row">
                 <div class="abilities-list-section__ability-name col-5">

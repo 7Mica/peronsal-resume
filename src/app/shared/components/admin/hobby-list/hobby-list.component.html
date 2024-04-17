@@ -108,7 +108,10 @@
               <div class="form-group">
                 <label for="description{{ i }}">Description</label>
 
-                <textarea id="description{{ i }}" formControlName="description"></textarea>
+                <textarea class="form-control"
+                          style="resize: none"
+                          rows="5"
+                          id="description{{ i }}" formControlName="description"></textarea>
 
                 <validator
                   [isTouched]="hobbies.at(i).get('description')?.touched"

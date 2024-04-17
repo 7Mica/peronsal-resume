@@ -17,7 +17,7 @@
             >
               {{
                 abilities.at(i).get("abilityName")?.value
-                  ? abilities.at(i).get("abilityName")?.value
+                  ? abilities.at(i).get("abilityName")?.value + ' - ' + abilities.at(i).get('description')?.value + ' - ' + abilities.at(i).get('weight')?.value
                   : "New Ability"
               }}
               {{ abilities.at(i).pristine ? "" : "*" }}
