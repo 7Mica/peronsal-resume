@@ -7,6 +7,7 @@ import { EmailSectionModule } from './components/email-section/email-section.mod
 import { HobbyListModule } from './components/hobby-list/hobby-list.module';
 import { ListSectionModule } from './components/list-section/list-section.module';
 import { TextSectionModule } from './components/text-section/text-section.module';
+import { CertificationListModule } from '@shared/components/admin/certification-list/certification-list.module';
 
 @NgModule({
   exports: [
@@ -18,6 +19,7 @@ import { TextSectionModule } from './components/text-section/text-section.module
     CareerListModule,
     AbilityListModule,
     HobbyListAdminModule,
+    CertificationListModule
   ],
 })
 export class SharedModule {}

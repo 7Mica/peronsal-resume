@@ -28,6 +28,7 @@ import {
 } from '@core/graphql/queries/resume-queries';
 import { CKEDITOR_GLOBAL_CONF } from '@core/config/ckeditor/global.conf';
 import { GraphQLClients } from '@core/enums/graphql-clients.enum';
+import { ICertificationData, ICertificationInterchange } from '@core/interfaces/certification.interface';
 
 @Component({
   selector: 'resume-page',
@@ -43,10 +44,12 @@ export class ResumeComponent implements OnInit {
 
   public config = CKEDITOR_GLOBAL_CONF;
 
+  public selectedResumeCertifications: ICertificationData[] = [];
   public selectedResumeAbilities: IAbilityData[] = [];
   public selectedResumeCareers: ICareerData[] = [];
   public selectedResumeHobbies: IHobbyData[] = [];
 
+  public updatedOrNewCertifications: Map<string, ICertificationData> = new Map();
   public updatedOrNewAbilities: Map<string, IAbilityData> = new Map();
   public updatedOrNewCareers: Map<string, ICareerData> = new Map();
   public updatedOrNewHobbies: Map<string, IHobbyData> = new Map();
@@ -155,6 +158,14 @@ export class ResumeComponent implements OnInit {
 
   public reciveAddedCareer({ index, data }: ICareerInterchange): void {
     this.updatedOrNewCareers.set(index, data);
+  }
+
+  public receiveAddedCertification({index, data}: ICertificationInterchange): void {
+    this.updatedOrNewCertifications.set(index, data);
+  }
+
+  receiveDeletedCertification(key: string): void {
+    this.updatedOrNewCertifications.delete(key);
   }
 
   public reciveAddedAbility({ index, data }: IAbilityInterchange): void {

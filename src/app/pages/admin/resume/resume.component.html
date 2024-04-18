@@ -212,6 +212,15 @@
             </div>
           </form>
 
+          <h3>Certifications</h3>
+
+          <div class="certification-container container-fluid">
+            <admin-certification-list
+              (addedCertification)="receiveAddedCertification($event)"
+              (removedCertification)="receiveDeletedCertification($event)"
+              [certificationList]="selectedResumeCertifications"></admin-certification-list>
+          </div>
+
           <h3>Careers</h3>
 
           <div class="career-container container-fluid">
