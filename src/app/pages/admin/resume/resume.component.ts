@@ -114,6 +114,12 @@ export class ResumeComponent implements OnInit {
       this.updatedOrNewCareers.set(career.id, career)
     );
 
+    const certificationsOriginalCopy = this.resumeListResult[index].certifications;
+    this.selectedResumeCertifications = certificationsOriginalCopy;
+    certificationsOriginalCopy.forEach((certification: ICertificationData) =>
+      this.updatedOrNewCertifications.set(certification.id, certification)
+    );
+
     const abilitiesOriginalCopy = this.resumeListResult[index].abilities;
     this.selectedResumeAbilities = abilitiesOriginalCopy;
     abilitiesOriginalCopy.forEach((ability: IAbilityData) =>
@@ -135,6 +141,7 @@ export class ResumeComponent implements OnInit {
     this.resumeForm.get('selected')?.setValue(false);
     this.resumeEditTitle = 'New Resume';
 
+    this.selectedResumeCertifications = [];
     this.selectedResumeCareers = [];
     this.selectedResumeAbilities = [];
     this.selectedResumeHobbies = [];
@@ -196,11 +203,13 @@ export class ResumeComponent implements OnInit {
       hobbies,
       careers,
       abilities,
+      certifications
     }: IResume = {
       ...this.resumeForm.value,
       careers: [...this.updatedOrNewCareers.values()],
       abilities: [...this.updatedOrNewAbilities.values()],
       hobbies: [...this.updatedOrNewHobbies.values()],
+      certifications: [...this.updatedOrNewCertifications.values()]
     };
 
     this.apolloBase
@@ -223,6 +232,7 @@ export class ResumeComponent implements OnInit {
           hobbies,
           careers,
           abilities,
+          certifications
         },
       })
       .subscribe(

@@ -1,6 +1,7 @@
 import { IAbilityData } from './ability.interface';
 import { ICareerData } from './career.interface';
 import { IHobbyData } from './hobby.interface';
+import { ICertificationData } from '@core/interfaces/certification.interface';
 
 export interface IResume {
   id: string;
@@ -16,4 +17,5 @@ export interface IResume {
   careers: ICareerData[];
   abilities: IAbilityData[];
   hobbies: IHobbyData[];
+  certifications: ICertificationData[];
 }

@@ -1,0 +1,163 @@
+<div class="certification">
+  <form [formGroup]="certificationForm">
+    <div class="certification__array row" formArrayName="certificationsFormArray">
+      <ng-container *ngFor="let certification of certifications.controls; index as i">
+        <div
+          [formGroupName]="i"
+          class="col-12 certification__item"
+          [ngClass]="{
+            'd-none': isBeingDragged.index === i && !isBeingDragged.displayed
+          }"
+          @certificationAction
+          draggable="true"
+          (dragstart)="dragStartsHandler($event, i)"
+          (dragend)="dragEndHandler(i)"
+          (drag)="dragHandler(i)"
+          (drop)="dropHandler($event, i)"
+          (dragover)="dragOverHandler($event)"
+        >
+          <div class="certification__item-collapse-panel row">
+            <button
+              class="certification__item-collapse-panel-button"
+              (click)="collapseAndExpandCertification(i)"
+            >
+              <i class="bi bi-caret-down"></i>
+            </button>
+            <span
+              (click)="collapseAndExpandCertification(i)"
+              class="certification__item-title"
+            >
+              {{
+                certifications.at(i).get("certificationDescription")?.value
+                  ? certifications.at(i).get("certificationDescription")?.value
+                  : "New Certification"
+              }}
+              {{ certifications.at(i).pristine ? "" : "*" }}
+            </span>
+
+            <div class="certification__item-right-actions">
+              <button
+                type="button"
+                (click)="sendAddedCertification(i)"
+                class="btn btn-secondary certification__item-save-certification-button"
+                [disabled]="certifications.at(i).pristine"
+              >
+                <i class="bi bi-save"></i>
+              </button>
+
+              <button
+                class="certification__item-delete-certification-button"
+                (click)="deleteCertificationFromCertificationFormArray(i)"
+              >
+                <i class="bi bi-x-circle"></i>
+              </button>
+            </div>
+          </div>
+
+          <div
+            @collapse
+            *ngIf="certifications.at(i).get('expanded')?.value"
+            class="row certification__wrapper"
+          >
+            <div class="col-12 col-md-9 col-lg-12">
+              <div class="form-group">
+                <label for="company-name{{ i }}">Certification Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="company-name{{ i }}"
+                  formControlName="certificationDescription"
+                />
+
+                <validator
+                  [isTouched]="certifications.at(i).get('certificationDescription')?.touched"
+                  [controlErrors]="certifications.at(i).get('certificationDescription')?.errors"
+                ></validator>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="certification-city{{ i }}">Certification Url</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="certification-city{{ i }}"
+                  formControlName="certificationUrl"
+                />
+
+                <validator
+                  [isTouched]="certifications.at(i).get('certificationUrl')?.touched"
+                  [controlErrors]="certifications.at(i).get('certificationUrl')?.errors"
+                ></validator>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="certification-state{{ i }}">Certification's Image Url</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="certification-state{{ i }}"
+                  formControlName="certificationImageUrl"
+                />
+
+                <validator
+                  [isTouched]="certifications.at(i).get('certificationImageUrl')?.touched"
+                  [controlErrors]="certifications.at(i).get('certificationImageUrl')?.errors"
+                ></validator>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="certification-country{{ i }}">Certification Code</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="certification-country{{ i }}"
+                  formControlName="certificationCode"
+                />
+
+                <validator
+                  [isTouched]="certifications.at(i).get('certificationCode')?.touched"
+                  [controlErrors]="certifications.at(i).get('certificationCode')?.errors"
+                ></validator>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="ability-name{{ i }}">Certification Status</label>
+                <select
+                  class="form-control"
+                  id="ability-name{{ i }}"
+                  formControlName="status">
+                  <option
+                    *ngFor="let option of ['COMPLETED', 'IN_PROGRESS']"
+                    [value]="option"
+                  >
+                    {{ option }}
+                  </option>
+                </select>
+
+                <validator
+                  [isTouched]="certifications.at(i).get('status')?.touched"
+                  [controlErrors]="certifications.at(i).get('status')?.errors"
+                ></validator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <button
+        type="button"
+        class="certification__btn-add-new"
+        (click)="certifications.push(newCertificationFormGroup(true))"
+      >
+        Add Certification
+      </button>
+    </div>
+  </form>
+</div>

@@ -20,6 +20,7 @@ export const NEW_RESUME = gql`
     $careers: [CareerInput!]!
     $abilities: [AbilityInput!]!
     $hobbies: [HobbyInput!]!
+    $certifications: [CertificationInput!]!
   ) {
     newResume(
       resumeInput: {
@@ -35,6 +36,7 @@ export const NEW_RESUME = gql`
         careers: $careers
         abilities: $abilities
         hobbies: $hobbies
+        certifications: $certifications
       }
     ) {
       id
@@ -72,6 +74,13 @@ export const NEW_RESUME = gql`
         name
         weight
       }
+      certifications {
+        certificationCode
+        certificationDescription
+        certificationImageUrl
+        id
+        status
+      }
     }
   }
 `;
@@ -91,6 +100,7 @@ export const UPDATE_RESUME = gql`
     $careers: [CareerInput!]!
     $abilities: [AbilityInput!]!
     $hobbies: [HobbyInput!]!
+    $certifications: [CertificationInput!]!
   ) {
     updateResume(
       resumeId: $id
@@ -107,6 +117,7 @@ export const UPDATE_RESUME = gql`
         careers: $careers
         abilities: $abilities
         hobbies: $hobbies
+        certifications: $certifications
       }
     ) {
       success
@@ -156,6 +167,14 @@ export const SELECTED_RESUME = gql`
         imagehd
         weight
       }
+      certifications {
+        certificationCode
+        certificationDescription
+        certificationImageUrl
+        id
+        status
+        weight
+      }
     }
   }
 `;
@@ -199,6 +218,15 @@ export const RESUME_LIST = gql`
         name
         image
         imagehd
+        weight
+      }
+      certifications {
+        certificationCode
+        certificationDescription
+        certificationImageUrl
+        certificationUrl
+        id
+        status
         weight
       }
     }

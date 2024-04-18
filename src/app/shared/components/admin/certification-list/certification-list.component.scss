@@ -1,0 +1,79 @@
+@import "abstract/variables";
+
+.certification {
+  &__wrapper {
+    box-shadow: 0 8px 15px 0 rgb(0 0 0 / 13%);
+    border-radius: 10px;
+    padding: 20px 10px;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+
+    &-title {
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+
+    &-collapse-panel {
+      min-height: 45px;
+      box-shadow: 0 8px 15px 0 rgb(0 0 0 / 13%);
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    &-collapse-panel-button {
+      padding: 0;
+      color: white;
+      background-color: $secondary-color;
+      border-radius: 50%;
+      border-style: none;
+      width: 25px;
+      height: 25px;
+
+      i::before {
+        transform: translateY(3px);
+      }
+    }
+
+    &-right-actions {
+      display: flex;
+      align-items: center;
+
+      > * + * {
+        margin-left: 10px;
+      }
+    }
+
+    &-delete-certification-button {
+      background-color: $primary-color;
+      padding: 4px 8px;
+      color: white;
+      border-radius: 50%;
+      border-style: none;
+
+      i::before {
+        transform: translate(-0.5px, 2px);
+      }
+    }
+
+    &-save-certification-button {
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+  }
+
+  &__btn-add-new {
+    width: 100%;
+    color: $secondary-color;
+    border: dashed 2px $secondary-color;
+    background-color: $quiet-color;
+    padding: 10px 20px;
+  }
+}
