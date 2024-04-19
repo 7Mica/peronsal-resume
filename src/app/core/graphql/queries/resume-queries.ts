@@ -6,6 +6,30 @@ export const DELETE_RESUME = gql`
   }
 `;
 
+export const DELETE_HOBBY = gql`
+  mutation deleteHobby($hobbyId: String!) {
+    deleteHobby(hobbyId: $hobbyId)
+  }
+`;
+
+export const DELETE_CAREER = gql`
+  mutation deleteCareer($careerId: String!) {
+    deleteCareer(careerId: $careerId)
+  }
+`;
+
+export const DELETE_ABILITY = gql`
+  mutation deleteAbility($abilityId: String!) {
+    deleteAbility(abilityId: $abilityId)
+  }
+`;
+
+export const DELETE_CERTIFICATION = gql`
+  mutation deleteCertification($certificationId: String!) {
+    deleteCertification(certificationId: $certificationId)
+  }
+`;
+
 export const NEW_RESUME = gql`
   mutation newResume(
     $firstName: String!

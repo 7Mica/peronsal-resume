@@ -226,8 +226,8 @@
           <div class="career-container container-fluid">
             <admin-career-list
               [careerList]="selectedResumeCareers"
-              (addedCareer)="reciveAddedCareer($event)"
-              (removedCareer)="reciveDeletedCareer($event)"
+              (addedCareer)="receiveAddedCareer($event)"
+              (removedCareer)="receiveDeletedCareer($event)"
             ></admin-career-list>
           </div>
 
@@ -236,8 +236,8 @@
           <div class="ability-container container-fluid">
             <admin-ability-list
               [abilityList]="selectedResumeAbilities"
-              (addedAbility)="reciveAddedAbility($event)"
-              (removedAbility)="reciveDeletedAbility($event)"
+              (addedAbility)="receiveAddedAbility($event)"
+              (removedAbility)="receiveDeletedAbility($event)"
             ></admin-ability-list>
           </div>
 
@@ -246,8 +246,8 @@
           <div class="hobby-container container-fluid">
             <admin-hobby-list
               [hobbyList]="selectedResumeHobbies"
-              (addedHobby)="reciveAddedHobby($event)"
-              (removedHobby)="reciveDeletedHobby($event)"
+              (addedHobby)="receiveAddedHobby($event)"
+              (removedHobby)="receiveDeletedHobby($event)"
             ></admin-hobby-list>
           </div>
         </div>

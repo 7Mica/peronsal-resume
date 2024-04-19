@@ -30,7 +30,7 @@ export class PrimaryFooterComponent implements OnInit {
     this.apolloBase = this.apolloProvider.use(GraphQLClients.MAIN);
 
     this.buildCommit$ = this.apolloBase
-      .query({ query: GITHUB_BUILDCOMMIT })
+      .query({ query: GITHUB_BUILDCOMMIT, fetchPolicy: 'cache-first' })
       .pipe(map(({ data }: any) => data?.getCurrentBuildCommit?.build_id));
   }
 

@@ -21,10 +21,13 @@ import { IResume } from '@core/interfaces/resume.interface';
 import { validateAllFormFields } from '@core/functions/validate-all-form-fields';
 import { FormActions } from '@core/enums/form-actions.enum';
 import {
+  DELETE_ABILITY,
+  DELETE_CAREER,
+  DELETE_CERTIFICATION, DELETE_HOBBY,
   DELETE_RESUME,
   NEW_RESUME,
   RESUME_LIST,
-  UPDATE_RESUME,
+  UPDATE_RESUME
 } from '@core/graphql/queries/resume-queries';
 import { CKEDITOR_GLOBAL_CONF } from '@core/config/ckeditor/global.conf';
 import { GraphQLClients } from '@core/enums/graphql-clients.enum';
@@ -149,21 +152,31 @@ export class ResumeComponent implements OnInit {
     this.updatedOrNewCareers.clear();
     this.updatedOrNewAbilities.clear();
     this.updatedOrNewHobbies.clear();
+    this.updatedOrNewCertifications.clear();
   }
 
-  public reciveDeletedCareer(key: string): void {
-    this.updatedOrNewCareers.delete(key);
+  public receiveDeletedCareer(careerId: string): void {
+    this.apolloBase.mutate({mutation: DELETE_CAREER, variables: {careerId}}).subscribe(result => {
+      window.alert('Career deleted');
+      this.updatedOrNewCareers.delete(careerId);
+    });
   }
 
-  public reciveDeletedAbility(key: string): void {
-    this.updatedOrNewAbilities.delete(key);
+  public receiveDeletedAbility(abilityId: string): void {
+    this.apolloBase.mutate({mutation: DELETE_ABILITY, variables: {abilityId}}).subscribe(result => {
+      window.alert('Ability deleted');
+      this.updatedOrNewAbilities.delete(abilityId);
+    });
   }
 
-  public reciveDeletedHobby(key: string): void {
-    this.updatedOrNewHobbies.delete(key);
+  public receiveDeletedHobby(hobbyId: string): void {
+    this.apolloBase.mutate({mutation: DELETE_HOBBY, variables: {hobbyId}}).subscribe(result => {
+      window.alert('Career deleted');
+      this.updatedOrNewHobbies.delete(hobbyId);
+    });
   }
 
-  public reciveAddedCareer({ index, data }: ICareerInterchange): void {
+  public receiveAddedCareer({ index, data }: ICareerInterchange): void {
     this.updatedOrNewCareers.set(index, data);
   }
 
@@ -171,15 +184,18 @@ export class ResumeComponent implements OnInit {
     this.updatedOrNewCertifications.set(index, data);
   }
 
-  receiveDeletedCertification(key: string): void {
-    this.updatedOrNewCertifications.delete(key);
+  receiveDeletedCertification(certificationId: string): void {
+    this.apolloBase.mutate({mutation: DELETE_CERTIFICATION, variables: {certificationId}}).subscribe(result => {
+      window.alert('Certification deleted');
+    this.updatedOrNewCertifications.delete(certificationId);
+    });
   }
 
-  public reciveAddedAbility({ index, data }: IAbilityInterchange): void {
+  public receiveAddedAbility({ index, data }: IAbilityInterchange): void {
     this.updatedOrNewAbilities.set(index, data);
   }
 
-  public reciveAddedHobby({ index, data }: IHobbyInterchange): void {
+  public receiveAddedHobby({ index, data }: IHobbyInterchange): void {
     this.updatedOrNewHobbies.set(index, data);
   }
 
