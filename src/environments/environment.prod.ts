@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  graphQLServerUri: 'https://api-dev.greenparrot.biz/',
+  graphQLServerUri: 'https://api-prod.palmserviciosdigitales.com/',
 };
